@@ -11,6 +11,10 @@ class MWTApplication() : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        enqueueWork()
+    }
+
+    private fun enqueueWork() {
         WorkManager.getInstance()
                 .enqueueUniquePeriodicWork(
                         UNIQUE_WORKER_NAME_TRACKER,

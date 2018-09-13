@@ -8,24 +8,24 @@ import com.example.mwt.livedata.setInt
 import com.example.mwt.util.*
 import java.util.*
 
-class TrackerWorkerManager() : Worker () {
+class TrackerWorkerManager : Worker () {
 
     override fun doWork(): Result {
         val calendar = Calendar.getInstance()
         val preference: SharedPreferences = applicationContext.getSharedPreferences(SHARED_PREFERENCE_FILE, Context.MODE_PRIVATE)
-        Log.d("HELP13", "WORKS BABY1")
+        val previousDate = preference.getString(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE)
 
-        if(calendar.get(Calendar.HOUR) == 0 && calendar.get(Calendar.MINUTE) == 0){
+
+        if(calendar.time.toString() == previousDate){
             val numerator = preference.getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR)
             preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY, 0)
-            Log.d("HELP13", "WORKS BABY2")
-        }
-        if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+            preference.edit().putString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, calendar.time.toString()).apply()
 
+        } else {
+            preference.edit().putString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, calendar.time.toString()).apply()
         }
-        if (calendar.get(Calendar.DAY_OF_MONTH) == 1) {
 
-        }
+
 
         return Result.SUCCESS
     }
