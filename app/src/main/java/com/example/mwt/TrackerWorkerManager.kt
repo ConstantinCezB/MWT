@@ -13,10 +13,11 @@ class TrackerWorkerManager : Worker () {
     override fun doWork(): Result {
         val calendar = Calendar.getInstance()
         val preference: SharedPreferences = applicationContext.getSharedPreferences(SHARED_PREFERENCE_FILE, Context.MODE_PRIVATE)
-        val previousDate = preference.getString(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE)
+        val previousDate = preference.getString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE)
 
-
-        if(calendar.time.toString() == previousDate){
+        Log.d("TrackerWorkerManager", "UPDATE:  previousDate = " + previousDate!!.toString() + "       currentDate = " + calendar.time.toString())
+        if(calendar.time.toString() == previousDate.toString()){
+            Log.d("TrackerWorkerManager", "This works !!")
             val numerator = preference.getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR)
             preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY, 0)
             preference.edit().putString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, calendar.time.toString()).apply()
