@@ -11,8 +11,15 @@ class MWTApplication() : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        WorkManager.getInstance().enqueueUniquePeriodicWork(UNIQUE_WORKER_NAME_TRACKER, ExistingPeriodicWorkPolicy.KEEP ,PeriodicWorkRequest.Builder(TrackerWorkerManager::class.java, PeriodicWorkRequest.MIN_PERIODIC_INTERVAL_MILLIS, TimeUnit.MILLISECONDS).build())
+        WorkManager.getInstance()
+                .enqueueUniquePeriodicWork(
+                        UNIQUE_WORKER_NAME_TRACKER,
+                        ExistingPeriodicWorkPolicy.KEEP,
+                        PeriodicWorkRequest.Builder(
+                                TrackerWorkerManager::class.java,
+                                PeriodicWorkRequest.MIN_PERIODIC_INTERVAL_MILLIS,
+                                TimeUnit.MILLISECONDS
+                        ).build()
+                )
     }
-
-
 }
