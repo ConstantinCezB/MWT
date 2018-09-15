@@ -14,7 +14,7 @@ class TrackerWorkerManager : Worker () {
         val calendar = Calendar.getInstance()
         val preference: SharedPreferences = applicationContext.getSharedPreferences(SHARED_PREFERENCE_FILE, Context.MODE_PRIVATE)
         val previousDate: String = preference.getString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE)!!
-        
+
         if(previousDate != DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE && previousDate != calendar.getDate()){
             val numerator = preference.getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR)
             preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY, 0)
