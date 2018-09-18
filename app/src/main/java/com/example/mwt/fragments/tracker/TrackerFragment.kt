@@ -38,7 +38,9 @@ class TrackerFragment : Fragment() {
         preference?.intLiveData(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR)?.observe(this, Observer{
             view.drinking_progress_bar.setProgress((it.toFloat() / preference!!.getInt(SHARED_PREFERENCE_DENOMINATOR_DAILY, DEFAULT_DENOMINATOR).toFloat() * 100).toInt(), true)
             view.numerator_daily.text = it.toString()
-            view.purcentage_daily.text = (it.toFloat() / preference!!.getInt(SHARED_PREFERENCE_DENOMINATOR_DAILY, DEFAULT_DENOMINATOR).toFloat() * 100).toString() + "%"
+            val percentage = (it.toFloat() / preference!!.getInt(SHARED_PREFERENCE_DENOMINATOR_DAILY, DEFAULT_DENOMINATOR).toFloat() * 100)
+            view.purcentage_daily.text =  String.format("%2.1f%%", percentage)
+
         })
 
         preference?.stringLiveData(TIME_INTERVAL_PREVIOUS_WORKER_DATE, DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE)?.observe(this,
