@@ -3,23 +3,17 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@android:id/secondaryProgress">
-        <rotate
-            android:fromDegrees="225"
-            android:pivotX="50%"
-            android:pivotY="50%"
-            android:toDegrees="315">
-            <shape
-                android:innerRadiusRatio="3"
-                android:shape="ring"
-                android:thicknessRatio="11.4"
-                android:useLevel="true">
-                <gradient
-                    android:centerColor="#c4c4c4"
-                    android:endColor="#c4c4c4"
-                    android:startColor="#c4c4c4"
-                    android:type="sweep" />
-            </shape>
-        </rotate>
+        <shape
+            android:innerRadiusRatio="2.6"
+            android:shape="ring"
+            android:thicknessRatio="11.4"
+            android:useLevel="true">
+            <gradient
+                android:centerColor="#c4c4c4"
+                android:endColor="#c4c4c4"
+                android:startColor="#c4c4c4"
+                android:type="sweep" />
+        </shape>
     </item>
 
     <item android:id="@android:id/progress">
@@ -29,7 +23,7 @@
             android:pivotY="50%"
             android:toDegrees="180">
             <shape
-                android:innerRadiusRatio="3"
+                android:innerRadiusRatio="2.5"
                 android:shape="ring"
                 android:thicknessRatio="17.0"
                 android:useLevel="true">

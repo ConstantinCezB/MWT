@@ -8,15 +8,15 @@
     <ProgressBar
         android:id="@+id/drinking_progress_bar"
         style="?android:attr/progressBarStyleHorizontal"
-        app:layout_constraintDimensionRatio="1:1"
         android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_height="0dp"
         android:layout_centerInParent="true"
         android:layout_marginTop="8dp"
         android:indeterminate="false"
         android:progress="80"
-        android:secondaryProgress="100"
         android:progressDrawable="@drawable/circle"
+        android:secondaryProgress="100"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -110,13 +110,13 @@
     <ProgressBar
         android:id="@+id/drinking_progress_week_bar"
         style="?android:progressBarStyleHorizontal"
-        android:layout_width="120dp"
-        android:layout_height="112dp"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:indeterminate="false"
-        android:progress="0"
-        android:progressDrawable="@drawable/little_circle"
-        android:secondaryProgress="70"
+        android:progress="80"
+        android:progressDrawable="@drawable/circle"
+        android:secondaryProgress="100"
         app:layout_constraintBottom_toBottomOf="@+id/purcentage_daily"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="parent"
@@ -125,30 +125,27 @@
     <ProgressBar
         android:id="@+id/drinking_progress_month_bar"
         style="?android:progressBarStyleHorizontal"
-        android:layout_width="70dp"
-        android:layout_height="74dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="8dp"
         android:indeterminate="false"
         android:progress="80"
+        android:progressDrawable="@drawable/circle"
         android:secondaryProgress="100"
-        android:progressDrawable="@drawable/little_circle"
         app:layout_constraintBottom_toBottomOf="@+id/purcentage_daily"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toEndOf="@+id/purcentage_daily"
         app:layout_constraintTop_toTopOf="@+id/purcentage_daily" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/percentage_test"
+        android:textAlignment="center"
         android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView13"
+        app:layout_constraintBottom_toBottomOf="@+id/drinking_progress_week_bar"
         app:layout_constraintEnd_toEndOf="@+id/drinking_progress_week_bar"
         app:layout_constraintStart_toStartOf="@+id/drinking_progress_week_bar"
         app:layout_constraintTop_toTopOf="@+id/drinking_progress_week_bar" />
@@ -169,20 +166,26 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="@string/week_tracker"
+        android:textAlignment="center"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/drinking_progress_week_bar"
         app:layout_constraintStart_toStartOf="@+id/drinking_progress_week_bar"
-        app:layout_constraintTop_toBottomOf="@+id/drinking_progress_week_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="@string/month_tracker"
+        android:textAlignment="center"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/drinking_progress_month_bar"
         app:layout_constraintStart_toStartOf="@+id/drinking_progress_month_bar"
-        app:layout_constraintTop_toBottomOf="@+id/drinking_progress_month_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
