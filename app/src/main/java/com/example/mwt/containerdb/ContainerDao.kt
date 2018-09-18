@@ -24,6 +24,5 @@ interface ContainerDao {
     fun delete(container: ContainersEntity)
 
     @Query("SELECT * FROM containers")
-//    @Query("SELECT * FROM ContainersEntity")
     fun findAll(): LiveData<List<ContainersEntity>>
 }

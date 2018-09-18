@@ -28,10 +28,16 @@ class TrackerWorkerManager : Worker () {
 
     private fun Calendar.getDate() : String {
 
-        val year = this.get(Calendar.YEAR).toString()
-        val month = this.get(Calendar.MONTH).toString()
-        val day = this.get(Calendar.DAY_OF_MONTH).toString()
+        val month = this.get(Calendar.MONTH)
+        val day = this.get(Calendar.DAY_OF_MONTH)
 
-        return "$day, $month, $year"
+        val yearText = this.get(Calendar.YEAR).toString()
+        var monthText = month.toString()
+        var dayText = day.toString()
+
+        if (month < 10) monthText = "0$monthText"
+        if(day < 10) dayText = "0$dayText"
+
+        return "$dayText/$monthText/$yearText"
     }
 }

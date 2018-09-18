@@ -14,6 +14,7 @@ import com.example.mwt.containerrecyclerview.ContainerRecyclerViewAdapter
 import kotlinx.android.synthetic.main.tracker_fragment.view.*
 import android.content.Context.MODE_PRIVATE
 import com.example.mwt.livedata.intLiveData
+import com.example.mwt.livedata.stringLiveData
 import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.tracker_fragment.*
 
@@ -39,6 +40,11 @@ class TrackerFragment : Fragment() {
             view.numerator_daily.text = it.toString()
             view.purcentage_daily.text = (it.toFloat() / preference!!.getInt(SHARED_PREFERENCE_DENOMINATOR_DAILY, DEFAULT_DENOMINATOR).toFloat() * 100).toString() + "%"
         })
+
+        preference?.stringLiveData(TIME_INTERVAL_PREVIOUS_WORKER_DATE, DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE)?.observe(this,
+                Observer {
+                    view.current_day_text.text = it
+                })
 
     }
 
