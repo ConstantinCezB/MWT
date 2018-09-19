@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
-import com.example.mwt.containerdb.ContainersEntity
+import com.example.mwt.db.containerdb.ContainersEntity
 import com.example.mwt.fragments.tracker.TrackerViewModel
 import com.example.mwt.inflate
 import com.example.mwt.livedata.setInt
@@ -91,7 +91,6 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
         }
 
         private fun showDialog(view: View) {
-
 
             val mBuilder: AlertDialog.Builder = AlertDialog.Builder(view.context)
             val mView: View = LayoutInflater.from(view.context).inflate(R.layout.custom_dialog_option_tracker_frame, null)

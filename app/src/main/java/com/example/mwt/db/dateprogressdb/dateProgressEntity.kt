@@ -1,4 +1,4 @@
-package com.example.mwt.dateprogressdb
+package com.example.mwt.db.dateprogressdb
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

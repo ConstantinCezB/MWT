@@ -1,4 +1,4 @@
-package com.example.mwt.containerdb
+package com.example.mwt.db.containerdb
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
