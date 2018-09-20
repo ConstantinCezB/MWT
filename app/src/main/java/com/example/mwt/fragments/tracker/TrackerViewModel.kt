@@ -7,13 +7,19 @@ import com.example.mwt.db.MWTDatabase
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.example.mwt.db.containerdb.ContainersEntity
+import kotlinx.coroutines.experimental.CoroutineScope
+import kotlinx.coroutines.experimental.Dispatchers
+import kotlinx.coroutines.experimental.android.Main
+import kotlinx.coroutines.experimental.launch
+import kotlin.coroutines.experimental.CoroutineContext
 
 
-class TrackerViewModel(application: Application) : AndroidViewModel(application) {
+class TrackerViewModel(private val containerDao: ContainerDao) : ViewModel(), CoroutineScope {
 
-    private val containerDao: ContainerDao = MWTDatabase.getInstance(application).containerDao()
-    private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Default
 
 
     fun getAllPosts(): LiveData<List<ContainersEntity>> {
@@ -21,10 +27,10 @@ class TrackerViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun savePost(container: ContainersEntity) {
-        executorService.execute { containerDao.save(container) }
+        launch{ containerDao.save(container) }
     }
 
     fun deletePost(container: ContainersEntity) {
-        executorService.execute { containerDao.delete(container) }
+        launch{ containerDao.delete(container) }
     }
 }

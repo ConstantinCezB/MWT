@@ -53,4 +53,12 @@ dependencies {
 
     //charting algorithm for android
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.26.1'
+
+    implementation 'org.koin:koin-android-viewmodel:1.0.0'
+}
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
 }

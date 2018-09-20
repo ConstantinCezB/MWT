@@ -17,6 +17,7 @@ import com.example.mwt.livedata.intLiveData
 import com.example.mwt.livedata.stringLiveData
 import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.tracker_fragment.*
+import org.koin.android.viewmodel.ext.android.getViewModel
 
 class TrackerFragment : Fragment() {
 
@@ -52,7 +53,7 @@ class TrackerFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(TrackerViewModel::class.java)
+        viewModel = getViewModel()
 
         containerRecyclerViewAdapter = ContainerRecyclerViewAdapter(viewModel, preference!!).also(recyclerContainerView::setAdapter)
 

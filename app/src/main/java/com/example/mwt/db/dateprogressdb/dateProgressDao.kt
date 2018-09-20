@@ -1,5 +1,6 @@
-package com.example.mwt.db.containerdb
+package com.example.mwt.db.dateprogressdb
 
+import com.example.mwt.db.containerdb.ContainersEntity
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -9,7 +10,7 @@ import androidx.room.Delete
 import androidx.room.Update
 
 @Dao
-interface ContainerDao {
+interface dateProgressDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun saveAll(containers: List<ContainersEntity>)
@@ -23,6 +24,6 @@ interface ContainerDao {
     @Delete
     fun delete(container: ContainersEntity)
 
-    @Query("SELECT * FROM containers")
+    @Query("SELECT * FROM dateProgress")
     fun findAll(): LiveData<List<ContainersEntity>>
 }
