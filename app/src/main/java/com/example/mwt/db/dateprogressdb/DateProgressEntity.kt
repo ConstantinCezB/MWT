@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "dateProgress")
-data class dateProgressEntity(
+data class DateProgressEntity(
         val date: String,
         val progress: Int
 ) {
