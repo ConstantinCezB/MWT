@@ -2,7 +2,6 @@ package com.example.mwt
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.work.Worker
 import com.example.mwt.livedata.setInt
 import com.example.mwt.util.*
