@@ -7,8 +7,7 @@ import androidx.room.PrimaryKey
 data class DateProgressEntity(
         val date: String,
         val progress: Int,
-        val dayString: String,
-        val month: String
+        val dayString: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0

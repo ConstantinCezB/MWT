@@ -96,7 +96,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/purcentage_daily"
+        android:id="@+id/percentage_daily"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/percentage_test"
@@ -116,10 +116,10 @@
         android:progress="80"
         android:progressDrawable="@drawable/circle"
         android:secondaryProgress="100"
-        app:layout_constraintBottom_toBottomOf="@+id/purcentage_daily"
+        app:layout_constraintBottom_toBottomOf="@+id/percentage_daily"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/purcentage_daily" />
+        app:layout_constraintTop_toTopOf="@+id/percentage_daily" />
 
     <ProgressBar
         android:id="@+id/drinking_progress_month_bar"

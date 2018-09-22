@@ -13,7 +13,7 @@ import org.koin.dsl.module.module
 
 val MWTModule = module {
     single {
-        Room.databaseBuilder(androidContext(), MWTDatabase::class.java, "Container.db")
+        Room.databaseBuilder(androidContext(), MWTDatabase::class.java, "MyWaterTrackerDatabase.db")
                 .addCallback(object : RoomDatabase.Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         GlobalScope.launch {
@@ -26,6 +26,10 @@ val MWTModule = module {
 
     single {
         get<MWTDatabase>().containerDao()
+    }
+
+    single{
+        get<MWTDatabase>().dateProgressDao()
     }
 
     viewModel {
