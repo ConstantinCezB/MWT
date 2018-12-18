@@ -40,7 +40,7 @@ class TrackerFragment : Fragment() {
             view.drinking_progress_bar.setProgress((it.toFloat() / preference!!.getInt(SHARED_PREFERENCE_DENOMINATOR_DAILY, DEFAULT_DENOMINATOR).toFloat() * 100).toInt(), true)
             view.numerator_daily.text = it.toString()
             val percentage = (it.toFloat() / preference!!.getInt(SHARED_PREFERENCE_DENOMINATOR_DAILY, DEFAULT_DENOMINATOR).toFloat() * 100)
-            view.purcentage_daily.text =  String.format("%2.1f%%", percentage)
+            view.percentage_daily.text =  String.format("%2.1f%%", percentage)
 
         })
 

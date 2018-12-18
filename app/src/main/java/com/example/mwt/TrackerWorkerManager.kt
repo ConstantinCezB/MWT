@@ -2,12 +2,15 @@ package com.example.mwt
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.work.Worker
+import androidx.work.WorkerParameters
 import com.example.mwt.livedata.setInt
 import com.example.mwt.util.*
 import java.util.*
 
-class TrackerWorkerManager : Worker () {
+class TrackerWorkerManager(context : Context, params : WorkerParameters) : Worker (context, params) {
 
     override fun doWork(): Result {
         val calendar = Calendar.getInstance()
@@ -22,7 +25,7 @@ class TrackerWorkerManager : Worker () {
             preference.edit().putString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, calendar.getDate()).apply()
         }
 
-        return Result.SUCCESS
+        return Result.success()
     }
 
     private fun Calendar.getDate() : String {
