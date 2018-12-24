@@ -9,7 +9,7 @@ import kotlinx.coroutines.experimental.Dispatchers
 import kotlinx.coroutines.experimental.launch
 import kotlin.coroutines.experimental.CoroutineContext
 
-class DreinkingStatisticsViewModel(private val dateProgressDao: DateProgressDao) : ViewModel(), CoroutineScope {
+class DrinkingStatisticsViewModel(private val dateProgressDao: DateProgressDao) : ViewModel(), CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Default
