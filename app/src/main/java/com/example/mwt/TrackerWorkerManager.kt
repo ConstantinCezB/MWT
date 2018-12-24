@@ -12,14 +12,16 @@ import com.example.mwt.db.dateprogressdb.DateProgressDao
 import com.example.mwt.db.dateprogressdb.DateProgressEntity
 import com.example.mwt.livedata.setInt
 import com.example.mwt.util.*
+import org.koin.standalone.KoinComponent
+import org.koin.standalone.get
 import java.util.*
 
-class TrackerWorkerManager(context : Context, params : WorkerParameters) : Worker (context, params) {
+class TrackerWorkerManager(context : Context, params : WorkerParameters) : Worker (context, params), KoinComponent {
 
-    val db = Room.databaseBuilder(
-            applicationContext,
-            MWTDatabase::class.java, "MyWaterTrackerDatabase.db"
-    ).build() //TODO: use the injected
+   // val db = Room.databaseBuilder(
+    //        applicationContext,
+     //       MWTDatabase::class.java, "MyWaterTrackerDatabase.db"
+   // ).build() //TODO: use the injected
 
     override fun doWork(): Result {
 
@@ -34,7 +36,7 @@ class TrackerWorkerManager(context : Context, params : WorkerParameters) : Worke
             val numerator = preference.getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR)
             preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY, 0)
             preference.edit().putString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, currentDate).apply()
-            db.dateProgressDao().save(DateProgressEntity(previousDate, numerator))
+            get<MWTDatabase>().dateProgressDao().save(DateProgressEntity(previousDate, numerator))
 
         } else {
             preference.edit().putString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, currentDate).apply()

@@ -4,6 +4,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.mwt.db.MWTDatabase
+import com.example.mwt.fragments.drinkingstatistics.DrinkingStatisticsViewModel
 import com.example.mwt.fragments.tracker.TrackerViewModel
 import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.launch
@@ -34,5 +35,9 @@ val MWTModule = module {
 
     viewModel {
         TrackerViewModel(get())
+    }
+
+    viewModel {
+        DrinkingStatisticsViewModel(get())
     }
 }
