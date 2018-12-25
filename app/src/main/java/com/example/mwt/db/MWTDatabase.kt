@@ -2,18 +2,22 @@ package com.example.mwt.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.example.mwt.db.containeradddb.ContainerAddDao
+import com.example.mwt.db.containeradddb.ContainersAddEntity
 import com.example.mwt.db.containerdb.ContainerDao
 import com.example.mwt.db.containerdb.ContainersEntity
 import com.example.mwt.db.dateprogressdb.DateProgressDao
 import com.example.mwt.db.dateprogressdb.DateProgressEntity
 
 
-@Database(entities = [ContainersEntity::class, DateProgressEntity::class], version = 1, exportSchema = false)
+@Database(entities = [ContainersEntity::class, DateProgressEntity::class, ContainersAddEntity::class], version = 1, exportSchema = false)
 abstract class MWTDatabase : RoomDatabase() {
 
     abstract fun containerDao(): ContainerDao
 
     abstract fun dateProgressDao(): DateProgressDao
+
+    abstract fun containerAddDao(): ContainerAddDao
 
     companion object {
         val CONTAINERS: List<ContainersEntity> = listOf(ContainersEntity("Glass", 250), ContainersEntity("Water Bottle", 500))
