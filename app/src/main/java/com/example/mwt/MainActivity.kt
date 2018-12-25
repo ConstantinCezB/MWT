@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.example.mwt.fragments.drinkingstatistics.DrinkingStatisticsFragment
-import com.example.mwt.fragments.DrinkingTimerFragment
+import com.example.mwt.fragments.timer.DrinkingTimerFragment
 import com.example.mwt.fragments.tracker.TrackerFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*

@@ -33,6 +33,10 @@ val MWTModule = module {
         get<MWTDatabase>().dateProgressDao()
     }
 
+    single{
+        get<MWTDatabase>().containerAddDao()
+    }
+
     viewModel {
         TrackerViewModel(get())
     }
@@ -40,4 +44,6 @@ val MWTModule = module {
     viewModel {
         DrinkingStatisticsViewModel(get())
     }
+
+
 }

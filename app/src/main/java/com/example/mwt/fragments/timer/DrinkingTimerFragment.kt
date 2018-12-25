@@ -1,4 +1,4 @@
-package com.example.mwt.fragments
+package com.example.mwt.fragments.timer
 
 import android.os.Bundle
 import android.view.LayoutInflater
