@@ -1,5 +1,9 @@
 package com.example.mwt.util
 
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import java.util.*
 
 fun Calendar.getDate() : String {
@@ -32,5 +36,13 @@ fun Calendar.getTimeAndDate() : String {
     if (second < 10) secondText = "0$secondText"
     if (period == 1) periodText = "PM"
 
-    return "$hour:$minuteText:$secondText$periodText   ${this.getDate()}"
+    return "$hour:$minuteText:$secondText$periodText\n\n${this.getDate()}"
+}
+
+fun ViewGroup.inflate(
+        @LayoutRes layoutId: Int,
+        inflater: LayoutInflater = LayoutInflater.from(context),
+        attachToRoot: Boolean = false
+): View {
+    return inflater.inflate(layoutId, this, attachToRoot)
 }

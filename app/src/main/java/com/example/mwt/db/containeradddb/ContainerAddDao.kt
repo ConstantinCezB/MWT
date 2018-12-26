@@ -21,6 +21,6 @@ interface ContainerAddDao {
     @Delete
     fun delete(container: ContainersAddEntity)
 
-    @Query("SELECT * FROM containers_add")
+    @Query("SELECT * FROM containers_add ORDER BY id DESC")
     fun findAll(): LiveData<List<ContainersAddEntity>>
 }

@@ -3,7 +3,6 @@ package com.example.mwt.recyclerview
 import android.app.AlertDialog
 import android.content.SharedPreferences
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,15 +14,13 @@ import com.example.mwt.db.MWTDatabase
 import com.example.mwt.db.containeradddb.ContainersAddEntity
 import com.example.mwt.db.containerdb.ContainersEntity
 import com.example.mwt.fragments.tracker.TrackerViewModel
-import com.example.mwt.inflate
+import com.example.mwt.util.inflate
 import com.example.mwt.util.setInt
 import com.example.mwt.util.*
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.custom_dialog_option_tracker_frame.view.*
 import kotlinx.android.synthetic.main.custom_dialog_tracker_frame.view.*
 import kotlinx.android.synthetic.main.layout_list_item.view.*
-import kotlinx.coroutines.*
-import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.launch
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.get

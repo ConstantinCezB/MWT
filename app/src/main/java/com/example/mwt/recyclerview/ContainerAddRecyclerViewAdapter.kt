@@ -1,6 +1,5 @@
 package com.example.mwt.recyclerview
 
-import android.content.SharedPreferences
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,8 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
 import com.example.mwt.db.containeradddb.ContainersAddEntity
-import com.example.mwt.fragments.timer.DrinkingTimerViewModel
-import com.example.mwt.inflate
+import com.example.mwt.util.inflate
 import kotlinx.android.synthetic.main.layout_list_water_container_drinked.view.*
 
 
@@ -60,6 +58,7 @@ class ContainerAddRecyclerViewAdapter:
                 water_drank.text = String.format("%s %s", resources.getString(R.string.water_drank), containersAddEntity.amount.toString())
                 container_max.text = String.format("%s %s", resources.getString(R.string.water_drank_container_max), containersAddEntity.size.toString())
                 date_drank_container.text = containersAddEntity.date
+                progressBar.progress = (containersAddEntity.amount / containersAddEntity.size) *100
             }
         }
     }

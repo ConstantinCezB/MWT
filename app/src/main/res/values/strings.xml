@@ -49,4 +49,5 @@
     <string name="water_container_max_test">Water Container max: 500</string>
     <string name="water_drank">Water drank: </string>
     <string name="water_drank_container_max">Water Container max: </string>
+    <string name="drinking_history">Drinking History</string>
 </resources>

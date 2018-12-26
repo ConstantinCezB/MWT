@@ -75,10 +75,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
         displayFragment(item.itemId)
-
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
+
 }
