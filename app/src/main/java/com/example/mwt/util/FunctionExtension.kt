@@ -17,3 +17,20 @@ fun Calendar.getDate() : String {
     return "$dayText/$monthText/$yearText"
 }
 
+fun Calendar.getTimeAndDate() : String {
+
+    val hour = this.get(Calendar.HOUR)
+    val minute = this.get(Calendar.MINUTE)
+    val second = this.get(Calendar.SECOND)
+    val period = this.get(Calendar.AM_PM)
+
+    var minuteText = minute.toString()
+    var secondText = second.toString()
+    var periodText = "AM"
+
+    if (minute < 10) minuteText = "0$minuteText"
+    if (second < 10) secondText = "0$secondText"
+    if (period == 1) periodText = "PM"
+
+    return "$hour:$minuteText:$secondText$periodText   ${this.getDate()}"
+}

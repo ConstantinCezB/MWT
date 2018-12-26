@@ -24,7 +24,7 @@ class DrinkingTimerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.recyclerContainerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        view.recyclerContainerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -90,10 +90,16 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
                 item_name.text = container.name
                 item_size.text = container.size.toString()
                 itemView.setOnClickListener {
-                    preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY, item_size.text.toString().toInt() + preference.getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR))
+                    preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY,
+                            item_size.text.toString().toInt() + preference
+                                    .getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR))
                     launch {
-                        get<MWTDatabase>().containerAddDao().save(ContainersAddEntity(item_name.text.toString(), item_size.text.toString().toInt(), item_size.text.toString().toInt(),
-                                Calendar.getInstance().getDate()))
+                        get<MWTDatabase>().containerAddDao().save(
+                                ContainersAddEntity(
+                                        item_name.text.toString(),
+                                        item_size.text.toString().toInt(),
+                                        item_size.text.toString().toInt(),
+                                Calendar.getInstance().getTimeAndDate()))
                     }
                 }
                 itemView.setOnLongClickListener {
@@ -141,7 +147,8 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
                     createSnackBar(mView, R.string.snackbar_success, Snackbar.LENGTH_SHORT)
                     Handler().postDelayed({
                         dialog.dismiss()
-                        viewModel.savePost(ContainersEntity(mView.editContainerName.text.toString(), mView.editContainerSize.text.toString().toInt()))
+                        viewModel.savePost(ContainersEntity(mView.editContainerName.text.toString(),
+                                mView.editContainerSize.text.toString().toInt()))
                     }, 1500)
                 } else {
                     createSnackBar(mView, R.string.snackbar_fail, Snackbar.LENGTH_SHORT)

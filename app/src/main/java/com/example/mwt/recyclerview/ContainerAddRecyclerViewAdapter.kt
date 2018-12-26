@@ -57,8 +57,8 @@ class ContainerAddRecyclerViewAdapter:
         fun bind(containersAddEntity: ContainersAddEntity) {
             with(itemView) {
                 container_name.text = containersAddEntity.name
-                water_drank.text = containersAddEntity.amount.toString()
-                container_max.text = containersAddEntity.size.toString()
+                water_drank.text = String.format("%s %s", resources.getString(R.string.water_drank), containersAddEntity.amount.toString())
+                container_max.text = String.format("%s %s", resources.getString(R.string.water_drank_container_max), containersAddEntity.size.toString())
                 date_drank_container.text = containersAddEntity.date
             }
         }
