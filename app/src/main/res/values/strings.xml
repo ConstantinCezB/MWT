@@ -43,4 +43,8 @@
     <string name="new_size">Edit size:</string>
     <string name="today_date_test">09/12/1997</string>
     <string name="chart_entries">Chart Entries</string>
+    <string name="image_of_the_water_bother_that_was_used_to_drink">Image of the water bother that was used to drink</string>
+    <string name="test_date_drank">10/12/2019</string>
+    <string name="test_water_drank">Water drank: 400</string>
+    <string name="water_container_max_test">Water Container max: 500</string>
 </resources>

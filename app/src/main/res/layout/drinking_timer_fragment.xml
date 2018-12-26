@@ -8,7 +8,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerContainerView"
+        android:id="@+id/recyclerTimerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -26,8 +26,8 @@
     <ProgressBar
         android:id="@+id/timer_progress_bar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="250dp"
-        android:layout_height="0dp"
+        android:layout_width="225dp"
+        android:layout_height="225dp"
         android:layout_centerInParent="true"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13999999" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Chronometer
         android:id="@+id/chronometer"

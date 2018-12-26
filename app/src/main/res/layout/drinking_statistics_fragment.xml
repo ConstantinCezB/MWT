@@ -44,7 +44,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/chart_daily" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerContainerView"
+                android:id="@+id/recyclerTimerView"
                 android:layout_width="0dp"
                 android:layout_height="500dp"
                 app:layout_constraintEnd_toEndOf="parent"
