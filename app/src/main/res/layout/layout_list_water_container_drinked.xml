@@ -33,18 +33,19 @@
                 android:id="@+id/image_water_drank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:contentDescription="@string/image_of_the_water_bother_that_was_used_to_drink"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars"
-                android:contentDescription="@string/image_of_the_water_bother_that_was_used_to_drink" />
+                app:srcCompat="@android:drawable/btn_star" />
 
             <TextView
                 android:id="@+id/container_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="9dp"
                 android:text="@string/water_bottle"

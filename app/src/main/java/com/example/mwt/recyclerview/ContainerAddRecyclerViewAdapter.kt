@@ -31,7 +31,7 @@ class ContainerAddRecyclerViewAdapter:
     }
 
     override fun getItemCount(): Int {
-        return super.getItemCount() + 1
+        return super.getItemCount()
     }
 
     override fun getItemViewType(position: Int): Int {

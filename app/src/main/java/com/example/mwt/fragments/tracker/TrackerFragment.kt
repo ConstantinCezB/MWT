@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mwt.R
-import com.example.mwt.containerrecyclerview.ContainerRecyclerViewAdapter
+import com.example.mwt.recyclerview.ContainerRecyclerViewAdapter
 import kotlinx.android.synthetic.main.tracker_fragment.view.*
 import android.content.Context.MODE_PRIVATE
 import com.example.mwt.util.intLiveData
@@ -33,7 +33,7 @@ class TrackerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         preference = context?.getSharedPreferences(SHARED_PREFERENCE_FILE, MODE_PRIVATE)
-        view.recyclerTimerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        view.recyclerContainerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         preference?.intLiveData(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR)?.observe(this, Observer{
             view.drinking_progress_bar.setProgress((it.toFloat() / preference!!.getInt(SHARED_PREFERENCE_DENOMINATOR_DAILY, DEFAULT_DENOMINATOR).toFloat() * 100).toInt(), true)
@@ -54,7 +54,7 @@ class TrackerFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = getViewModel()
 
-        containerRecyclerViewAdapter = ContainerRecyclerViewAdapter(viewModel, preference!!).also(recyclerTimerView::setAdapter)
+        containerRecyclerViewAdapter = ContainerRecyclerViewAdapter(viewModel, preference!!).also(recyclerContainerView::setAdapter)
 
         viewModel.getAllPosts().observe(viewLifecycleOwner, Observer(containerRecyclerViewAdapter::submitList))
     }

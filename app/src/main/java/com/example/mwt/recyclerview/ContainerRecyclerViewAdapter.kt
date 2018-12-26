@@ -1,8 +1,9 @@
-package com.example.mwt.containerrecyclerview
+package com.example.mwt.recyclerview
 
 import android.app.AlertDialog
 import android.content.SharedPreferences
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
+import com.example.mwt.db.MWTDatabase
+import com.example.mwt.db.containeradddb.ContainersAddEntity
 import com.example.mwt.db.containerdb.ContainersEntity
 import com.example.mwt.fragments.tracker.TrackerViewModel
 import com.example.mwt.inflate
@@ -19,9 +22,15 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.custom_dialog_option_tracker_frame.view.*
 import kotlinx.android.synthetic.main.custom_dialog_tracker_frame.view.*
 import kotlinx.android.synthetic.main.layout_list_item.view.*
+import kotlinx.coroutines.*
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
+import org.koin.standalone.KoinComponent
+import org.koin.standalone.get
+import java.util.*
 
 class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, private var preference: SharedPreferences) :
-        ListAdapter<ContainersEntity, RecyclerView.ViewHolder>(diffCallback) {
+        ListAdapter<ContainersEntity, RecyclerView.ViewHolder>(diffCallback), KoinComponent {
 
 
     companion object {
@@ -82,6 +91,10 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
                 item_size.text = container.size.toString()
                 itemView.setOnClickListener {
                     preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY, item_size.text.toString().toInt() + preference.getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR))
+                    launch {
+                        get<MWTDatabase>().containerAddDao().save(ContainersAddEntity(item_name.text.toString(), item_size.text.toString().toInt(), item_size.text.toString().toInt(),
+                                Calendar.getInstance().getDate()))
+                    }
                 }
                 itemView.setOnLongClickListener {
                     showDialog(itemView)
