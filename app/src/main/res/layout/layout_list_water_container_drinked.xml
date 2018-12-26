@@ -71,12 +71,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/test_water_drank"
-                app:layout_constraintBottom_toTopOf="@+id/textView17"
+                app:layout_constraintBottom_toTopOf="@+id/container_max"
                 app:layout_constraintStart_toStartOf="@+id/container_name"
                 app:layout_constraintTop_toBottomOf="@+id/container_name" />
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/container_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/water_container_max_test"

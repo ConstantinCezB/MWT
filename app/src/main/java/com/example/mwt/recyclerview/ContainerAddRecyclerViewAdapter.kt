@@ -1,6 +1,7 @@
 package com.example.mwt.recyclerview
 
 import android.content.SharedPreferences
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
 import com.example.mwt.db.containeradddb.ContainersAddEntity
 import com.example.mwt.fragments.timer.DrinkingTimerViewModel
+import com.example.mwt.inflate
+import kotlinx.android.synthetic.main.layout_list_water_container_drinked.view.*
 
 
 class ContainerAddRecyclerViewAdapter (private val viewModel: DrinkingTimerViewModel, private var preference: SharedPreferences):
@@ -31,13 +34,33 @@ class ContainerAddRecyclerViewAdapter (private val viewModel: DrinkingTimerViewM
         return super.getItemCount() + 1
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return  R.layout.layout_list_water_container_drinked
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val view = parent.inflate(viewType)
+        return ContainerDrankViewHolder (view)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        when (holder) {
+            is ContainerDrankViewHolder -> {
+                val item = getItem(position)
+                holder.bind(item)
+            }
+        }
     }
 
+    inner class ContainerDrankViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        fun bind(containersAddEntity: ContainersAddEntity) {
+            with(itemView) {
+                container_name.text = containersAddEntity.name
+                water_drank.text = containersAddEntity.amount.toString()
+                container_max.text = containersAddEntity.size.toString()
+                date_drank_container.text = containersAddEntity.date
+            }
+        }
+    }
 }
