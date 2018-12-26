@@ -12,8 +12,8 @@ import com.example.mwt.R
 import com.example.mwt.containerrecyclerview.ContainerRecyclerViewAdapter
 import kotlinx.android.synthetic.main.tracker_fragment.view.*
 import android.content.Context.MODE_PRIVATE
-import com.example.mwt.livedata.intLiveData
-import com.example.mwt.livedata.stringLiveData
+import com.example.mwt.util.intLiveData
+import com.example.mwt.util.stringLiveData
 import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.tracker_fragment.*
 import org.koin.android.viewmodel.ext.android.getViewModel

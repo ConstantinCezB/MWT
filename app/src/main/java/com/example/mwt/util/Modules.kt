@@ -1,4 +1,4 @@
-package com.example.mwt
+package com.example.mwt.util
 
 import androidx.room.Room
 import androidx.room.RoomDatabase

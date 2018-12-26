@@ -1,4 +1,4 @@
-package com.example.mwt.livedata
+package com.example.mwt.util
 
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData

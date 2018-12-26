@@ -13,7 +13,7 @@ import com.example.mwt.inflate
 import kotlinx.android.synthetic.main.layout_list_water_container_drinked.view.*
 
 
-class ContainerAddRecyclerViewAdapter (private val viewModel: DrinkingTimerViewModel, private var preference: SharedPreferences):
+class ContainerAddRecyclerViewAdapter:
         ListAdapter<ContainersAddEntity, RecyclerView.ViewHolder>(diffCallback){
 
     companion object {

@@ -3,25 +3,17 @@ package com.example.mwt
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
-import androidx.room.Room
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.mwt.db.MWTDatabase
-import com.example.mwt.db.MWTDatabase_Impl
-import com.example.mwt.db.dateprogressdb.DateProgressDao
 import com.example.mwt.db.dateprogressdb.DateProgressEntity
-import com.example.mwt.livedata.setInt
+import com.example.mwt.util.setInt
 import com.example.mwt.util.*
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.get
 import java.util.*
 
 class TrackerWorkerManager(context : Context, params : WorkerParameters) : Worker (context, params), KoinComponent {
-
-   // val db = Room.databaseBuilder(
-    //        applicationContext,
-     //       MWTDatabase::class.java, "MyWaterTrackerDatabase.db"
-   // ).build() //TODO: use the injected
 
     override fun doWork(): Result {
 
@@ -43,20 +35,5 @@ class TrackerWorkerManager(context : Context, params : WorkerParameters) : Worke
         }
 
         return Result.success()
-    }
-
-    private fun Calendar.getDate() : String {
-
-        val month = this.get(Calendar.MONTH)
-        val day = this.get(Calendar.DAY_OF_MONTH)
-
-        val yearText = this.get(Calendar.YEAR).toString()
-        var monthText = month.toString()
-        var dayText = day.toString()
-
-        if (month < 10) monthText = "0$monthText"
-        if(day < 10) dayText = "0$dayText"
-
-        return "$dayText/$monthText/$yearText"
     }
 }
