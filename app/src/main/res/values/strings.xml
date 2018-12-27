@@ -53,4 +53,5 @@
     <string name="settings">Settings</string>
     <string name="ibm">IBM</string>
     <string name="goals">Goals</string>
+    <string name="edit_water_container">Edit Water Container</string>
 </resources>

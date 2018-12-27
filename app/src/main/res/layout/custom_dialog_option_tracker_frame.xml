@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/delete_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -31,8 +31,8 @@
         android:textColor="@android:color/holo_orange_light"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button" />
+        app:layout_constraintStart_toEndOf="@+id/delete_btn"
+        app:layout_constraintTop_toTopOf="@+id/delete_btn" />
 
     <TextView
         android:id="@+id/textView5"
@@ -56,7 +56,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="#009c8b"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_drop">
@@ -68,7 +68,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Edit Water Container"
+            android:text="@string/edit_water_container"
             android:textAlignment="textStart"
             android:textColor="@android:color/white"
             android:textSize="24sp"
@@ -136,7 +136,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView8" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/edit_container_accept_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -152,7 +152,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/cancel_edit_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -187,6 +187,6 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

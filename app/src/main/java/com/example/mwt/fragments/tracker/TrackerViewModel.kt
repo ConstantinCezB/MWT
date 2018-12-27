@@ -27,4 +27,8 @@ class TrackerViewModel(private val containerDao: ContainerDao) : ViewModel(), Co
     fun deletePost(container: ContainersEntity) {
         launch{ containerDao.delete(container) }
     }
+
+    fun updatePost(container: ContainersEntity){
+        launch{ containerDao.update(container) }
+    }
 }

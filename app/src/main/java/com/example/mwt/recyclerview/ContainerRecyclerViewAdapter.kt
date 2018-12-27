@@ -100,19 +100,23 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
                     }
                 }
                 itemView.setOnLongClickListener {
-                    showDialog(itemView)
+                    showDialog(itemView, container)
                     true
                 }
             }
         }
 
-        private fun showDialog(view: View) {
+        private fun showDialog(view: View, container: ContainersEntity) {
 
             val mBuilder: AlertDialog.Builder = AlertDialog.Builder(view.context)
             val mView: View = LayoutInflater.from(view.context).inflate(R.layout.custom_dialog_option_tracker_frame, null)
             mBuilder.setView(mView)
             val dialog: AlertDialog = mBuilder.create()
             var visibilityEdit: Boolean = false
+
+            mView.editContainerNameEditScreen.text.append(container.name)
+
+            mView.editContainerSizeEditScreen.text.append(container.size.toString())
 
             mView.edit_drop.setOnClickListener{
                 if(visibilityEdit){
@@ -123,6 +127,25 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
                     mView.constraintLayoutEdit.visibility = View.VISIBLE
                 }
                 visibilityEdit = !visibilityEdit
+            }
+
+            mView.delete_btn.setOnClickListener {
+                viewModel.deletePost(container)
+                dialog.dismiss()
+            }
+
+            mView.cancel_edit_btn.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            mView.edit_container_accept_btn.setOnClickListener{
+                val containerToEdit = ContainersEntity(mView.editContainerNameEditScreen.text.toString(),
+                        mView.editContainerSizeEditScreen.text.toString().toInt())
+
+                containerToEdit.id = container.id
+                viewModel.updatePost(containerToEdit)
+
+                dialog.dismiss()
             }
 
 
