@@ -23,6 +23,6 @@ interface DateProgressDao {
     @Delete
     fun delete(dateProgress: DateProgressEntity)
 
-    @Query("SELECT * FROM dateProgress") // TODO: this need to be sorted according to the date that was added the first item in the list must be the first one added
+    @Query("SELECT * FROM dateProgress ORDER BY id DESC")
     fun findAll(): LiveData<List<DateProgressEntity>>
 }

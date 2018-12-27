@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
 import com.example.mwt.recyclerview.ContainerAddRecyclerViewAdapter
 import kotlinx.android.synthetic.main.drinking_timer_fragment.view.*
@@ -24,7 +25,7 @@ class DrinkingTimerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.recyclerContainerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        view.recyclerContainerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
