@@ -15,6 +15,7 @@ import android.content.Context.MODE_PRIVATE
 import com.example.mwt.util.intLiveData
 import com.example.mwt.util.stringLiveData
 import com.example.mwt.util.*
+import kotlinx.android.synthetic.main.custom_dialog_option_tracker_frame.view.*
 import kotlinx.android.synthetic.main.tracker_fragment.*
 import org.koin.android.viewmodel.ext.android.getViewModel
 
@@ -23,6 +24,7 @@ class TrackerFragment : Fragment() {
     private lateinit var viewModel: TrackerViewModel
     private lateinit var containerRecyclerViewAdapter: ContainerRecyclerViewAdapter
     private var preference: SharedPreferences? = null
+    private var visibilityEdit: Boolean = false
 
 
 
@@ -47,6 +49,17 @@ class TrackerFragment : Fragment() {
                 Observer {
                     view.current_day_text.text = it
                 })
+
+        view.pullup.setOnClickListener{
+            if(visibilityEdit){
+                it.background = view.getResources().getDrawable(R.drawable.ic_arrow_drop_up)
+                view.containersRecycler.visibility = View.GONE
+            } else {
+                it.background = view.getResources().getDrawable(R.drawable.ic_arrow_drop_down)
+                view.containersRecycler.visibility = View.VISIBLE
+            }
+            visibilityEdit = !visibilityEdit
+        }
 
     }
 
