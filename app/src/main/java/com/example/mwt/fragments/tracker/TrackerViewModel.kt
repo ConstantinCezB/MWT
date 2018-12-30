@@ -20,6 +20,14 @@ class TrackerViewModel(private val containerDao: ContainerDao) : ViewModel(), Co
         return containerDao.findAll()
     }
 
+    fun getFavoriteContainers(): LiveData<List<ContainersEntity>> {
+        return containerDao.findFavoriteContainers()
+    }
+
+    fun getNonFavoriteContainers(): LiveData<List<ContainersEntity>> {
+        return containerDao.findContainers()
+    }
+
     fun savePost(container: ContainersEntity) {
         launch{ containerDao.save(container) }
     }

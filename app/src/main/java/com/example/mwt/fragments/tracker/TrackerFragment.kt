@@ -76,14 +76,12 @@ class TrackerFragment : Fragment() {
 
         containerRecyclerViewAdapter = ContainerRecyclerViewAdapter(viewModel, preference!!).also(containerRecyclerView::setAdapter)
 
-        Log.d("TEST5", containerFavoriteRecyclerViewAdapter.itemCount.toString())
-
-        Log.d("TEST5", containerRecyclerViewAdapter.itemCount.toString())
-
-        viewModel.getAllPosts().observe(viewLifecycleOwner, Observer{
+        viewModel.getFavoriteContainers().observe(viewLifecycleOwner, Observer {
             containerFavoriteRecyclerViewAdapter.submitList(it)
-            containerRecyclerViewAdapter.submitList(it)
+        })
 
+        viewModel.getNonFavoriteContainers().observe(viewLifecycleOwner, Observer{
+            containerRecyclerViewAdapter.submitList(it)
         })
     }
 }
