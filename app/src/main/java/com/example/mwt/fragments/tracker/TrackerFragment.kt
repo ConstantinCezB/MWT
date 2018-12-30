@@ -15,7 +15,6 @@ import android.content.Context.MODE_PRIVATE
 import com.example.mwt.util.intLiveData
 import com.example.mwt.util.stringLiveData
 import com.example.mwt.util.*
-import kotlinx.android.synthetic.main.custom_dialog_option_tracker_frame.view.*
 import kotlinx.android.synthetic.main.tracker_fragment.*
 import org.koin.android.viewmodel.ext.android.getViewModel
 
@@ -50,12 +49,12 @@ class TrackerFragment : Fragment() {
                     view.current_day_text.text = it
                 })
 
-        view.pullup.setOnClickListener{
+        view.pull_up_tab.setOnClickListener{
             if(visibilityEdit){
-                it.background = view.getResources().getDrawable(R.drawable.ic_arrow_drop_up)
+                pull_up.background = view.getResources().getDrawable(R.drawable.ic_invert_colors_black_24dp)
                 view.containersRecycler.visibility = View.GONE
             } else {
-                it.background = view.getResources().getDrawable(R.drawable.ic_arrow_drop_down)
+                pull_up.background = view.getResources().getDrawable(R.drawable.ic_invert_colors_off_black_24dp)
                 view.containersRecycler.visibility = View.VISIBLE
             }
             visibilityEdit = !visibilityEdit
