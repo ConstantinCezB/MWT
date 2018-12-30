@@ -25,14 +25,14 @@ class DrinkingTimerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.recyclerContainerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        view.recyclerFavoriteContainerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = getViewModel()
 
-        containerDrankRecyclerViewAdapter = ContainerAddRecyclerViewAdapter().also(recyclerContainerView::setAdapter)
+        containerDrankRecyclerViewAdapter = ContainerAddRecyclerViewAdapter().also(recyclerFavoriteContainerView::setAdapter)
 
         viewModel.getAllPosts().observe(viewLifecycleOwner, Observer(containerDrankRecyclerViewAdapter::submitList))
     }

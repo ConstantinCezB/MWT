@@ -12,6 +12,10 @@ import com.example.mwt.R
 import com.example.mwt.recyclerview.ContainerRecyclerViewAdapter
 import kotlinx.android.synthetic.main.tracker_fragment.view.*
 import android.content.Context.MODE_PRIVATE
+import android.util.Log
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mwt.recyclerview.ContainerFavoriteRecyclerViewAdapter
 import com.example.mwt.util.intLiveData
 import com.example.mwt.util.stringLiveData
 import com.example.mwt.util.*
@@ -21,6 +25,7 @@ import org.koin.android.viewmodel.ext.android.getViewModel
 class TrackerFragment : Fragment() {
 
     private lateinit var viewModel: TrackerViewModel
+    private lateinit var containerFavoriteRecyclerViewAdapter: ContainerFavoriteRecyclerViewAdapter
     private lateinit var containerRecyclerViewAdapter: ContainerRecyclerViewAdapter
     private var preference: SharedPreferences? = null
     private var visibilityEdit: Boolean = false
@@ -34,7 +39,8 @@ class TrackerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         preference = context?.getSharedPreferences(SHARED_PREFERENCE_FILE, MODE_PRIVATE)
-        view.recyclerContainerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        view.recyclerFavoriteContainerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        view.containerRecyclerView.layoutManager = GridLayoutManager(context, 3, RecyclerView.VERTICAL, false)
 
         preference?.intLiveData(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR)?.observe(this, Observer{
             view.drinking_progress_bar.setProgress((it.toFloat() / preference!!.getInt(SHARED_PREFERENCE_DENOMINATOR_DAILY, DEFAULT_DENOMINATOR).toFloat() * 100).toInt(), true)
@@ -66,8 +72,18 @@ class TrackerFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = getViewModel()
 
-        containerRecyclerViewAdapter = ContainerRecyclerViewAdapter(viewModel, preference!!).also(recyclerContainerView::setAdapter)
+        containerFavoriteRecyclerViewAdapter = ContainerFavoriteRecyclerViewAdapter(viewModel, preference!!).also(recyclerFavoriteContainerView::setAdapter)
 
-        viewModel.getAllPosts().observe(viewLifecycleOwner, Observer(containerRecyclerViewAdapter::submitList))
+        containerRecyclerViewAdapter = ContainerRecyclerViewAdapter(viewModel, preference!!).also(containerRecyclerView::setAdapter)
+
+        Log.d("TEST5", containerFavoriteRecyclerViewAdapter.itemCount.toString())
+
+        Log.d("TEST5", containerRecyclerViewAdapter.itemCount.toString())
+
+        viewModel.getAllPosts().observe(viewLifecycleOwner, Observer{
+            containerFavoriteRecyclerViewAdapter.submitList(it)
+            containerRecyclerViewAdapter.submitList(it)
+
+        })
     }
 }
