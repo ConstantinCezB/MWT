@@ -25,4 +25,10 @@ interface ContainerDao {
 
     @Query("SELECT * FROM containers")
     fun findAll(): LiveData<List<ContainersEntity>>
+
+    @Query("SELECT * FROM containers WHERE favorite = 1 ORDER BY favPosition ASC")
+    fun findFavoriteContainers() : LiveData<List<ContainersEntity>>
+
+    @Query("SELECT * FROM containers WHERE favorite = 0 ORDER BY id ASC")
+    fun findContainers(): LiveData<List<ContainersEntity>>
 }
