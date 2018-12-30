@@ -107,6 +107,8 @@ class ContainerFavoriteRecyclerViewAdapter (private val viewModel: TrackerViewMo
 
             mView.editContainerSizeEditScreen.text.append(container.size.toString())
 
+            if (container.favorite) mView.add_to_favorite_buttom.text = "Rem Fav"
+
             mView.edit_drop.setOnClickListener{
                 if(visibilityEdit){
                     it.background = mView.getResources().getDrawable(R.drawable.ic_arrow_drop_down)
@@ -135,6 +137,18 @@ class ContainerFavoriteRecyclerViewAdapter (private val viewModel: TrackerViewMo
                 viewModel.updatePost(containerToEdit)
 
                 dialog.dismiss()
+            }
+
+            mView.add_to_favorite_buttom.setOnClickListener{
+                if (container.favorite){
+                    container.favorite = false
+                    viewModel.updatePost(container)
+                    mView.add_to_favorite_buttom.text = "Favorite"
+                } else {
+                    container.favorite = true
+                    viewModel.updatePost(container)
+                    mView.add_to_favorite_buttom.text = "Rem Fav"
+                }
             }
 
 

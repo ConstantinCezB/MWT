@@ -112,11 +112,13 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
             val mView: View = LayoutInflater.from(view.context).inflate(R.layout.custom_dialog_option_tracker_frame, null)
             mBuilder.setView(mView)
             val dialog: AlertDialog = mBuilder.create()
-            var visibilityEdit: Boolean = false
+            var visibilityEdit = false
 
             mView.editContainerNameEditScreen.text.append(container.name)
 
             mView.editContainerSizeEditScreen.text.append(container.size.toString())
+
+            if (container.favorite) mView.add_to_favorite_buttom.text = "Rem Fav"
 
             mView.edit_drop.setOnClickListener{
                 if(visibilityEdit){
@@ -146,6 +148,18 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
                 viewModel.updatePost(containerToEdit)
 
                 dialog.dismiss()
+            }
+
+            mView.add_to_favorite_buttom.setOnClickListener{
+                if (container.favorite){
+                    container.favorite = false
+                    viewModel.updatePost(container)
+                    mView.add_to_favorite_buttom.text = "Favorite"
+                } else {
+                    container.favorite = true
+                    viewModel.updatePost(container)
+                    mView.add_to_favorite_buttom.text = "Rem Fav"
+                }
             }
 
 

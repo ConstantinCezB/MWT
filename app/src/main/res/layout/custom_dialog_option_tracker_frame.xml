@@ -17,12 +17,12 @@
         android:text="@string/option_delete"
         android:textColor="@android:color/holo_red_light"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/add_to_favorite_buttom "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/add_to_favorite_buttom"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
