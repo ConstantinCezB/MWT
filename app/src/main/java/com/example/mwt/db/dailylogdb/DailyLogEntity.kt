@@ -1,10 +1,10 @@
-package com.example.mwt.db.containeradddb
+package com.example.mwt.db.dailylogdb
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "containers_add")
-data class ContainersAddEntity(
+data class DailyLogEntity(
         val name: String,
         val amount: Int,
         val size: Int,

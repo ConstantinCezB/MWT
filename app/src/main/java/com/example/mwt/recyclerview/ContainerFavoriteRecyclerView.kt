@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
 import com.example.mwt.db.MWTDatabase
-import com.example.mwt.db.containeradddb.ContainersAddEntity
+import com.example.mwt.db.dailylogdb.DailyLogEntity
 import com.example.mwt.db.containerdb.ContainersEntity
 import com.example.mwt.fragments.tracker.TrackerViewModel
 import com.example.mwt.util.inflate
@@ -81,7 +81,7 @@ class ContainerFavoriteRecyclerViewAdapter (private val viewModel: TrackerViewMo
                                     .getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR))
                     launch {
                         get<MWTDatabase>().containerAddDao().save(
-                                ContainersAddEntity(
+                                DailyLogEntity(
                                         item_name.text.toString(),
                                         item_size.text.toString().toInt(),
                                         item_size.text.toString().toInt(),
