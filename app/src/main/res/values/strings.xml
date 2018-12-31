@@ -55,4 +55,5 @@
     <string name="goals">Goals</string>
     <string name="edit_water_container">Edit Water Container</string>
     <string name="this_indicates_if_the_tab_is_pulled_up_or_not">this indicates if the tab is pulled up or not</string>
+    <string name="daily_log">Daily Log</string>
 </resources>

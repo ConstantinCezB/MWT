@@ -61,7 +61,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/drinking_history"
+        android:text="@string/daily_log"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="normal|bold"
