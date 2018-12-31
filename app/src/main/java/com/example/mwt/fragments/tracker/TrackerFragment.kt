@@ -12,7 +12,7 @@ import com.example.mwt.R
 import com.example.mwt.recyclerview.ContainerRecyclerViewAdapter
 import kotlinx.android.synthetic.main.tracker_fragment.view.*
 import android.content.Context.MODE_PRIVATE
-import android.util.Log
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.recyclerview.ContainerFavoriteRecyclerViewAdapter
@@ -57,10 +57,10 @@ class TrackerFragment : Fragment() {
 
         view.pull_up_tab.setOnClickListener{
             if(visibilityEdit){
-                pull_up.background = view.getResources().getDrawable(R.drawable.ic_invert_colors_black_24dp)
+                pull_up.background = ContextCompat.getDrawable(context!!, R.drawable.ic_invert_colors_black_24dp)
                 view.containersRecycler.visibility = View.GONE
             } else {
-                pull_up.background = view.getResources().getDrawable(R.drawable.ic_invert_colors_off_black_24dp)
+                pull_up.background = ContextCompat.getDrawable(context!!, R.drawable.ic_invert_colors_off_black_24dp)
                 view.containersRecycler.visibility = View.VISIBLE
             }
             visibilityEdit = !visibilityEdit
