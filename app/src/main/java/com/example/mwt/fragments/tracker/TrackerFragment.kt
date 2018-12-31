@@ -59,9 +59,11 @@ class TrackerFragment : Fragment() {
             if(visibilityEdit){
                 pull_up.background = ContextCompat.getDrawable(context!!, R.drawable.ic_invert_colors_black_24dp)
                 view.containersRecycler.visibility = View.GONE
+                view.favorite_category_title.visibility = View.GONE
             } else {
                 pull_up.background = ContextCompat.getDrawable(context!!, R.drawable.ic_invert_colors_off_black_24dp)
                 view.containersRecycler.visibility = View.VISIBLE
+                view.favorite_category_title.visibility = View.VISIBLE
             }
             visibilityEdit = !visibilityEdit
         }
