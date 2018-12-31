@@ -8,7 +8,7 @@ import java.util.*
 
 fun Calendar.getDate() : String {
 
-    val month = this.get(Calendar.MONTH)
+    val month = this.get(Calendar.MONTH) + 1
     val day = this.get(Calendar.DAY_OF_MONTH)
 
     val yearText = this.get(Calendar.YEAR).toString()

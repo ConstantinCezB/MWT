@@ -2,7 +2,6 @@ package com.example.mwt
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.mwt.db.MWTDatabase
@@ -21,8 +20,6 @@ class TrackerWorkerManager(context : Context, params : WorkerParameters) : Worke
         val preference: SharedPreferences = applicationContext.getSharedPreferences(SHARED_PREFERENCE_FILE, Context.MODE_PRIVATE)
         val previousDate: String = preference.getString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE)!!
         val currentDate: String = calendar.getDate()
-
-        Log.d("TEST", currentDate)
 
         if(previousDate != DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE && previousDate != currentDate){
             val numerator = preference.getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR)
