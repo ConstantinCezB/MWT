@@ -35,7 +35,7 @@ val MWTModule = module {
     }
 
     single{
-        get<MWTDatabase>().containerAddDao()
+        get<MWTDatabase>().dailyLogDao()
     }
 
     viewModel {

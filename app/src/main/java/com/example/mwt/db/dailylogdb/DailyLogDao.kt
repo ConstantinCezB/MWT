@@ -21,4 +21,7 @@ interface DailyLogDao {
 
     @Query("SELECT * FROM containers_add ORDER BY id DESC")
     fun findAll(): LiveData<List<DailyLogEntity>>
+
+    @Query("DELETE FROM containers_add")
+    fun dropTable()
 }

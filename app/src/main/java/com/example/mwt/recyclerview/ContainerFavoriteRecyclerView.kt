@@ -80,7 +80,7 @@ class ContainerFavoriteRecyclerViewAdapter (private val viewModel: TrackerViewMo
                             item_size.text.toString().toInt() + preference
                                     .getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR))
                     launch {
-                        get<MWTDatabase>().containerAddDao().save(
+                        get<MWTDatabase>().dailyLogDao().save(
                                 DailyLogEntity(
                                         item_name.text.toString(),
                                         item_size.text.toString().toInt(),

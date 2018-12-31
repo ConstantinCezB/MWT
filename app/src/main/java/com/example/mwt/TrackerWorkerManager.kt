@@ -25,7 +25,11 @@ class TrackerWorkerManager(context : Context, params : WorkerParameters) : Worke
             val numerator = preference.getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR)
             preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY, 0)
             preference.edit().putString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, currentDate).apply()
-            get<MWTDatabase>().dateProgressDao().save(DateProgressEntity(previousDate, numerator))
+
+            get<MWTDatabase>().let {
+                it.dateProgressDao().save(DateProgressEntity(previousDate, numerator))
+                it.dailyLogDao().dropTable()
+            }
 
         } else {
             preference.edit().putString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, currentDate).apply()

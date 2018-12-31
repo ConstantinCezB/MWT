@@ -17,7 +17,7 @@ abstract class MWTDatabase : RoomDatabase() {
 
     abstract fun dateProgressDao(): DateProgressDao
 
-    abstract fun containerAddDao(): DailyLogDao
+    abstract fun dailyLogDao(): DailyLogDao
 
     companion object {
         val CONTAINERS: List<ContainersEntity> = listOf(ContainersEntity("Glass", 250), ContainersEntity("Water Bottle", 500))
