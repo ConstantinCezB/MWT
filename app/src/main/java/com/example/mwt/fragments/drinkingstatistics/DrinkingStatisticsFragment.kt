@@ -32,7 +32,6 @@ class DrinkingStatisticsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.recyclerStatisticsView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

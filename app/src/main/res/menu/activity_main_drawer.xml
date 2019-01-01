@@ -17,15 +17,15 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/drinking_timer" />
         <item
-            android:id="@+id/goals"
+            android:id="@+id/nav_goals"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/goals" />
         <item
-            android:id="@+id/ibm"
+            android:id="@+id/nav_bmi"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/ibm" />
+            android:title="@string/bmi" />
         <item
-            android:id="@+id/settings"
+            android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/settings" />
 
