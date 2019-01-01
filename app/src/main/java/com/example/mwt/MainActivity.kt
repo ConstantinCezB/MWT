@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.mwt.fragments.bmi.BMIFragment
 import com.example.mwt.fragments.bmi.GoalsFragment
+import com.example.mwt.fragments.bmi.SettingsFragment
 import com.example.mwt.fragments.drinkingstatistics.DrinkingStatisticsFragment
 import com.example.mwt.fragments.timer.DrinkingTimerFragment
 import com.example.mwt.fragments.tracker.TrackerFragment
@@ -71,6 +72,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_bmi -> {
                 BMIFragment()
+            }
+            R.id.nav_settings -> {
+                SettingsFragment()
             }
             else -> return
         }
