@@ -9,13 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mwt.R
-import com.example.mwt.recyclerview.ContainerRecyclerViewAdapter
 import kotlinx.android.synthetic.main.tracker_fragment.view.*
 import android.content.Context.MODE_PRIVATE
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mwt.recyclerview.ContainerFavoriteRecyclerViewAdapter
+import com.example.mwt.recyclerview.ContainerRecyclerViewAdapter
 import com.example.mwt.util.intLiveData
 import com.example.mwt.util.stringLiveData
 import com.example.mwt.util.*
@@ -25,7 +24,7 @@ import org.koin.android.viewmodel.ext.android.getViewModel
 class TrackerFragment : Fragment() {
 
     private lateinit var viewModel: TrackerViewModel
-    private lateinit var containerFavoriteRecyclerViewAdapter: ContainerFavoriteRecyclerViewAdapter
+    private lateinit var containerFavoriteRecyclerViewAdapter: ContainerRecyclerViewAdapter
     private lateinit var containerRecyclerViewAdapter: ContainerRecyclerViewAdapter
     private var preference: SharedPreferences? = null
     private var visibilityEdit: Boolean = false
@@ -74,9 +73,9 @@ class TrackerFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = getViewModel()
 
-        containerFavoriteRecyclerViewAdapter = ContainerFavoriteRecyclerViewAdapter(viewModel, preference!!).also(recyclerFavoriteContainerView::setAdapter)
+        containerFavoriteRecyclerViewAdapter = ContainerRecyclerViewAdapter(viewModel, preference!!, true).also(recyclerFavoriteContainerView::setAdapter)
 
-        containerRecyclerViewAdapter = ContainerRecyclerViewAdapter(viewModel, preference!!).also(containerRecyclerView::setAdapter)
+        containerRecyclerViewAdapter = ContainerRecyclerViewAdapter(viewModel, preference!!, false).also(containerRecyclerView::setAdapter)
 
         viewModel.getFavoriteContainers().observe(viewLifecycleOwner, Observer {
             containerFavoriteRecyclerViewAdapter.submitList(it)
