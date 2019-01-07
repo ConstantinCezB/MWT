@@ -2,7 +2,6 @@ package com.example.mwt.recyclerview
 
 import android.app.AlertDialog
 import android.content.SharedPreferences
-import android.provider.Settings.System.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -82,7 +81,7 @@ class ContainerFavoriteRecyclerViewAdapter (private val viewModel: TrackerViewMo
                     showDialogAdd(itemView, container)
                 }
                 itemView.setOnLongClickListener {
-                    showDialog(itemView, container)
+                    showDialogEdit(itemView, container)
                     true
                 }
             }
@@ -134,7 +133,7 @@ class ContainerFavoriteRecyclerViewAdapter (private val viewModel: TrackerViewMo
             dialog.show()
         }
 
-        private fun showDialog(view: View, container: ContainersEntity) {
+        private fun showDialogEdit(view: View, container: ContainersEntity) {
 
             val mBuilder: AlertDialog.Builder = AlertDialog.Builder(view.context)
             val mView: View = LayoutInflater.from(view.context).inflate(R.layout.custom_dialog_option_tracker_frame, null)
@@ -170,7 +169,7 @@ class ContainerFavoriteRecyclerViewAdapter (private val viewModel: TrackerViewMo
 
             mView.edit_container_accept_btn.setOnClickListener{
                 val containerToEdit = ContainersEntity(mView.editContainerNameEditScreen.text.toString(),
-                        mView.editContainerSizeEditScreen.text.toString().toInt())
+                        mView.editContainerSizeEditScreen.text.toString().toInt(), favorite = container.favorite)
 
                 containerToEdit.id = container.id
                 viewModel.updatePost(containerToEdit)
