@@ -58,7 +58,7 @@ class ContainerAddRecyclerViewAdapter:
                 water_drank.text = String.format("%s %s", resources.getString(R.string.water_drank), dailyLogEntity.amount.toString())
                 container_max.text = String.format("%s %s", resources.getString(R.string.water_drank_container_max), dailyLogEntity.size.toString())
                 date_drank_container.text = dailyLogEntity.date
-                progressBar.progress = (dailyLogEntity.amount / dailyLogEntity.size) *100
+                progressBar.progress = ((dailyLogEntity.amount.toFloat() / dailyLogEntity.size.toFloat()) *100.0).toInt()
             }
         }
     }
