@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         app:cardBackgroundColor="@color/colorPrimary"
-        app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +20,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView24"
+                android:id="@+id/containerNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -37,24 +36,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.17000002" />
 
-            <ProgressBar
-                android:id="@+id/progressBar2"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:progress="80"
-                android:scaleY="4"
-                app:layout_constraintBottom_toTopOf="@+id/button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView25" />
-
             <TextView
-                android:id="@+id/textView25"
+                android:id="@+id/containerAmoutTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -62,12 +45,57 @@
                 android:layout_marginEnd="8dp"
                 android:text="Container amount: 200"
                 android:textColor="@android:color/white"
-                app:layout_constraintBottom_toTopOf="@+id/progressBar2"
+                app:layout_constraintBottom_toTopOf="@+id/seekBarAdd"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView24"
-                app:layout_constraintVertical_bias="0.26"
+                app:layout_constraintTop_toBottomOf="@+id/containerNameTextView"
                 app:layout_constraintVertical_chainStyle="packed" />
+
+            <Button
+                android:id="@+id/buttonAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="113dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/add"
+                android:textAllCaps="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button" />
+
+            <TextView
+                android:id="@+id/containerMaxView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="500"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/seekBarAdd" />
+
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="0"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/seekBarAdd" />
+
+            <SeekBar
+                android:id="@+id/seekBarAdd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/buttonAdd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/containerAmoutTextView" />
 
             <Button
                 android:id="@+id/button"
@@ -75,32 +103,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="24dp"
-                android:text="@string/add"
-                android:textAllCaps="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/cancel"
+                app:layout_constraintBottom_toBottomOf="@+id/buttonAdd"
+                app:layout_constraintEnd_toStartOf="@+id/buttonAdd"
                 app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/textView26"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="500"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/progressBar2"
-                app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
-
-            <TextView
-                android:id="@+id/textView27"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/progressBar2"
-                app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

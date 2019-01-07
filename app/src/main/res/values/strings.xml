@@ -57,4 +57,5 @@
     <string name="this_indicates_if_the_tab_is_pulled_up_or_not">this indicates if the tab is pulled up or not</string>
     <string name="daily_log">Daily Log</string>
     <string name="bmi">BMI</string>
+    <string name="add_amount">Add amount: </string>
 </resources>
