@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
-import com.example.mwt.recyclerview.ContainerAddRecyclerViewAdapter
+import com.example.mwt.recyclerview.ContainerLogRecyclerViewAdapter
 import kotlinx.android.synthetic.main.drinking_timer_fragment.view.*
 import kotlinx.android.synthetic.main.tracker_fragment.*
 import org.koin.android.viewmodel.ext.android.getViewModel
@@ -17,7 +17,7 @@ import org.koin.android.viewmodel.ext.android.getViewModel
 class DrinkingTimerFragment : Fragment() {
 
     private lateinit var viewModel: DrinkingTimerViewModel
-    private lateinit var containerDrankRecyclerViewAdapter: ContainerAddRecyclerViewAdapter
+    private lateinit var containerDrankRecyclerViewAdapter: ContainerLogRecyclerViewAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.drinking_timer_fragment, container, false)
@@ -32,7 +32,7 @@ class DrinkingTimerFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = getViewModel()
 
-        containerDrankRecyclerViewAdapter = ContainerAddRecyclerViewAdapter().also(recyclerFavoriteContainerView::setAdapter)
+        containerDrankRecyclerViewAdapter = ContainerLogRecyclerViewAdapter().also(recyclerFavoriteContainerView::setAdapter)
 
         viewModel.getAllPosts().observe(viewLifecycleOwner, Observer(containerDrankRecyclerViewAdapter::submitList))
     }

@@ -11,7 +11,7 @@ import com.example.mwt.util.inflate
 import kotlinx.android.synthetic.main.layout_list_water_container_drinked.view.*
 
 
-class ContainerAddRecyclerViewAdapter:
+class ContainerLogRecyclerViewAdapter:
         ListAdapter<DailyLogEntity, RecyclerView.ViewHolder>(diffCallback){
 
     companion object {
@@ -59,6 +59,10 @@ class ContainerAddRecyclerViewAdapter:
                 container_max.text = String.format("%s %s", resources.getString(R.string.water_drank_container_max), dailyLogEntity.size.toString())
                 date_drank_container.text = dailyLogEntity.date
                 progressBar.progress = ((dailyLogEntity.amount.toFloat() / dailyLogEntity.size.toFloat()) *100.0).toInt()
+                itemView.setOnLongClickListener {
+
+                    true
+                }
             }
         }
     }
