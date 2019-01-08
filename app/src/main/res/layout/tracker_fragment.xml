@@ -230,6 +230,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <SeekBar
+                    android:id="@+id/seekBarPercentContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
@@ -239,7 +248,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/containersRecycler"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/seekBarPercentContainer"
                     app:layout_constraintVertical_bias="1.0">
 
                     <TextView
@@ -262,8 +271,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:clipToPadding="true"
-                        android:paddingStart="4dp"
-                        android:paddingEnd="4dp"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp"
                         android:scrollbars="horizontal|none"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

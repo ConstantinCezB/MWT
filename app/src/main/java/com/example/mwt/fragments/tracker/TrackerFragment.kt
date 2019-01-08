@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mwt.R
 import kotlinx.android.synthetic.main.tracker_fragment.view.*
 import android.content.Context.MODE_PRIVATE
+import android.widget.SeekBar
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,7 +29,6 @@ class TrackerFragment : Fragment() {
     private lateinit var containerRecyclerViewAdapter: ContainerRecyclerViewAdapter
     private var preference: SharedPreferences? = null
     private var visibilityEdit: Boolean = false
-
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -67,6 +67,16 @@ class TrackerFragment : Fragment() {
             visibilityEdit = !visibilityEdit
         }
 
+        view.seekBarPercentContainer.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+
+            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
+                viewModel.progress = seekBar.progress
+            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+        })
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -84,5 +94,7 @@ class TrackerFragment : Fragment() {
         viewModel.getNonFavoriteContainers().observe(viewLifecycleOwner, Observer{
             containerRecyclerViewAdapter.submitList(it)
         })
+
+        seekBarPercentContainer.progress = viewModel.progress
     }
 }

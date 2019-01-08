@@ -17,7 +17,6 @@ import com.example.mwt.fragments.tracker.TrackerViewModel
 import com.example.mwt.util.inflate
 import com.example.mwt.util.setInt
 import com.example.mwt.util.*
-import kotlinx.android.synthetic.main.add_progress.view.*
 import kotlinx.android.synthetic.main.custom_dialog_option_tracker_frame.view.*
 import kotlinx.android.synthetic.main.layout_list_item.view.*
 import kotlinx.coroutines.experimental.launch
@@ -94,7 +93,7 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
                 item_name.text = container.name
                 item_size.text = container.size.toString()
                 itemView.setOnClickListener {
-                    showDialogAdd(itemView, container)
+                    addAmount(container)
                 }
                 itemView.setOnLongClickListener {
                     showDialogEdit(itemView, container)
@@ -103,50 +102,19 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
             }
         }
 
-        private fun showDialogAdd(view: View, container: ContainersEntity){
-            val mBuilder: AlertDialog.Builder = AlertDialog.Builder(view.context)
-            val mView: View = LayoutInflater.from(view.context).inflate(R.layout.add_progress, null)
-            mBuilder.setView(mView)
-            val dialog: AlertDialog = mBuilder.create()
-            var progress = 100
-            var progressAmount = container.size.toString().toInt()
-
-
-            mView.containerNameTextView.text = container.name
-            mView.containerMaxView.text = progressAmount.toString()
-            mView.seekBarAdd.progress = progress
-            mView.containerAmoutTextView.text = String.format("%s %s", mView.resources.getString(R.string.add_amount), progressAmount.toString())
-
-            mView.seekBarAdd.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-
-                override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
-                   progress = seekBar.progress
-                   progressAmount = (container.size * progress / 100)
-                   mView.containerAmoutTextView.text = String.format("%s %s", mView.resources.getString(R.string.add_amount), progressAmount.toString())
-
-                }
-                override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-
-                override fun onStopTrackingTouch(seekBar: SeekBar?) {}
-            })
-
-            mView.buttonAdd.setOnClickListener {
-                preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY,
-                        progressAmount + preference
-                                .getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR))
-                launch {
-                    get<MWTDatabase>().dailyLogDao().save(
-                            DailyLogEntity(
-                                    container.name,
-                                    progressAmount,
-                                    container.size,
-                                    Calendar.getInstance().getTimeAndDate()))
-                }
-
-                dialog.dismiss()
+        private fun addAmount(container: ContainersEntity){
+            val amountToAdd = ((viewModel.progress.toFloat() / 100.toFloat()) * container.size.toFloat()).toInt()
+            preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY,
+                    amountToAdd + preference
+                            .getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR))
+            launch {
+                get<MWTDatabase>().dailyLogDao().save(
+                        DailyLogEntity(
+                                container.name,
+                                amountToAdd,
+                                container.size,
+                                Calendar.getInstance().getTimeAndDate()))
             }
-
-            dialog.show()
         }
 
         private fun showDialogEdit(view: View, container: ContainersEntity) {

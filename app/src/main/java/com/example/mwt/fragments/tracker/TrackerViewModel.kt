@@ -12,6 +12,8 @@ import kotlin.coroutines.experimental.CoroutineContext
 
 class TrackerViewModel(private val containerDao: ContainerDao) : ViewModel(), CoroutineScope {
 
+    var progress = 100
+
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Default
 
