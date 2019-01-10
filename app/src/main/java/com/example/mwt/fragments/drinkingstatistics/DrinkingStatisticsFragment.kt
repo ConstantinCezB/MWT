@@ -19,6 +19,7 @@ import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.drinking_statistics_fragment.*
+import kotlinx.android.synthetic.main.drinking_timer_fragment.*
 
 class DrinkingStatisticsFragment : Fragment() {
 
@@ -48,8 +49,7 @@ class DrinkingStatisticsFragment : Fragment() {
 
             statisticsRecyclerViewAdapter.submitList(it)
 
-            //Log.d("TEST4", it.size.toString())
-            Log.d("TEST4", statisticsRecyclerViewAdapter.itemCount.toString())
+            showNoEntriesDisplay(statisticsRecyclerViewAdapter.itemCount)
         })
     }
 
@@ -62,6 +62,11 @@ class DrinkingStatisticsFragment : Fragment() {
         }
 
         return entries
+    }
+
+    private fun showNoEntriesDisplay (adapterSize: Int){
+        if (adapterSize == 0) display_no_entries.visibility = View.VISIBLE
+        else display_no_entries.visibility = View.GONE
     }
 
 
