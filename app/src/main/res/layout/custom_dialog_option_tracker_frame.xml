@@ -25,29 +25,30 @@
             <Button
                 android:id="@+id/delete_btn"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
                 android:layout_marginEnd="4dp"
                 android:text="@string/option_delete"
                 android:textColor="@android:color/holo_red_light"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/add_to_favorite_buttom"
                 app:layout_constraintEnd_toStartOf="@+id/add_to_favorite_buttom"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toTopOf="@+id/add_to_favorite_buttom" />
 
             <Button
                 android:id="@+id/add_to_favorite_buttom"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/favorite"
                 android:textColor="@android:color/holo_orange_light"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/delete_btn"
-                app:layout_constraintTop_toTopOf="@+id/delete_btn" />
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -172,9 +173,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:layout_marginBottom="16dp"
                 android:text="@string/cancel_container_option"
                 android:textColor="@android:color/holo_red_dark"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayoutEdit" />

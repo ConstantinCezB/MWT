@@ -59,4 +59,5 @@
     <string name="bmi">BMI</string>
     <string name="add_amount">Add amount: </string>
     <string name="refresh">Refresh</string>
+    <string name="rem_fav">Remove\nFavorite</string>
 </resources>
