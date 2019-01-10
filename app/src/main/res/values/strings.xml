@@ -58,4 +58,5 @@
     <string name="daily_log">Daily Log</string>
     <string name="bmi">BMI</string>
     <string name="add_amount">Add amount: </string>
+    <string name="refresh">Refresh</string>
 </resources>
