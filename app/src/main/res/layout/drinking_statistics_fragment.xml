@@ -35,6 +35,7 @@
         android:id="@+id/textView15"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         android:text="@string/chart_entries"
         android:textAlignment="center"
         android:textSize="24sp"
