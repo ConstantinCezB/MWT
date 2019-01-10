@@ -60,4 +60,5 @@
     <string name="add_amount">Add amount: </string>
     <string name="refresh">Refresh</string>
     <string name="rem_fav">Remove\nFavorite</string>
+    <string name="no_log_to_display">No log to display</string>
 </resources>
