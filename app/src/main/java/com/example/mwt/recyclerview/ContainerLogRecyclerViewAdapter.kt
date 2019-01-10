@@ -1,14 +1,18 @@
 package com.example.mwt.recyclerview
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
+import com.example.mwt.db.containerdb.ContainersEntity
 import com.example.mwt.db.dailylogdb.DailyLogEntity
 import com.example.mwt.util.inflate
 import kotlinx.android.synthetic.main.layout_list_water_container_drinked.view.*
+import kotlinx.android.synthetic.main.log_edit_frame.view.*
 
 
 class ContainerLogRecyclerViewAdapter:
@@ -60,10 +64,26 @@ class ContainerLogRecyclerViewAdapter:
                 date_drank_container.text = dailyLogEntity.date
                 progressBar.progress = ((dailyLogEntity.amount.toFloat() / dailyLogEntity.size.toFloat()) *100.0).toInt()
                 itemView.setOnLongClickListener {
-
+                    showDialogEdit(itemView, dailyLogEntity)
                     true
                 }
             }
+        }
+
+        private fun showDialogEdit(view: View, dailyLogEntity: DailyLogEntity) {
+
+            val mBuilder: AlertDialog.Builder = AlertDialog.Builder(view.context)
+            val mView: View = LayoutInflater.from(view.context).inflate(R.layout.log_edit_frame, null)
+            mBuilder.setView(mView)
+            val dialog: AlertDialog = mBuilder.create()
+
+            mView.container_name_log.text = dailyLogEntity.name
+
+            mView.daily_log_cancel_btn.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.show()
         }
     }
 }
