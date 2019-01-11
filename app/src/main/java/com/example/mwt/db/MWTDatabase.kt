@@ -20,6 +20,6 @@ abstract class MWTDatabase : RoomDatabase() {
     abstract fun dailyLogDao(): DailyLogDao
 
     companion object {
-        val CONTAINERS: List<ContainersEntity> = listOf(ContainersEntity("Glass", 250), ContainersEntity("Water Bottle", 500))
+        val CONTAINERS: List<ContainersEntity> = listOf(ContainersEntity("Glass", 250, favorite = true), ContainersEntity("Water Bottle", 500, favorite = true))
     }
 }
