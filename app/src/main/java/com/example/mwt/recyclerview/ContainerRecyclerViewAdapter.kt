@@ -23,11 +23,10 @@ import kotlinx.coroutines.experimental.launch
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.get
 import java.util.*
-import android.widget.SeekBar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.custom_dialog_tracker_frame.view.*
 
-class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, private var preference: SharedPreferences, private val modeFavorite: Boolean) :
+class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, private val preference: SharedPreferences, private val modeFavorite: Boolean) :
         ListAdapter<ContainersEntity, RecyclerView.ViewHolder>(diffCallback), KoinComponent {
 
 

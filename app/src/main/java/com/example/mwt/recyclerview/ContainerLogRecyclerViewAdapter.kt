@@ -1,5 +1,6 @@
 package com.example.mwt.recyclerview
 
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +12,15 @@ import com.example.mwt.R
 import com.example.mwt.db.containerdb.ContainersEntity
 import com.example.mwt.db.dailylogdb.DailyLogEntity
 import com.example.mwt.fragments.timer.DrinkingTimerViewModel
+import com.example.mwt.util.DEFAULT_NUMERATOR
+import com.example.mwt.util.SHARED_PREFERENCE_NUMERATOR_DAILY
 import com.example.mwt.util.inflate
+import com.example.mwt.util.setInt
 import kotlinx.android.synthetic.main.layout_list_water_container_drinked.view.*
 import kotlinx.android.synthetic.main.log_edit_frame.view.*
 
 
-class ContainerLogRecyclerViewAdapter (private val viewModel: DrinkingTimerViewModel):
+class ContainerLogRecyclerViewAdapter (private val viewModel: DrinkingTimerViewModel, private val preference: SharedPreferences):
         ListAdapter<DailyLogEntity, RecyclerView.ViewHolder>(diffCallback){
 
     companion object {
@@ -87,6 +91,9 @@ class ContainerLogRecyclerViewAdapter (private val viewModel: DrinkingTimerViewM
 
             mView.daily_log_delete_btn.setOnClickListener{
                 viewModel.deletePost(dailyLogEntity)
+                preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY,
+                        preference.getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR)
+                        - dailyLogEntity.amount)
                 dialog.dismiss()
             }
 
@@ -100,6 +107,11 @@ class ContainerLogRecyclerViewAdapter (private val viewModel: DrinkingTimerViewM
                 dailyLogEntityToReplace.id = dailyLogEntity.id
 
                 viewModel.updatePost(dailyLogEntityToReplace)
+
+                preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY,
+                        preference.getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR)
+                                - dailyLogEntity.amount + dailyLogEntityToReplace.amount)
+
                 dialog.dismiss()
             }
 
