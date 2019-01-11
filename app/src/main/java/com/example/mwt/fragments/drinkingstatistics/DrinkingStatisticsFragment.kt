@@ -46,10 +46,8 @@ class DrinkingStatisticsFragment : Fragment() {
         viewModel.getAllPosts().observe(viewLifecycleOwner, Observer {
             val dataSet = LineData(LineDataSet(entryCreator(it), "Daily"))
             view?.chart_daily?.data = dataSet
-
             statisticsRecyclerViewAdapter.submitList(it)
-
-            showNoEntriesDisplay(statisticsRecyclerViewAdapter.itemCount)
+            showNoEntriesDisplay(it.size)
         })
     }
 

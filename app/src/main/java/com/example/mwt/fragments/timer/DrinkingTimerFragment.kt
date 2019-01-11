@@ -43,7 +43,7 @@ class DrinkingTimerFragment : Fragment() {
 
         viewModel.getAllPosts().observe(viewLifecycleOwner, Observer {
             containerDrankRecyclerViewAdapter.submitList(it)
-            showEmptyLogDisplay(containerDrankRecyclerViewAdapter.itemCount)
+            showEmptyLogDisplay(it.size)
         })
     }
 
