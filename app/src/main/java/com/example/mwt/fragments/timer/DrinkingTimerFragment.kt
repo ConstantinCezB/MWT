@@ -34,7 +34,7 @@ class DrinkingTimerFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = getViewModel()
 
-        containerDrankRecyclerViewAdapter = ContainerLogRecyclerViewAdapter().also(recyclerDailyLogView::setAdapter)
+        containerDrankRecyclerViewAdapter = ContainerLogRecyclerViewAdapter(viewModel).also(recyclerDailyLogView::setAdapter)
 
         viewModel.getAllPosts().observe(viewLifecycleOwner, Observer {
             containerDrankRecyclerViewAdapter.submitList(it)

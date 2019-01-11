@@ -27,4 +27,8 @@ class DrinkingTimerViewModel(private val dailyLogDao: DailyLogDao) : ViewModel()
     fun deletePost(containerAdd: DailyLogEntity) {
         launch{ dailyLogDao.delete(containerAdd) }
     }
+
+    fun updatePost(containerAdd: DailyLogEntity){
+        launch { dailyLogDao.update(containerAdd) }
+    }
 }

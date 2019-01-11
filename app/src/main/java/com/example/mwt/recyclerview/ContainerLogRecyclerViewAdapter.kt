@@ -10,12 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
 import com.example.mwt.db.containerdb.ContainersEntity
 import com.example.mwt.db.dailylogdb.DailyLogEntity
+import com.example.mwt.fragments.timer.DrinkingTimerViewModel
 import com.example.mwt.util.inflate
 import kotlinx.android.synthetic.main.layout_list_water_container_drinked.view.*
 import kotlinx.android.synthetic.main.log_edit_frame.view.*
 
 
-class ContainerLogRecyclerViewAdapter:
+class ContainerLogRecyclerViewAdapter (private val viewModel: DrinkingTimerViewModel):
         ListAdapter<DailyLogEntity, RecyclerView.ViewHolder>(diffCallback){
 
     companion object {
@@ -77,9 +78,28 @@ class ContainerLogRecyclerViewAdapter:
             mBuilder.setView(mView)
             val dialog: AlertDialog = mBuilder.create()
 
+            mView.daily_log_seekBar.progress = ((dailyLogEntity.amount.toFloat() / dailyLogEntity.size.toFloat())*100f).toInt()
             mView.container_name_log.text = dailyLogEntity.name
 
             mView.daily_log_cancel_btn.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            mView.daily_log_delete_btn.setOnClickListener{
+                viewModel.deletePost(dailyLogEntity)
+                dialog.dismiss()
+            }
+
+            mView.daily_log_refresh_btn.setOnClickListener {
+
+                val dailyLogEntityToReplace = DailyLogEntity(dailyLogEntity.name,
+                        ((mView.daily_log_seekBar.progress.toFloat() / 100f) * dailyLogEntity.size).toInt(),
+                        dailyLogEntity.size,
+                        dailyLogEntity.date)
+
+                dailyLogEntityToReplace.id = dailyLogEntity.id
+
+                viewModel.updatePost(dailyLogEntityToReplace)
                 dialog.dismiss()
             }
 
