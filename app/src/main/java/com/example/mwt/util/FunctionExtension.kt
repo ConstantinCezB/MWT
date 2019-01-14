@@ -3,8 +3,12 @@ package com.example.mwt.util
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import com.example.mwt.R
+import com.google.android.material.internal.ContextUtils.getActivity
 import java.util.*
 
 fun Calendar.getDate() : String {
@@ -48,10 +52,12 @@ fun ViewGroup.inflate(
     return inflater.inflate(layoutId, this, attachToRoot)
 }
 
-fun ConstraintLayout.showContent() {
+fun ConstraintLayout.showContent(dropIcon: ImageView) {
     if(this.visibility == View.VISIBLE) {
         this.visibility = View.GONE
+        dropIcon.background = ContextCompat.getDrawable(context, R.drawable.ic_arrow_drop_down)
     } else {
         this.visibility = View.VISIBLE
+        dropIcon.background = ContextCompat.getDrawable(context, R.drawable.ic_arrow_drop_up)
     }
 }

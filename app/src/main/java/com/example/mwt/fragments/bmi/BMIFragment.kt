@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.example.mwt.R
 import com.example.mwt.util.showContent
@@ -22,7 +21,7 @@ class BMIFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.constraintLayoutInput.setOnClickListener {
-            view.constraintLayoutInputToDrop.showContent()
+            view.constraintLayoutInputToDrop.showContent(view.bmi_input_edit_drop)
         }
     }
 
