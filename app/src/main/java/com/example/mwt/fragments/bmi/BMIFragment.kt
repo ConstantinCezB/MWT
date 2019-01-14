@@ -4,10 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.example.mwt.R
+import com.example.mwt.util.showContent
+import kotlinx.android.synthetic.main.bmi_fragment.view.*
 
 class BMIFragment: Fragment() {
+
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.bmi_fragment, container, false)
@@ -15,9 +20,17 @@ class BMIFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        view.constraintLayoutInput.setOnClickListener {
+            view.constraintLayoutInputToDrop.showContent()
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
     }
+
+
 }
+
+

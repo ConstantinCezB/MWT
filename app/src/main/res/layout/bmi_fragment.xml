@@ -21,35 +21,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/edit_drop2"
-                android:layout_width="32dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/ic_arrow_drop_down"
-                app:layout_constraintBottom_toBottomOf="@+id/textView21"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView21"
-                app:layout_constraintTop_toTopOf="@+id/textView21" />
-
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayoutInput"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Input "
-                android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
-                app:layout_constraintEnd_toStartOf="@+id/edit_drop2"
-                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayoutInputToDrop"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/bmi_input_edit_drop"
+                    android:layout_width="32dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/ic_arrow_drop_down"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView21"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView21"
+                    app:layout_constraintTop_toTopOf="@+id/textView21"
+                    android:contentDescription="@string/image_that_shows_if_the_tab_shown_or_not" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Input "
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/bmi_input_edit_drop"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout3"
+                android:id="@+id/constraintLayoutInputToDrop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -60,7 +73,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView21">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayoutInput">
 
                 <TextView
                     android:id="@+id/textView9"
@@ -190,7 +203,7 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/edit_drop3"
+                android:id="@+id/bmi_activity_edit_drop"
                 android:layout_width="32dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="8dp"
@@ -211,7 +224,7 @@
                 android:text="Activity and season "
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
-                app:layout_constraintEnd_toStartOf="@+id/edit_drop3"
+                app:layout_constraintEnd_toStartOf="@+id/bmi_activity_edit_drop"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -288,7 +301,7 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/edit_drop4"
+                android:id="@+id/bmi_chart_edit_drop"
                 android:layout_width="32dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="8dp"
@@ -308,7 +321,7 @@
                 android:text="BMI Chart "
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/edit_drop4"
+                app:layout_constraintEnd_toStartOf="@+id/bmi_chart_edit_drop"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -423,6 +436,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView4">
@@ -432,7 +447,7 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/edit_drop5"
+                android:id="@+id/bmi_log_edit_drop"
                 android:layout_width="32dp"
                 android:layout_height="0dp"
                 android:background="@drawable/ic_arrow_drop_down"
@@ -451,7 +466,7 @@
                 android:text="BMI log "
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
-                app:layout_constraintEnd_toStartOf="@+id/edit_drop5"
+                app:layout_constraintEnd_toStartOf="@+id/bmi_log_edit_drop"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

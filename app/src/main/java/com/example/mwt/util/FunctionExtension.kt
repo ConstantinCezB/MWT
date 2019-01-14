@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.constraintlayout.widget.ConstraintLayout
 import java.util.*
 
 fun Calendar.getDate() : String {
@@ -45,4 +46,12 @@ fun ViewGroup.inflate(
         attachToRoot: Boolean = false
 ): View {
     return inflater.inflate(layoutId, this, attachToRoot)
+}
+
+fun ConstraintLayout.showContent() {
+    if(this.visibility == View.VISIBLE) {
+        this.visibility = View.GONE
+    } else {
+        this.visibility = View.VISIBLE
+    }
 }
