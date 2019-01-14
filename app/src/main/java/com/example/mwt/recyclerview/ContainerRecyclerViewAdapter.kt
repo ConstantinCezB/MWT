@@ -122,7 +122,7 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
             val mView: View = LayoutInflater.from(view.context).inflate(R.layout.custom_dialog_option_tracker_frame, null)
             mBuilder.setView(mView)
             val dialog: AlertDialog = mBuilder.create()
-            var visibilityEdit = false
+
 
             mView.editContainerNameEditScreen.text.append(container.name)
 
@@ -131,14 +131,7 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
             if (container.favorite) mView.add_to_favorite_buttom.text =  mView.context.getString(R.string.rem_fav)
 
             mView.edit_drop.setOnClickListener{
-                if(visibilityEdit){
-                    it.background = mView.getResources().getDrawable(R.drawable.ic_arrow_drop_down)
-                    mView.constraintLayoutEdit.visibility = View.GONE
-                } else {
-                    it.background = mView.getResources().getDrawable(R.drawable.ic_arrow_drop_up)
-                    mView.constraintLayoutEdit.visibility = View.VISIBLE
-                }
-                visibilityEdit = !visibilityEdit
+                mView.constraintLayoutEditDrop.showContent(mView.edit_drop)
             }
 
             mView.delete_btn.setOnClickListener {

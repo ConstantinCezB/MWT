@@ -3,6 +3,7 @@ package com.example.mwt.util
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -53,6 +54,16 @@ fun ViewGroup.inflate(
 }
 
 fun ConstraintLayout.showContent(dropIcon: ImageView) {
+    if(this.visibility == View.VISIBLE) {
+        this.visibility = View.GONE
+        dropIcon.background = ContextCompat.getDrawable(context, R.drawable.ic_arrow_drop_down)
+    } else {
+        this.visibility = View.VISIBLE
+        dropIcon.background = ContextCompat.getDrawable(context, R.drawable.ic_arrow_drop_up)
+    }
+}
+
+fun ConstraintLayout.showContent(dropIcon: Button) {
     if(this.visibility == View.VISIBLE) {
         this.visibility = View.GONE
         dropIcon.background = ContextCompat.getDrawable(context, R.drawable.ic_arrow_drop_down)
