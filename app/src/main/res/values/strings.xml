@@ -65,4 +65,5 @@
     <string name="image_that_shows_if_the_tab_shown_or_not">Image that shows if the tab shown or not</string>
     <string name="activity_and_season">Activity And Season</string>
     <string name="level_of_activity">Level of activity:</string>
+    <string name="bmi_chart">BMI Chart</string>
 </resources>

@@ -23,6 +23,10 @@ class BMIFragment: Fragment() {
         view.constraintLayoutInput.setOnClickListener {
             view.constraintLayoutInputToDrop.showContent(view.bmi_input_edit_drop)
         }
+
+        view.constraintLayoutActivity.setOnClickListener {
+            view.constraintLayoutActivityToDrop.showContent(view.bmi_activity_edit_drop)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
