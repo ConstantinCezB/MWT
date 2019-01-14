@@ -27,6 +27,10 @@ class BMIFragment: Fragment() {
         view.constraintLayoutActivity.setOnClickListener {
             view.constraintLayoutActivityToDrop.showContent(view.bmi_activity_edit_drop)
         }
+
+        view.constraintLayoutChart.setOnClickListener {
+            view.constraintLayoutChartToDrop.showContent(view.bmi_chart_edit_drop)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
