@@ -1,19 +1,21 @@
 package com.example.mwt.fragments.bmi
 
 import android.app.DatePickerDialog
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.mwt.R
-import com.example.mwt.util.showContent
+import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.bmi_fragment.view.*
 import java.util.*
 
 class BMIFragment: Fragment() {
 
-
+    private var preference: SharedPreferences? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.bmi_fragment, container, false)
@@ -21,8 +23,11 @@ class BMIFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        preference = context?.getSharedPreferences(SHARED_PREFERENCE_FILE, Context.MODE_PRIVATE)
 
-        val mDateListenor =
+        preference!!.stringLiveData(SHARED_PREFERENCE_DATE_OF_BIRTH, DEFAULT_DATE_OF_BIRTH).observe(this, androidx.lifecycle.Observer {
+            view.setTextDateOfBirth()
+        })
 
         view.constraintLayoutInput.setOnClickListener {
             view.constraintLayoutInputToDrop.showContent(view.bmi_input_edit_drop)
@@ -52,11 +57,29 @@ class BMIFragment: Fragment() {
 
     private fun showDateDialog () {
         val calendar = Calendar.getInstance()
-        val dialog = DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-
+        val dialog = DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+            preference!!.setString(SHARED_PREFERENCE_DATE_OF_BIRTH, createDate(month + 1, dayOfMonth, year))
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
-
         dialog.show()
+    }
+
+    private fun View.setTextDateOfBirth () {
+        val dateString = preference!!.getString(SHARED_PREFERENCE_DATE_OF_BIRTH, DEFAULT_DATE_OF_BIRTH)
+        if(dateString != "NULL"){
+            this.datePickerDialogPrompt.text = dateString
+        }
+    }
+
+    private fun createDate(month: Int, day: Int, year: Int) : String {
+
+        val yearText = year.toString()
+        var monthText = month.toString()
+        var dayText = day.toString()
+
+        if (month < 10) monthText = "0$monthText"
+        if(day < 10) dayText = "0$dayText"
+
+        return "$dayText/$monthText/$yearText"
     }
 
 

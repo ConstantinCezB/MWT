@@ -19,5 +19,5 @@ const val DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE = "NULL"
 
 //variables for the input tab in the bmi
 const val SHARED_PREFERENCE_DATE_OF_BIRTH = "DateOfBirth"
-const val DEFAULT_DATE = "NULL"
+const val DEFAULT_DATE_OF_BIRTH = "NULL"
 

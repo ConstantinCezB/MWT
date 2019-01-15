@@ -84,3 +84,7 @@ fun SharedPreferences.stringSetLiveData(key: String, defValue: Set<String>): Sha
 fun SharedPreferences.setInt(key: String, value: Int){
    this.edit().putInt(key, value).apply()
 }
+
+fun SharedPreferences.setString(key: String, value: String){
+    this.edit().putString(key, value).apply()
+}
