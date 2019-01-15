@@ -28,7 +28,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Current BMI"
+                android:text="@string/current_bmi"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:text="Your BMI level: 26"
+                android:text="@string/your_bmi_level_26_test"
                 app:layout_constraintEnd_toStartOf="@+id/textView32"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Status: fat"
+                android:text="@string/status_fat_test"
                 app:layout_constraintBottom_toBottomOf="@+id/textView31"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView31"
@@ -76,7 +76,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
-                android:text="Water needed to drink accroding to info:"
+                android:text="@string/recommended_amount_of_water_to_drink"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView31" />
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="3000 ml"
+                android:text="@string/_3000_ml"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -179,7 +179,7 @@
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="8dp"
                         android:animateLayoutChanges="false"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -205,8 +205,8 @@
                             android:inputType="numberDecimal"
                             android:textSize="18sp"
                             app:layout_constraintBaseline_toBaselineOf="@+id/textView9"
-                            app:layout_constraintEnd_toEndOf="@+id/editText2"
-                            app:layout_constraintStart_toStartOf="@+id/editText2" />
+                            app:layout_constraintEnd_toEndOf="@+id/datePickerDialogPrompt"
+                            app:layout_constraintStart_toStartOf="@+id/datePickerDialogPrompt" />
 
                         <TextView
                             android:id="@+id/textView19"
@@ -226,8 +226,8 @@
                             android:hint="Enter your height"
                             android:inputType="numberDecimal"
                             app:layout_constraintBaseline_toBaselineOf="@+id/textView19"
-                            app:layout_constraintEnd_toEndOf="@+id/editText2"
-                            app:layout_constraintStart_toStartOf="@+id/editText2" />
+                            app:layout_constraintEnd_toEndOf="@+id/datePickerDialogPrompt"
+                            app:layout_constraintStart_toStartOf="@+id/datePickerDialogPrompt" />
 
                         <TextView
                             android:id="@+id/textView20"
@@ -236,18 +236,20 @@
                             android:layout_marginTop="16dp"
                             android:text="Birthday: "
                             android:textSize="18sp"
-                            app:layout_constraintEnd_toStartOf="@+id/editText2"
+                            app:layout_constraintEnd_toStartOf="@+id/datePickerDialogPrompt"
                             app:layout_constraintHorizontal_chainStyle="spread"
                             app:layout_constraintStart_toStartOf="@+id/textView9"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <EditText
-                            android:id="@+id/editText2"
+                        <TextView
+                            android:id="@+id/datePickerDialogPrompt"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:hint="Enter your birthday"
-                            android:inputType="numberDecimal"
+                            android:ems="14"
+                            android:gravity="center"
+                            android:text="@string/click_to_enter_your_birthday"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
                             app:layout_constraintBaseline_toBaselineOf="@+id/textView20"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/textView20" />
@@ -285,8 +287,8 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             app:layout_constraintBottom_toBottomOf="@+id/textView22"
-                            app:layout_constraintEnd_toEndOf="@+id/editText2"
-                            app:layout_constraintStart_toStartOf="@+id/editText2"
+                            app:layout_constraintEnd_toEndOf="@+id/datePickerDialogPrompt"
+                            app:layout_constraintStart_toStartOf="@+id/datePickerDialogPrompt"
                             app:layout_constraintTop_toTopOf="@+id/textView22" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
