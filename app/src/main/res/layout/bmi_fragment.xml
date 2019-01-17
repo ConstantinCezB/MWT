@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="false"
@@ -234,7 +233,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:text="Birthday: "
+                            android:text="Date of birth: "
+                            android:textAlignment="center"
                             android:textSize="18sp"
                             app:layout_constraintEnd_toStartOf="@+id/datePickerDialogPrompt"
                             app:layout_constraintHorizontal_chainStyle="spread"
@@ -245,14 +245,17 @@
                             android:id="@+id/datePickerDialogPrompt"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="24dp"
                             android:ems="14"
                             android:gravity="center"
                             android:text="@string/click_to_enter_your_birthday"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            app:layout_constraintBaseline_toBaselineOf="@+id/textView20"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView20"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/textView20" />
+                            app:layout_constraintStart_toEndOf="@+id/textView20"
+                            app:layout_constraintTop_toTopOf="@+id/textView20" />
 
                         <Button
                             android:id="@+id/button2"
