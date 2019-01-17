@@ -31,3 +31,12 @@ const val DEFAULT_HEIGHT = "0"
 const val SHARED_PREFERENCE_WEIGHT = "weight"
 const val DEFAULT_WEIGHT = "0"
 
+//variables for the activity level
+const val SHARED_PREFERENCE_ACTIVITY_LEVEL = "activityLevel"
+const val DEFAULT_ACTIVITY_LEVEL = "Low"
+
+//variables for the season
+const val SHARED_PREFERENCE_SEASON = "season"
+const val DEFAULT_SEASON = "Winter"
+
+

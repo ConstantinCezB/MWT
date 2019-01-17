@@ -57,7 +57,9 @@ class BMIFragment: Fragment() {
 
         view.editTextWeight.attachEditText(preference!!, SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT)
 
+        view.spinnerActivityLevel.attachSinner(preference!!, getActivityLevelSpinnerInitialPosition(), R.array.activity_level, SHARED_PREFERENCE_ACTIVITY_LEVEL)
 
+        view.spinnerSeason.attachSinner(preference!!, getSeasonSpinnerInitialPosition(), R.array.seasons, SHARED_PREFERENCE_SEASON)
 
     }
 
@@ -65,6 +67,24 @@ class BMIFragment: Fragment() {
         return when (preference!!.getString(SHARED_PREFERENCE_GENDER, DEFAULT_GENDER)) {
             "Female" -> 1
             else -> 0
+        }
+    }
+
+    private fun getActivityLevelSpinnerInitialPosition(): Int {
+        return when (preference!!.getString(SHARED_PREFERENCE_ACTIVITY_LEVEL, DEFAULT_ACTIVITY_LEVEL)) {
+            "Low" -> 0
+            "Medium" -> 1
+            "Hard" -> 2
+            else -> 3
+        }
+    }
+
+    private fun getSeasonSpinnerInitialPosition(): Int {
+        return when (preference!!.getString(SHARED_PREFERENCE_SEASON, DEFAULT_SEASON)) {
+            "Winter" -> 0
+            "Spring" -> 1
+            "Summer" -> 2
+            else -> 3
         }
     }
 
