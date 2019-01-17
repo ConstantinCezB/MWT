@@ -27,3 +27,7 @@ const val DEFAULT_GENDER = "Male"
 const val SHARED_PREFERENCE_HEIGHT = "height"
 const val DEFAULT_HEIGHT = "0"
 
+//variables for the weight
+const val SHARED_PREFERENCE_WEIGHT = "weight"
+const val DEFAULT_WEIGHT = "0"
+

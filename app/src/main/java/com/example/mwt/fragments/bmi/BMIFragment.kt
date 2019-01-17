@@ -55,6 +55,8 @@ class BMIFragment: Fragment() {
 
         view.editTextHeight.attachEditText(preference!!, SHARED_PREFERENCE_HEIGHT, DEFAULT_HEIGHT)
 
+        view.editTextWeight.attachEditText(preference!!, SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT)
+
 
 
     }
