@@ -1,7 +1,5 @@
 package com.example.mwt.util
 
-import com.example.mwt.R
-
 //constant for the shared pref file
 const val SHARED_PREFERENCE_FILE = "com.constantin.pref"
 
@@ -20,4 +18,8 @@ const val DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE = "NULL"
 //variables for the input tab in the bmi
 const val SHARED_PREFERENCE_DATE_OF_BIRTH = "DateOfBirth"
 const val DEFAULT_DATE_OF_BIRTH = "NULL"
+
+//variables for the selected gender.
+const val SHARED_PREFERENCE_GENDER = "gender"
+const val DEFAULT_GENDER = "Male"
 

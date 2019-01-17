@@ -1,15 +1,15 @@
 package com.example.mwt.util
 
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
+import android.widget.*
 import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.example.mwt.R
-import com.google.android.material.internal.ContextUtils.getActivity
+import kotlinx.android.synthetic.main.bmi_fragment.view.*
 import java.util.*
 
 fun Calendar.getDate() : String {
@@ -70,5 +70,25 @@ fun ConstraintLayout.showContent(dropIcon: Button) {
     } else {
         this.visibility = View.VISIBLE
         dropIcon.background = ContextCompat.getDrawable(context, R.drawable.ic_arrow_drop_up)
+    }
+}
+
+fun Spinner.attachSinner(preference: SharedPreferences, initialPos: Int, spinnerArray: Int) {
+    val adapter = ArrayAdapter.createFromResource(context!!, spinnerArray, android.R.layout.simple_spinner_item)
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    this.adapter = adapter
+    this.spinnerGenger.setSelection(
+            when (preference.getString(SHARED_PREFERENCE_GENDER, DEFAULT_GENDER)) {
+                "Female" -> 1
+                else -> 0
+            })
+
+    this.spinnerGenger.setSelection(initialPos)
+    this.spinnerGenger.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            preference.setString(SHARED_PREFERENCE_GENDER, parent?.getItemAtPosition(position).toString())
+        }
     }
 }

@@ -7,9 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.mwt.R
 import com.example.mwt.util.*
@@ -40,6 +37,7 @@ class BMIFragment: Fragment() {
             view.constraintLayoutActivityToDrop.showContent(view.bmi_activity_edit_drop)
         }
 
+
         view.constraintLayoutChart.setOnClickListener {
             view.constraintLayoutChartToDrop.showContent(view.bmi_chart_edit_drop)
         }
@@ -52,11 +50,14 @@ class BMIFragment: Fragment() {
             showDateDialog()
         }
 
-        val adapter = ArrayAdapter.createFromResource(context!!, R.array.gender, android.R.layout.simple_spinner_item)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        view.spinnerGenger.adapter = adapter
-        view.spinnerGenger.onItemSelectedListener
+        view.spinnerGenger.attachSinner(preference!!, getGenderSpinnerInitialPosition(), R.array.gender)
+    }
 
+    private fun getGenderSpinnerInitialPosition(): Int {
+        return when (preference!!.getString(SHARED_PREFERENCE_GENDER, DEFAULT_GENDER)) {
+            "Female" -> 1
+            else -> 0
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -92,5 +93,7 @@ class BMIFragment: Fragment() {
 
 
 }
+
+
 
 
