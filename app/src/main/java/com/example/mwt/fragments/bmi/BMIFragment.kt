@@ -50,7 +50,7 @@ class BMIFragment: Fragment() {
             showDateDialog()
         }
 
-        view.spinnerGenger.attachSinner(preference!!, getGenderSpinnerInitialPosition(), R.array.gender)
+        view.spinnerGenger.attachSinner(preference!!, getGenderSpinnerInitialPosition(), R.array.gender, SHARED_PREFERENCE_GENDER)
     }
 
     private fun getGenderSpinnerInitialPosition(): Int {
