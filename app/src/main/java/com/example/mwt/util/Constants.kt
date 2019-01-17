@@ -23,3 +23,7 @@ const val DEFAULT_DATE_OF_BIRTH = "NULL"
 const val SHARED_PREFERENCE_GENDER = "gender"
 const val DEFAULT_GENDER = "Male"
 
+//variables for the height
+const val SHARED_PREFERENCE_HEIGHT = "height"
+const val DEFAULT_HEIGHT = "0"
+

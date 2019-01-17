@@ -9,7 +9,6 @@ import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.example.mwt.R
-import kotlinx.android.synthetic.main.bmi_fragment.view.*
 import java.util.*
 
 fun Calendar.getDate() : String {
@@ -77,8 +76,8 @@ fun Spinner.attachSinner(preference: SharedPreferences, initialPos: Int, spinner
     val adapter = ArrayAdapter.createFromResource(context!!, spinnerArray, android.R.layout.simple_spinner_item)
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
     this.adapter = adapter
-    this.spinnerGenger.setSelection(initialPos)
-    this.spinnerGenger.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+    this.setSelection(initialPos)
+    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(parent: AdapterView<*>?) {}
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             preference.setString(preferenceSaveVal, parent?.getItemAtPosition(position).toString())
