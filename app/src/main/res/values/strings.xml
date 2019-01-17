@@ -73,4 +73,9 @@
     <string name="recommended_amount_of_water_to_drink">Recommended amount of water to drink:</string>
     <string name="_3000_ml">3000 ml</string>
     <string name="click_to_enter_your_birthday">Click to enter your birthday</string>
+    
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>

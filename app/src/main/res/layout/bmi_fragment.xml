@@ -277,13 +277,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="24dp"
-                            android:text="Gender"
+                            android:text="Gender:"
                             android:textSize="18sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
                         <Spinner
-                            android:id="@+id/spinner"
+                            android:id="@+id/spinnerGenger"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             app:layout_constraintBottom_toBottomOf="@+id/textView22"
