@@ -1,6 +1,8 @@
 package com.example.mwt.util
 
 import android.content.SharedPreferences
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -83,4 +85,20 @@ fun Spinner.attachSinner(preference: SharedPreferences, initialPos: Int, spinner
             preference.setString(preferenceSaveVal, parent?.getItemAtPosition(position).toString())
         }
     }
+}
+
+fun EditText.attachEditText(preference: SharedPreferences, preferenceSaveVal: String, preferenceDefaultVal: String) {
+    this.text.append(preference.getString(preferenceSaveVal, preferenceDefaultVal))
+
+    this.addTextChangedListener(object : TextWatcher {
+        override fun afterTextChanged(s: Editable) {}
+        override fun beforeTextChanged(s: CharSequence, start: Int,
+                                       count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence, start: Int,
+                                   before: Int, count: Int) {
+            preference.setString(preferenceSaveVal, s.toString())
+        }
+    })
 }

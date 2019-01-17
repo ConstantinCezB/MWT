@@ -4,9 +4,6 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,21 +53,10 @@ class BMIFragment: Fragment() {
 
         view.spinnerGender.attachSinner(preference!!, getGenderSpinnerInitialPosition(), R.array.gender, SHARED_PREFERENCE_GENDER)
 
+        view.editTextHeight.attachEditText(preference!!, SHARED_PREFERENCE_HEIGHT, DEFAULT_HEIGHT)
 
-        //TODO: create function extension.
-        view.editTextHeight.addTextChangedListener(object : TextWatcher {
 
-            override fun afterTextChanged(s: Editable) {}
 
-            override fun beforeTextChanged(s: CharSequence, start: Int,
-                                           count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence, start: Int,
-                                       before: Int, count: Int) {
-                Log.d("TEST", s.toString())
-            }
-        })
     }
 
     private fun getGenderSpinnerInitialPosition(): Int {
@@ -113,6 +99,8 @@ class BMIFragment: Fragment() {
 
 
 }
+
+
 
 
 
