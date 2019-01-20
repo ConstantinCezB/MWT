@@ -11,20 +11,18 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
 import com.example.mwt.db.MWTDatabase
-import com.example.mwt.db.dailylogdb.DailyLogEntity
 import com.example.mwt.db.containerdb.ContainersEntity
+import com.example.mwt.db.dailylogdb.DailyLogEntity
 import com.example.mwt.fragments.tracker.TrackerViewModel
-import com.example.mwt.util.inflate
-import com.example.mwt.util.setInt
 import com.example.mwt.util.*
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.custom_dialog_option_tracker_frame.view.*
+import kotlinx.android.synthetic.main.custom_dialog_tracker_frame.view.*
 import kotlinx.android.synthetic.main.layout_list_item.view.*
 import kotlinx.coroutines.experimental.launch
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.get
 import java.util.*
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.custom_dialog_tracker_frame.view.*
 
 class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, private val preference: SharedPreferences, private val modeFavorite: Boolean) :
         ListAdapter<ContainersEntity, RecyclerView.ViewHolder>(diffCallback), KoinComponent {
@@ -61,8 +59,8 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
         val view = parent.inflate(viewType)
 
         return when (viewType) {
-            R.layout.layout_list_item -> ContainerViewHolder(view)
-            R.layout.list_item_add -> AddContainerViewHolder(view)
+            R.layout.layout_list_item -> ContainerViewHolder(view, parent)
+            R.layout.list_item_add -> AddContainerViewHolder(view, parent)
             else -> throw IllegalArgumentException("Unknown view type $viewType.")
         }
     }
@@ -83,7 +81,7 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
                 .show()
     }
 
-    inner class ContainerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ContainerViewHolder(itemView: View, private val parentViewGroup: ViewGroup) : RecyclerView.ViewHolder(itemView) {
 
 
 
@@ -95,7 +93,7 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
                     addAmount(container)
                 }
                 itemView.setOnLongClickListener {
-                    showDialogEdit(itemView, container)
+                    showDialogEdit(itemView, container, parentViewGroup)
                     true
                 }
             }
@@ -116,10 +114,10 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
             }
         }
 
-        private fun showDialogEdit(view: View, container: ContainersEntity) {
+        private fun showDialogEdit(view: View, container: ContainersEntity, parent: ViewGroup) {
 
             val mBuilder: AlertDialog.Builder = AlertDialog.Builder(view.context)
-            val mView: View = LayoutInflater.from(view.context).inflate(R.layout.custom_dialog_option_tracker_frame, null)
+            val mView: View = LayoutInflater.from(view.context).inflate(R.layout.custom_dialog_option_tracker_frame, parent, false)
             mBuilder.setView(mView)
             val dialog: AlertDialog = mBuilder.create()
 
@@ -171,12 +169,12 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
         }
     }
 
-    inner class AddContainerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class AddContainerViewHolder(itemView: View, private val parent: ViewGroup) : RecyclerView.ViewHolder(itemView) {
 
         private fun showDialog(view: View) {
 
             val mBuilder: AlertDialog.Builder = AlertDialog.Builder(view.context)
-            val mView: View = LayoutInflater.from(view.context).inflate(R.layout.custom_dialog_tracker_frame, null)
+            val mView: View = LayoutInflater.from(view.context).inflate(R.layout.custom_dialog_tracker_frame, parent, false)
             mBuilder.setView(mView)
             val dialog: AlertDialog = mBuilder.create()
 
@@ -201,10 +199,8 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
         }
 
         fun bind() {
-            with(itemView) {
-                itemView.setOnClickListener {
-                    showDialog(itemView)
-                }
+            itemView.setOnClickListener {
+                showDialog(itemView)
             }
         }
     }

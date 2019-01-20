@@ -10,5 +10,4 @@ data class DateProgressEntity(
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
-        protected set
 }

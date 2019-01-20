@@ -1,7 +1,6 @@
 package com.example.mwt.fragments.drinkingstatistics
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,16 +9,14 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
-import com.github.mikephil.charting.data.Entry
-import kotlinx.android.synthetic.main.drinking_statistics_fragment.view.*
-import org.koin.android.viewmodel.ext.android.getViewModel
 import com.example.mwt.db.dateprogressdb.DateProgressEntity
 import com.example.mwt.recyclerview.StatisticsRecyclerViewAdapter
-import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.drinking_statistics_fragment.*
-import kotlinx.android.synthetic.main.drinking_timer_fragment.*
+import kotlinx.android.synthetic.main.drinking_statistics_fragment.view.*
+import org.koin.android.viewmodel.ext.android.getViewModel
 
 class DrinkingStatisticsFragment : Fragment() {
 

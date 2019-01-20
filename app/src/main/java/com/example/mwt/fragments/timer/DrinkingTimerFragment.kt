@@ -3,7 +3,6 @@ package com.example.mwt.fragments.timer
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,6 @@ import com.example.mwt.recyclerview.ContainerLogRecyclerViewAdapter
 import com.example.mwt.util.SHARED_PREFERENCE_FILE
 import kotlinx.android.synthetic.main.drinking_timer_fragment.*
 import kotlinx.android.synthetic.main.drinking_timer_fragment.view.*
-import kotlinx.android.synthetic.main.tracker_fragment.*
 import org.koin.android.viewmodel.ext.android.getViewModel
 
 class DrinkingTimerFragment : Fragment() {

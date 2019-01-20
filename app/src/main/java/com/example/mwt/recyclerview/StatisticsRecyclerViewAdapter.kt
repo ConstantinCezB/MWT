@@ -28,10 +28,6 @@ class StatisticsRecyclerViewAdapter:
         }
     }
 
-    override fun getItemCount(): Int {
-        return super.getItemCount()
-    }
-
     override fun getItemViewType(position: Int): Int {
         return  R.layout.layout_list_statistics_item
     }

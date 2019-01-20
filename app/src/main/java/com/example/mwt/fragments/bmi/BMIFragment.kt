@@ -88,10 +88,6 @@ class BMIFragment: Fragment() {
         }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
     private fun showDateDialog () {
         val calendar = Calendar.getInstance()
         val dialog = DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->

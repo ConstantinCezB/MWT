@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
-import com.example.mwt.db.containerdb.ContainersEntity
 import com.example.mwt.db.dailylogdb.DailyLogEntity
 import com.example.mwt.fragments.timer.DrinkingTimerViewModel
 import com.example.mwt.util.DEFAULT_NUMERATOR
@@ -37,17 +36,13 @@ class ContainerLogRecyclerViewAdapter (private val viewModel: DrinkingTimerViewM
         }
     }
 
-    override fun getItemCount(): Int {
-        return super.getItemCount()
-    }
-
     override fun getItemViewType(position: Int): Int {
         return  R.layout.layout_list_water_container_drinked
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = parent.inflate(viewType)
-        return ContainerDrankViewHolder (view)
+        return ContainerDrankViewHolder(view, parent)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -59,7 +54,7 @@ class ContainerLogRecyclerViewAdapter (private val viewModel: DrinkingTimerViewM
         }
     }
 
-    inner class ContainerDrankViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ContainerDrankViewHolder(itemView: View, private val parentViewGroup: ViewGroup) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(dailyLogEntity: DailyLogEntity) {
             with(itemView) {
@@ -69,16 +64,16 @@ class ContainerLogRecyclerViewAdapter (private val viewModel: DrinkingTimerViewM
                 date_drank_container.text = dailyLogEntity.date
                 progressBar.progress = ((dailyLogEntity.amount.toFloat() / dailyLogEntity.size.toFloat()) *100.0).toInt()
                 itemView.setOnLongClickListener {
-                    showDialogEdit(itemView, dailyLogEntity)
+                    showDialogEdit(itemView, dailyLogEntity, parentViewGroup)
                     true
                 }
             }
         }
 
-        private fun showDialogEdit(view: View, dailyLogEntity: DailyLogEntity) {
+        private fun showDialogEdit(view: View, dailyLogEntity: DailyLogEntity, parent: ViewGroup) {
 
             val mBuilder: AlertDialog.Builder = AlertDialog.Builder(view.context)
-            val mView: View = LayoutInflater.from(view.context).inflate(R.layout.log_edit_frame, null)
+            val mView: View = LayoutInflater.from(view.context).inflate(R.layout.log_edit_frame, parent, false)
             mBuilder.setView(mView)
             val dialog: AlertDialog = mBuilder.create()
 
