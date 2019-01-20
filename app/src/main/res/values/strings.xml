@@ -73,7 +73,24 @@
     <string name="recommended_amount_of_water_to_drink">Recommended amount of water to drink:</string>
     <string name="_3000_ml">3000 ml</string>
     <string name="click_to_enter_your_birthday">Click to enter your birthday</string>
-    
+    <string name="input">Input</string>
+    <string name="weight">Weight:</string>
+    <string name="height">Height:</string>
+    <string name="date_of_birth">Date of birth:</string>
+    <string name="gender">Gender:</string>
+    <string name="bmi_activity_level_drop">bmi activity level drop</string>
+    <string name="season">Season:</string>
+    <string name="bmi_chart_edit_drop">bmi chart edit drop</string>
+    <string name="bmi_log_edit_drop">bmi log edit drop</string>
+    <string name="day">Day</string>
+    <string name="progress">Progress:</string>
+    <string name="goal">Goal:</string>
+    <string name="week">Week</string>
+    <string name="month">Month</string>
+    <string name="achievement">Achievement</string>
+    <string name="drop_down_goal_achievement">Drop down goal achievement</string>
+    <string name="enter_height">Enter height</string>
+
     <string-array name="gender">
         <item>Male</item>
         <item>Female</item>

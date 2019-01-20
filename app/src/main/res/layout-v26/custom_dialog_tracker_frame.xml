@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
@@ -47,6 +46,7 @@
         android:layout_marginStart="2dp"
         android:ems="10"
         android:hint="@string/enter_name"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:textAlignment="viewStart"
         android:textColor="@android:color/white"
@@ -54,8 +54,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="@+id/textView7"
-        tools:ignore="Autofill" />
+        app:layout_constraintTop_toTopOf="@+id/textView7" />
 
 
     <TextView
@@ -77,14 +76,14 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/enter_size"
+        android:importantForAutofill="no"
         android:inputType="number"
         android:textAlignment="viewStart"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
         app:layout_constraintStart_toStartOf="@+id/editContainerName"
-        app:layout_constraintTop_toTopOf="@+id/textView8"
-        tools:ignore="Autofill" />
+        app:layout_constraintTop_toTopOf="@+id/textView8" />
 
     <Button
         android:id="@+id/cancel_btn"
