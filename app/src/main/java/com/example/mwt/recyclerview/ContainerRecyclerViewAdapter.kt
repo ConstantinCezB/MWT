@@ -19,7 +19,10 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.custom_dialog_option_tracker_frame.view.*
 import kotlinx.android.synthetic.main.custom_dialog_tracker_frame.view.*
 import kotlinx.android.synthetic.main.layout_list_item.view.*
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.get
 import java.util.*
@@ -104,7 +107,7 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
             preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY,
                     amountToAdd + preference
                             .getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR))
-            launch {
+            GlobalScope.launch(Dispatchers.Default, CoroutineStart.DEFAULT) {
                 get<MWTDatabase>().dailyLogDao().save(
                         DailyLogEntity(
                                 container.name,
