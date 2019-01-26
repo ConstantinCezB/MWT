@@ -25,6 +25,13 @@ class BMIFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         preference = context?.getSharedPreferences(SHARED_PREFERENCE_FILE, Context.MODE_PRIVATE)
+        val bmi = bmiCalculator()
+
+        view.bmi_level.text = String.format("${resources.getString(R.string.your_bmi_level)}  %2.2f%%", bmi)
+
+
+        //view.percentage_daily.text =  String.format("%2.1f%%", percentage)
+        view.bmi_progress_bar.setProgress((bmi / 40f * 100).toInt(), true)
 
         preference!!.stringLiveData(SHARED_PREFERENCE_DATE_OF_BIRTH, DEFAULT_DATE_OF_BIRTH).observe(this, androidx.lifecycle.Observer {
             view.setTextDateOfBirth()
@@ -104,7 +111,6 @@ class BMIFragment: Fragment() {
     }
 
     private fun createDate(month: Int, day: Int, year: Int) : String {
-
         val yearText = year.toString()
         var monthText = month.toString()
         var dayText = day.toString()
@@ -113,6 +119,12 @@ class BMIFragment: Fragment() {
         if(day < 10) dayText = "0$dayText"
 
         return "$dayText/$monthText/$yearText"
+    }
+
+    private fun bmiCalculator(): Float {
+        val height = preference!!.getString(SHARED_PREFERENCE_HEIGHT, DEFAULT_HEIGHT)!!.toFloat()
+        val weight = preference!!.getString(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT)!!.toFloat()
+        return ((weight) / (height * height)) * 703
     }
 
 
