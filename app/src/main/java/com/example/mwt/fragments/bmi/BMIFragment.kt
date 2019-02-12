@@ -13,7 +13,6 @@ import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.bmi_fragment.view.*
 import java.util.*
 
-
 class BMIFragment: Fragment() {
 
     private var preference: SharedPreferences? = null
@@ -28,9 +27,7 @@ class BMIFragment: Fragment() {
         val bmi = bmiCalculator()
 
         view.bmi_level.text = String.format("${resources.getString(R.string.your_bmi_level)}  %2.2f%%", bmi)
-
-
-        //view.percentage_daily.text =  String.format("%2.1f%%", percentage)
+        view.bmi_bmiStatus.text = String.format("${resources.getString(R.string.status_fat_test)}  %s", categorySelectionBMI(bmi))
         view.bmi_progress_bar.setProgress((bmi / 40f * 100).toInt(), true)
 
         preference!!.stringLiveData(SHARED_PREFERENCE_DATE_OF_BIRTH, DEFAULT_DATE_OF_BIRTH).observe(this, androidx.lifecycle.Observer {
@@ -127,7 +124,19 @@ class BMIFragment: Fragment() {
         return ((weight) / (height * height)) * 703
     }
 
-
+    private fun categorySelectionBMI(BMI: Float): String {
+        return if (BMI < 18.5) {
+            "Underweight"
+        } else if (BMI >= 18.5 && BMI < 25) {
+            "Healthy weight"
+        } else if (BMI >= 25.0 && BMI < 30.0) {
+            "Overweight"
+        } else if (BMI >= 30.0 && BMI < 40.0) {
+            "Obese"
+        } else {
+            "Class 3 Obese"
+        }
+    }
 }
 
 
