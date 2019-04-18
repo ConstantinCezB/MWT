@@ -193,13 +193,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/progress"
-                        app:layout_constraintBottom_toTopOf="@+id/textView34"
+                        app:layout_constraintBottom_toTopOf="@+id/recommended_amount"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar4"
                         app:layout_constraintTop_toBottomOf="@+id/bmi_bmiStatus" />
 
                     <TextView
-                        android:id="@+id/textView34"
+                        android:id="@+id/recommended_amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"

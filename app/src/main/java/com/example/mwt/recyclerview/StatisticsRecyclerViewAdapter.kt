@@ -1,6 +1,5 @@
 package com.example.mwt.recyclerview
 
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -39,7 +38,6 @@ class StatisticsRecyclerViewAdapter:
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is StatisticsViewHolder -> {
-                Log.d("test5", "bing bing bing")
                 val item = getItem(position)
                 holder.bind(item)
             }
@@ -50,22 +48,9 @@ class StatisticsRecyclerViewAdapter:
 
         fun bind(dateProgressEntity: DateProgressEntity) {
             with(itemView) {
-                Log.d("test5", "bind bind bind")
                 date_statistics.text = dateProgressEntity.date
                 water_drank_statistics.text = dateProgressEntity.progress.toString()
             }
         }
     }
 }
-
-
-
-
-
-//
-
-//
-
-//
-
-//    }

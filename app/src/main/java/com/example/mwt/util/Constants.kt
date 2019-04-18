@@ -15,7 +15,9 @@ const val DEFAULT_NUMERATOR = 0
 const val DEFAULT_DENOMINATOR = 2000
 const val DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE = "NULL"
 
+
 //variables for the input tab in the bmi
+//Variables related to the date of birth
 const val SHARED_PREFERENCE_DATE_OF_BIRTH = "DateOfBirth"
 const val DEFAULT_DATE_OF_BIRTH = "NULL"
 
@@ -39,4 +41,11 @@ const val DEFAULT_ACTIVITY_LEVEL = "Low"
 const val SHARED_PREFERENCE_SEASON = "season"
 const val DEFAULT_SEASON = "Winter"
 
+//Variable that contains the recommended amount of water to drink
+const val SHARED_PREFERENCE_RECOMMENDED_AMOUNT = "recommendedAmount"
 
+//Variable that contains the user decided amount to drink
+const val SHARED_PREFERENCE_USER_AMOUNT = "userAmount"
+
+//Default variable for user and recommended amount.
+const val DEFAULT_INTAKE_AMOUNT = 3000f

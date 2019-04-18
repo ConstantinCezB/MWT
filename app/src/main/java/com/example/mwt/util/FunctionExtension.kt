@@ -25,7 +25,8 @@ fun Calendar.getDate() : String {
     if (month < 10) monthText = "0$monthText"
     if(day < 10) dayText = "0$dayText"
 
-    return "$dayText/$monthText/$yearText"
+    // Format y-M-d or yyyy-MM-d
+    return "$yearText-$monthText-$dayText"
 }
 
 fun Calendar.getTimeAndDate() : String {
