@@ -40,12 +40,13 @@ class TrackerFragment : Fragment() {
         preference = context?.getSharedPreferences(SHARED_PREFERENCE_FILE, MODE_PRIVATE)
         view.recyclerFavoriteContainerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         view.containerRecyclerView.layoutManager = GridLayoutManager(context, 3, RecyclerView.VERTICAL, false)
+        view.goal_daily.text = String.format("%.2f", preference!!.getFloat(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY))
 
-        preference?.intLiveData(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR)?.observe(this, Observer{
-            view.drinking_progress_bar.setProgress((it.toFloat() / preference!!.getInt(SHARED_PREFERENCE_DENOMINATOR_DAILY, DEFAULT_DENOMINATOR).toFloat() * 100).toInt(), true)
-            view.numerator_daily.text = it.toString()
-            val percentage = (it.toFloat() / preference!!.getInt(SHARED_PREFERENCE_DENOMINATOR_DAILY, DEFAULT_DENOMINATOR).toFloat() * 100)
-            view.percentage_daily.text =  String.format("%2.1f%%", percentage)
+        preference?.floatLiveData(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)?.observe(this, Observer{
+            val percentage = (it.toFloat() / preference!!.getFloat(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY) * 100)
+            view.drinking_progress_bar.setProgress(percentage.toInt(), true)
+            view.numerator_daily.text = String.format("%.2f", it)
+            view.percentage_daily.text =  String.format("%.2f%%", percentage)
 
         })
 

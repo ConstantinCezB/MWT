@@ -70,11 +70,11 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is ContainerRecyclerViewAdapter.ContainerViewHolder -> {
+            is ContainerViewHolder -> {
                 val item = getItem(position)
                 holder.bind(item)
             }
-            is ContainerRecyclerViewAdapter.AddContainerViewHolder -> holder.bind()
+            is AddContainerViewHolder -> holder.bind()
         }
     }
 
@@ -104,9 +104,9 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
 
         private fun addAmount(container: ContainersEntity){
             val amountToAdd = ((viewModel.progress.toFloat() / 100.toFloat()) * container.size.toFloat()).toInt()
-            preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY,
+            preference.setFloat(SHARED_PREFERENCE_AMOUNT_DAILY,
                     amountToAdd + preference
-                            .getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR))
+                            .getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
             GlobalScope.launch(Dispatchers.Default, CoroutineStart.DEFAULT) {
                 get<MWTDatabase>().dailyLogDao().save(
                         DailyLogEntity(

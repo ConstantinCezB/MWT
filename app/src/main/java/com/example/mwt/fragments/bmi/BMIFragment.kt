@@ -198,6 +198,7 @@ class BMIFragment : Fragment() {
         val answer = (((weight / 2.2) * age) / 28.3) + season + activityLevel
 
         preference.setFloat(SHARED_PREFERENCE_RECOMMENDED_AMOUNT, answer.toFloat())
+        preference.setFloat(SHARED_PREFERENCE_GOAL_DAILY, answer.toFloat())
 
         view.recommended_amount.text = String.format("%.2f oz", answer)
     }

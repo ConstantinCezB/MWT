@@ -11,10 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
 import com.example.mwt.db.dailylogdb.DailyLogEntity
 import com.example.mwt.fragments.timer.DrinkingTimerViewModel
-import com.example.mwt.util.DEFAULT_NUMERATOR
-import com.example.mwt.util.SHARED_PREFERENCE_NUMERATOR_DAILY
-import com.example.mwt.util.inflate
-import com.example.mwt.util.setInt
+import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.layout_list_water_container_drinked.view.*
 import kotlinx.android.synthetic.main.log_edit_frame.view.*
 
@@ -86,8 +83,8 @@ class ContainerLogRecyclerViewAdapter (private val viewModel: DrinkingTimerViewM
 
             mView.daily_log_delete_btn.setOnClickListener{
                 viewModel.deletePost(dailyLogEntity)
-                preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY,
-                        preference.getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR)
+                preference.setFloat(SHARED_PREFERENCE_AMOUNT_DAILY,
+                        preference.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
                         - dailyLogEntity.amount)
                 dialog.dismiss()
             }
@@ -103,8 +100,8 @@ class ContainerLogRecyclerViewAdapter (private val viewModel: DrinkingTimerViewM
 
                 viewModel.updatePost(dailyLogEntityToReplace)
 
-                preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY,
-                        preference.getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR)
+                preference.setFloat(SHARED_PREFERENCE_AMOUNT_DAILY,
+                        preference.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
                                 - dailyLogEntity.amount + dailyLogEntityToReplace.amount)
 
                 dialog.dismiss()

@@ -22,8 +22,8 @@ class TrackerWorkerManager(context : Context, params : WorkerParameters) : Worke
         val currentDate: String = calendar.getDate()
 
         if(previousDate != DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE && previousDate != currentDate){
-            val numerator = preference.getInt(SHARED_PREFERENCE_NUMERATOR_DAILY, DEFAULT_NUMERATOR)
-            preference.setInt(SHARED_PREFERENCE_NUMERATOR_DAILY, 0)
+            val numerator = preference.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
+            preference.setInt(SHARED_PREFERENCE_AMOUNT_DAILY, 0)
             preference.edit().putString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, currentDate).apply()
 
             get<MWTDatabase>().let {
