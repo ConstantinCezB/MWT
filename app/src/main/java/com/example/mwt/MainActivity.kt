@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.example.mwt.fragments.bmi.BMIFragment
-import com.example.mwt.fragments.bmi.GoalsFragment
+import com.example.mwt.fragments.goals.GoalsFragment
 import com.example.mwt.fragments.bmi.SettingsFragment
 import com.example.mwt.fragments.drinkingstatistics.DrinkingStatisticsFragment
 import com.example.mwt.fragments.timer.DrinkingTimerFragment
