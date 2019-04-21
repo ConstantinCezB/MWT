@@ -27,7 +27,7 @@ import org.koin.standalone.KoinComponent
 import org.koin.standalone.get
 import java.util.*
 
-class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, private val preference: SharedPreferences, private val modeFavorite: Boolean) :
+class ContainerRecyclerViewAdapter(private val viewModel: TrackerViewModel, private val preference: SharedPreferences, private val modeFavorite: Boolean) :
         ListAdapter<ContainersEntity, RecyclerView.ViewHolder>(diffCallback), KoinComponent {
 
 
@@ -54,7 +54,7 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
         return if (modeFavorite) {
             R.layout.layout_list_item
         } else {
-            if(position == super.getItemCount()) R.layout.list_item_add else R.layout.layout_list_item
+            if (position == super.getItemCount()) R.layout.list_item_add else R.layout.layout_list_item
         }
     }
 
@@ -87,7 +87,6 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
     inner class ContainerViewHolder(itemView: View, private val parentViewGroup: ViewGroup) : RecyclerView.ViewHolder(itemView) {
 
 
-
         fun bind(container: ContainersEntity) {
             with(itemView) {
                 item_name.text = container.name
@@ -102,11 +101,20 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
             }
         }
 
-        private fun addAmount(container: ContainersEntity){
+        private fun addAmount(container: ContainersEntity) {
             val amountToAdd = ((viewModel.progress.toFloat() / 100.toFloat()) * container.size.toFloat()).toInt()
             preference.setFloat(SHARED_PREFERENCE_AMOUNT_DAILY,
                     amountToAdd + preference
                             .getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
+
+            preference.setFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY,
+                    amountToAdd + preference
+                            .getFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
+
+            preference.setFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY,
+                    amountToAdd + preference
+                            .getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
+
             GlobalScope.launch(Dispatchers.Default, CoroutineStart.DEFAULT) {
                 get<MWTDatabase>().dailyLogDao().save(
                         DailyLogEntity(
@@ -129,9 +137,9 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
 
             mView.editContainerSizeEditScreen.text.append(container.size.toString())
 
-            if (container.favorite) mView.add_to_favorite_buttom.text =  mView.context.getString(R.string.rem_fav)
+            if (container.favorite) mView.add_to_favorite_buttom.text = mView.context.getString(R.string.rem_fav)
 
-            mView.edit_drop.setOnClickListener{
+            mView.edit_drop.setOnClickListener {
                 mView.constraintLayoutEditDrop.showContent(mView.edit_drop)
             }
 
@@ -144,7 +152,7 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
                 dialog.dismiss()
             }
 
-            mView.edit_container_accept_btn.setOnClickListener{
+            mView.edit_container_accept_btn.setOnClickListener {
                 val containerToEdit = ContainersEntity(mView.editContainerNameEditScreen.text.toString(),
                         mView.editContainerSizeEditScreen.text.toString().toInt(), favorite = container.favorite)
 
@@ -154,8 +162,8 @@ class ContainerRecyclerViewAdapter (private val viewModel: TrackerViewModel, pri
                 dialog.dismiss()
             }
 
-            mView.add_to_favorite_buttom.setOnClickListener{
-                if (container.favorite){
+            mView.add_to_favorite_buttom.setOnClickListener {
+                if (container.favorite) {
                     container.favorite = false
                     viewModel.updatePost(container)
                     mView.add_to_favorite_buttom.text = mView.context.getString(R.string.favorite)
