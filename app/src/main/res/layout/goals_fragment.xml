@@ -152,13 +152,13 @@
                         android:text="Recommended \namount:"
                         android:textAlignment="center"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/textView34"
+                        app:layout_constraintEnd_toStartOf="@+id/weekRecommendedGoalAmount"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar3"
                         app:layout_constraintTop_toBottomOf="@+id/bmi_level" />
 
                     <EditText
-                        android:id="@+id/weekUserGoalAmount2"
+                        android:id="@+id/weekUserGoalAmount"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -204,7 +204,7 @@
                         android:layout_marginEnd="8dp"
                         android:text="@string/progress"
                         app:layout_constraintBottom_toTopOf="@+id/bmi_level"
-                        app:layout_constraintEnd_toStartOf="@+id/textView31"
+                        app:layout_constraintEnd_toStartOf="@+id/weekProgessAmount"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar3"
                         app:layout_constraintTop_toBottomOf="@+id/textView29" />
@@ -216,13 +216,13 @@
                         android:layout_marginEnd="8dp"
                         android:text="@string/goal"
                         app:layout_constraintBottom_toTopOf="@+id/textView321"
-                        app:layout_constraintEnd_toStartOf="@+id/weekUserGoalAmount2"
+                        app:layout_constraintEnd_toStartOf="@+id/weekUserGoalAmount"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar3"
                         app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
                     <TextView
-                        android:id="@+id/textView31"
+                        android:id="@+id/weekProgessAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4000"
@@ -231,7 +231,7 @@
                         app:layout_constraintStart_toEndOf="@+id/textView30" />
 
                     <TextView
-                        android:id="@+id/textView34"
+                        android:id="@+id/weekRecommendedGoalAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4000"
@@ -266,13 +266,13 @@
                         android:text="Recommended \namount:"
                         android:textAlignment="center"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/textView37"
+                        app:layout_constraintEnd_toStartOf="@+id/monthRecommendedGoalAmount"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar4"
                         app:layout_constraintTop_toBottomOf="@+id/recommended_amount" />
 
                     <EditText
-                        android:id="@+id/weekUserGoalAmount"
+                        android:id="@+id/monthUserGoalAmount"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -318,7 +318,7 @@
                         android:layout_marginEnd="8dp"
                         android:text="@string/progress"
                         app:layout_constraintBottom_toTopOf="@+id/recommended_amount"
-                        app:layout_constraintEnd_toStartOf="@+id/textView35"
+                        app:layout_constraintEnd_toStartOf="@+id/monthProgessAmount"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar4"
                         app:layout_constraintTop_toBottomOf="@+id/bmi_bmiStatus" />
@@ -330,13 +330,13 @@
                         android:layout_marginEnd="8dp"
                         android:text="@string/goal"
                         app:layout_constraintBottom_toTopOf="@+id/textView36"
-                        app:layout_constraintEnd_toStartOf="@+id/weekUserGoalAmount"
+                        app:layout_constraintEnd_toStartOf="@+id/monthUserGoalAmount"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar4"
                         app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
                     <TextView
-                        android:id="@+id/textView35"
+                        android:id="@+id/monthProgessAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="40000"
@@ -345,7 +345,7 @@
                         app:layout_constraintStart_toEndOf="@+id/textView33" />
 
                     <TextView
-                        android:id="@+id/textView37"
+                        android:id="@+id/monthRecommendedGoalAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="40000"

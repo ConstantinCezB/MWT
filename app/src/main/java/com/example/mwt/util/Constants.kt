@@ -27,7 +27,7 @@ const val DEFAULT_GOAL_DAILY = 2000f
 const val SHARED_PREFERENCE_GOAL_WEEKLY = "denominatorWeekly"
 const val DEFAULT_GOAL_WEEKLY = 14000f
 const val SHARED_PREFERENCE_GOAL_MONTHLY = "denominatorMonthly"
-const val DEFAULT_GOAL_MONTHLY = 56000f
+const val DEFAULT_GOAL_MONTHLY = 60000f
 
 //Variable that contains the recommended amount of water to drink
 const val SHARED_PREFERENCE_RECOMMENDED_AMOUNT = "recommendedAmount"
