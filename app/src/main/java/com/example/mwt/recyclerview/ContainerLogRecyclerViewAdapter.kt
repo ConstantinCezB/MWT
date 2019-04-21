@@ -16,8 +16,8 @@ import kotlinx.android.synthetic.main.layout_list_water_container_drinked.view.*
 import kotlinx.android.synthetic.main.log_edit_frame.view.*
 
 
-class ContainerLogRecyclerViewAdapter (private val viewModel: DrinkingTimerViewModel, private val preference: SharedPreferences):
-        ListAdapter<DailyLogEntity, RecyclerView.ViewHolder>(diffCallback){
+class ContainerLogRecyclerViewAdapter(private val viewModel: DrinkingTimerViewModel, private val preference: SharedPreferences) :
+        ListAdapter<DailyLogEntity, RecyclerView.ViewHolder>(diffCallback) {
 
     companion object {
 
@@ -34,7 +34,7 @@ class ContainerLogRecyclerViewAdapter (private val viewModel: DrinkingTimerViewM
     }
 
     override fun getItemViewType(position: Int): Int {
-        return  R.layout.layout_list_water_container_drinked
+        return R.layout.layout_list_water_container_drinked
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -59,7 +59,7 @@ class ContainerLogRecyclerViewAdapter (private val viewModel: DrinkingTimerViewM
                 water_drank.text = String.format("%s %s", resources.getString(R.string.water_drank), dailyLogEntity.amount.toString())
                 container_max.text = String.format("%s %s", resources.getString(R.string.water_drank_container_max), dailyLogEntity.size.toString())
                 date_drank_container.text = dailyLogEntity.date
-                progressBar.progress = ((dailyLogEntity.amount.toFloat() / dailyLogEntity.size.toFloat()) *100.0).toInt()
+                progressBar.progress = ((dailyLogEntity.amount.toFloat() / dailyLogEntity.size.toFloat()) * 100.0).toInt()
                 itemView.setOnLongClickListener {
                     showDialogEdit(itemView, dailyLogEntity, parentViewGroup)
                     true
@@ -74,18 +74,27 @@ class ContainerLogRecyclerViewAdapter (private val viewModel: DrinkingTimerViewM
             mBuilder.setView(mView)
             val dialog: AlertDialog = mBuilder.create()
 
-            mView.daily_log_seekBar.progress = ((dailyLogEntity.amount.toFloat() / dailyLogEntity.size.toFloat())*100f).toInt()
+            mView.daily_log_seekBar.progress = ((dailyLogEntity.amount.toFloat() / dailyLogEntity.size.toFloat()) * 100f).toInt()
             mView.container_name_log.text = dailyLogEntity.name
 
             mView.daily_log_cancel_btn.setOnClickListener {
                 dialog.dismiss()
             }
 
-            mView.daily_log_delete_btn.setOnClickListener{
+            mView.daily_log_delete_btn.setOnClickListener {
                 viewModel.deletePost(dailyLogEntity)
+
+                preference.setFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY,
+                        preference.getFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
+                                - dailyLogEntity.amount)
+
+                preference.setFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY,
+                        preference.getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
+                                - dailyLogEntity.amount)
+
                 preference.setFloat(SHARED_PREFERENCE_AMOUNT_DAILY,
                         preference.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
-                        - dailyLogEntity.amount)
+                                - dailyLogEntity.amount)
                 dialog.dismiss()
             }
 
@@ -99,6 +108,14 @@ class ContainerLogRecyclerViewAdapter (private val viewModel: DrinkingTimerViewM
                 dailyLogEntityToReplace.id = dailyLogEntity.id
 
                 viewModel.updatePost(dailyLogEntityToReplace)
+
+                preference.setFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY,
+                        preference.getFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
+                                - dailyLogEntity.amount + dailyLogEntityToReplace.amount)
+
+                preference.setFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY,
+                        preference.getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
+                                - dailyLogEntity.amount + dailyLogEntityToReplace.amount)
 
                 preference.setFloat(SHARED_PREFERENCE_AMOUNT_DAILY,
                         preference.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)

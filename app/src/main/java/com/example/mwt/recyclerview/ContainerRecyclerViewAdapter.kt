@@ -103,9 +103,6 @@ class ContainerRecyclerViewAdapter(private val viewModel: TrackerViewModel, priv
 
         private fun addAmount(container: ContainersEntity) {
             val amountToAdd = ((viewModel.progress.toFloat() / 100.toFloat()) * container.size.toFloat()).toInt()
-            preference.setFloat(SHARED_PREFERENCE_AMOUNT_DAILY,
-                    amountToAdd + preference
-                            .getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
 
             preference.setFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY,
                     amountToAdd + preference
@@ -114,6 +111,12 @@ class ContainerRecyclerViewAdapter(private val viewModel: TrackerViewModel, priv
             preference.setFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY,
                     amountToAdd + preference
                             .getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
+
+            preference.setFloat(SHARED_PREFERENCE_AMOUNT_DAILY,
+                    amountToAdd + preference
+                            .getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
+
+
 
             GlobalScope.launch(Dispatchers.Default, CoroutineStart.DEFAULT) {
                 get<MWTDatabase>().dailyLogDao().save(
