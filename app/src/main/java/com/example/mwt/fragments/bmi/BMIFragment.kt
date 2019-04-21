@@ -115,7 +115,7 @@ class BMIFragment : Fragment() {
         if (month < 10) monthText = "0$monthText"
         if (day < 10) dayText = "0$dayText"
 
-        return "$dayText/$monthText/$yearText"
+        return "$yearText-$monthText-$dayText"
     }
 
     private fun bmiCalculator(): Float {
