@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.example.mwt.R
 import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.goals_fragment.view.*
@@ -38,6 +39,24 @@ class GoalsFragment: Fragment() {
         view.monthProgessAmount.text = String.format("%.2f",preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
         view.monthUserGoalAmount.attachEditText(preference!!, SHARED_PREFERENCE_GOAL_MONTHLY, DEFAULT_GOAL_MONTHLY)
         view.monthRecommendedGoalAmount.text = String.format("%.2f", preference!!.getFloat(SHARED_PREFERENCE_RECOMMENDED_AMOUNT, DEFAULT_GOAL_DAILY) * daysInMonth)
+
+        preference?.floatLiveData(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY)?.observe(this, Observer {
+            val percentageDay = (preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY) / preference!!.getFloat(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY) * 100)
+            view.goal_drinking_progress_bar_day.setProgress(percentageDay.toInt(), true)
+            view.goal_drinking_progress_day_percentage.text = String.format("%.2f%%", percentageDay)
+        })
+
+        preference?.floatLiveData(SHARED_PREFERENCE_GOAL_WEEKLY, DEFAULT_GOAL_WEEKLY)?.observe(this, Observer {
+            val percentageWeek = (preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY) / preference!!.getFloat(SHARED_PREFERENCE_GOAL_WEEKLY, DEFAULT_GOAL_WEEKLY) * 100)
+            view.goal_drinking_progress_bar_week.setProgress(percentageWeek.toInt(), true)
+            view.goal_drinking_progress_week_percentage.text = String.format("%.2f%%", percentageWeek)
+        })
+
+        preference?.floatLiveData(SHARED_PREFERENCE_GOAL_MONTHLY, DEFAULT_GOAL_MONTHLY)?.observe(this, Observer {
+            val percentageMonth = (preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY) / preference!!.getFloat(SHARED_PREFERENCE_GOAL_MONTHLY, DEFAULT_GOAL_MONTHLY) * 100)
+            view.goal_drinking_progress_bar_month.setProgress(percentageMonth.toInt(), true)
+            view.goal_drinking_progress_month_percentage.text = String.format("%.2f%%", percentageMonth)
+        })
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

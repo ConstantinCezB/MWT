@@ -32,7 +32,7 @@
                     android:layout_height="match_parent">
 
                     <ProgressBar
-                        android:id="@+id/drinking_progress_bar2"
+                        android:id="@+id/goal_drinking_progress_bar_day"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="180dp"
                         android:layout_height="0dp"
@@ -44,7 +44,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="1:1"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
                         android:id="@+id/textView17"
@@ -56,7 +57,7 @@
                         android:textSize="18sp"
                         app:layout_constraintBottom_toTopOf="@+id/textView27"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar2"
+                        app:layout_constraintStart_toEndOf="@+id/goal_drinking_progress_bar_day"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
@@ -68,7 +69,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/textView28"
                         app:layout_constraintEnd_toStartOf="@+id/dayProgessAmount"
                         app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar2"
+                        app:layout_constraintStart_toEndOf="@+id/goal_drinking_progress_bar_day"
                         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
                     <TextView
@@ -80,7 +81,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/textView4"
                         app:layout_constraintEnd_toStartOf="@+id/dayUserGoalAmount"
                         app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar2"
+                        app:layout_constraintStart_toEndOf="@+id/goal_drinking_progress_bar_day"
                         app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
                     <TextView
@@ -114,7 +115,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/dayRecommendedGoalAmount"
                         app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar2"
+                        app:layout_constraintStart_toEndOf="@+id/goal_drinking_progress_bar_day"
                         app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
                     <TextView
@@ -126,6 +127,16 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView4"
                         app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+                    <TextView
+                        android:id="@+id/goal_drinking_progress_day_percentage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00%"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/goal_drinking_progress_bar_day"
+                        app:layout_constraintStart_toStartOf="@+id/goal_drinking_progress_bar_day"
+                        app:layout_constraintTop_toTopOf="@+id/goal_drinking_progress_bar_day" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -154,7 +165,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/weekRecommendedGoalAmount"
                         app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar3"
+                        app:layout_constraintStart_toEndOf="@+id/goal_drinking_progress_bar_week"
                         app:layout_constraintTop_toBottomOf="@+id/bmi_level" />
 
                     <EditText
@@ -169,7 +180,7 @@
                         app:layout_constraintStart_toEndOf="@+id/bmi_level" />
 
                     <ProgressBar
-                        android:id="@+id/drinking_progress_bar3"
+                        android:id="@+id/goal_drinking_progress_bar_week"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="180dp"
                         android:layout_height="0dp"
@@ -194,7 +205,7 @@
                         android:textSize="18sp"
                         app:layout_constraintBottom_toTopOf="@+id/textView30"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar3"
+                        app:layout_constraintStart_toEndOf="@+id/goal_drinking_progress_bar_week"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
@@ -206,7 +217,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/bmi_level"
                         app:layout_constraintEnd_toStartOf="@+id/weekProgessAmount"
                         app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar3"
+                        app:layout_constraintStart_toEndOf="@+id/goal_drinking_progress_bar_week"
                         app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
                     <TextView
@@ -218,7 +229,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/textView321"
                         app:layout_constraintEnd_toStartOf="@+id/weekUserGoalAmount"
                         app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar3"
+                        app:layout_constraintStart_toEndOf="@+id/goal_drinking_progress_bar_week"
                         app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
                     <TextView
@@ -239,6 +250,16 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView321"
                         app:layout_constraintTop_toTopOf="@+id/textView321" />
+
+                    <TextView
+                        android:id="@+id/goal_drinking_progress_week_percentage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00%"
+                        app:layout_constraintBottom_toBottomOf="@+id/goal_drinking_progress_bar_week"
+                        app:layout_constraintEnd_toEndOf="@+id/goal_drinking_progress_bar_week"
+                        app:layout_constraintStart_toStartOf="@+id/goal_drinking_progress_bar_week"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -268,7 +289,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/monthRecommendedGoalAmount"
                         app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar4"
+                        app:layout_constraintStart_toEndOf="@+id/goal_drinking_progress_bar_month"
                         app:layout_constraintTop_toBottomOf="@+id/recommended_amount" />
 
                     <EditText
@@ -283,7 +304,7 @@
                         app:layout_constraintStart_toEndOf="@+id/recommended_amount" />
 
                     <ProgressBar
-                        android:id="@+id/drinking_progress_bar4"
+                        android:id="@+id/goal_drinking_progress_bar_month"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="180dp"
                         android:layout_height="0dp"
@@ -308,7 +329,7 @@
                         android:textSize="18sp"
                         app:layout_constraintBottom_toTopOf="@+id/textView33"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar4"
+                        app:layout_constraintStart_toEndOf="@+id/goal_drinking_progress_bar_month"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
@@ -320,7 +341,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/recommended_amount"
                         app:layout_constraintEnd_toStartOf="@+id/monthProgessAmount"
                         app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar4"
+                        app:layout_constraintStart_toEndOf="@+id/goal_drinking_progress_bar_month"
                         app:layout_constraintTop_toBottomOf="@+id/bmi_bmiStatus" />
 
                     <TextView
@@ -332,7 +353,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/textView36"
                         app:layout_constraintEnd_toStartOf="@+id/monthUserGoalAmount"
                         app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toEndOf="@+id/drinking_progress_bar4"
+                        app:layout_constraintStart_toEndOf="@+id/goal_drinking_progress_bar_month"
                         app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
                     <TextView
@@ -353,6 +374,16 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView36"
                         app:layout_constraintTop_toTopOf="@+id/textView36" />
+
+                    <TextView
+                        android:id="@+id/goal_drinking_progress_month_percentage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00%"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/goal_drinking_progress_bar_month"
+                        app:layout_constraintStart_toStartOf="@+id/goal_drinking_progress_bar_month"
+                        app:layout_constraintTop_toTopOf="@+id/goal_drinking_progress_bar_month" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 

@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import com.example.mwt.R
 import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.bmi_fragment.view.*
-import kotlinx.android.synthetic.main.tracker_fragment.view.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
