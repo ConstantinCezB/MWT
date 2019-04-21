@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.example.mwt.R
 import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.bmi_fragment.view.*
+import kotlinx.android.synthetic.main.tracker_fragment.view.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -30,7 +31,7 @@ class BMIFragment : Fragment() {
 
         view.bmi_level.text = String.format("${resources.getString(R.string.your_bmi_level)}  %2.2f", bmi)
         view.bmi_bmiStatus.text = String.format("${resources.getString(R.string.status_fat_test)}  %s", categorySelectionBMI(bmi))
-        view.bmi_progress_bar.setProgress((bmi / 40f * 100).toInt(), true)
+
 
         observeRecommendedChange(view)
 

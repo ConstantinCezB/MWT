@@ -42,12 +42,20 @@ class TrackerFragment : Fragment() {
         view.containerRecyclerView.layoutManager = GridLayoutManager(context, 3, RecyclerView.VERTICAL, false)
         view.goal_daily.text = String.format("%.2f", preference!!.getFloat(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY))
 
-        preference?.floatLiveData(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)?.observe(this, Observer{
+        preference?.floatLiveData(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)?.observe(this, Observer {
+            // setting up the daily wheel
             val percentage = (it.toFloat() / preference!!.getFloat(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY) * 100)
             view.drinking_progress_bar.setProgress(percentage.toInt(), true)
             view.numerator_daily.text = String.format("%.2f", it)
-            view.percentage_daily.text =  String.format("%.2f%%", percentage)
+            view.percentage_daily.text = String.format("%.2f%%", percentage)
 
+            val percentageWeek = (preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY) / preference!!.getFloat(SHARED_PREFERENCE_GOAL_WEEKLY, DEFAULT_GOAL_WEEKLY) * 100)
+            view.drinking_progress_week_bar.setProgress(percentageWeek.toInt(), true)
+            view.drinking_progress_week_percentage.text = String.format("%.2f%%", percentageWeek)
+
+            val percentageMonth = (preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY) / preference!!.getFloat(SHARED_PREFERENCE_GOAL_MONTHLY, DEFAULT_GOAL_MONTHLY) * 100)
+            view.drinking_progress_month_bar.setProgress(percentageMonth.toInt(), true)
+            view.drinking_progress_month_percentage.text = String.format("%.2f%%", percentageMonth)
         })
 
         preference?.stringLiveData(TIME_INTERVAL_PREVIOUS_WORKER_DATE, DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE)?.observe(this,
@@ -55,8 +63,8 @@ class TrackerFragment : Fragment() {
                     view.current_day_text.text = it
                 })
 
-        view.pull_up_tab.setOnClickListener{
-            if(visibilityEdit){
+        view.pull_up_tab.setOnClickListener {
+            if (visibilityEdit) {
                 pull_up.background = ContextCompat.getDrawable(context!!, R.drawable.ic_invert_colors_black_24dp)
                 view.containersRecycler.visibility = View.GONE
                 view.favorite_category_title.visibility = View.GONE
@@ -73,6 +81,7 @@ class TrackerFragment : Fragment() {
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
                 viewModel.progress = seekBar.progress
             }
+
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
@@ -92,7 +101,7 @@ class TrackerFragment : Fragment() {
             containerFavoriteRecyclerViewAdapter.submitList(it)
         })
 
-        viewModel.getNonFavoriteContainers().observe(viewLifecycleOwner, Observer{
+        viewModel.getNonFavoriteContainers().observe(viewLifecycleOwner, Observer {
             containerRecyclerViewAdapter.submitList(it)
         })
 
