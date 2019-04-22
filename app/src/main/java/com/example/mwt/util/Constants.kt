@@ -46,11 +46,11 @@ const val DEFAULT_GENDER = "Male"
 
 // variables for the height
 const val SHARED_PREFERENCE_HEIGHT = "height"
-const val DEFAULT_HEIGHT = "1"
+const val DEFAULT_HEIGHT = 200f
 
 // variables for the weight
 const val SHARED_PREFERENCE_WEIGHT = "weight"
-const val DEFAULT_WEIGHT = "1"
+const val DEFAULT_WEIGHT = 200f
 
 // variables for the activity level
 const val SHARED_PREFERENCE_ACTIVITY_LEVEL = "activityLevel"

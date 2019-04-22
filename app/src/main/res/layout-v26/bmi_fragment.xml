@@ -261,7 +261,7 @@
                             android:gravity="center"
                             android:hint="@string/enter_height"
                             android:importantForAutofill="no"
-                            android:inputType="numberSigned"
+                            android:inputType="numberDecimal"
                             app:layout_constraintBaseline_toBaselineOf="@+id/textView19"
                             app:layout_constraintEnd_toEndOf="@+id/datePickerDialogPrompt"
                             app:layout_constraintStart_toStartOf="@+id/datePickerDialogPrompt" />
@@ -274,7 +274,7 @@
                             android:gravity="center"
                             android:hint="@string/enter_height"
                             android:importantForAutofill="no"
-                            android:inputType="numberSigned"
+                            android:inputType="numberDecimal"
                             app:layout_constraintBaseline_toBaselineOf="@+id/textView9"
                             app:layout_constraintEnd_toEndOf="@+id/datePickerDialogPrompt"
                             app:layout_constraintStart_toStartOf="@+id/datePickerDialogPrompt" />

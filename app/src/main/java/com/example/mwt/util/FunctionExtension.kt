@@ -104,7 +104,7 @@ fun EditText.attachEditText(preference: SharedPreferences, preferenceSaveVal: St
     })
 }
 
-fun EditText.attachEditText(preference: SharedPreferences, preferenceSaveVal: String, preferenceDefaultVal: Float) {
+fun EditText.attachEditText(preference: SharedPreferences, preferenceSaveVal: String, preferenceDefaultVal: Float, noCount: Float = 0f) {
     this.text.append(String.format("%.2f", preference.getFloat(preferenceSaveVal, preferenceDefaultVal)))
 
     this.addTextChangedListener(object : TextWatcher {
@@ -114,7 +114,14 @@ fun EditText.attachEditText(preference: SharedPreferences, preferenceSaveVal: St
 
         override fun onTextChanged(s: CharSequence, start: Int,
                                    before: Int, count: Int) {
-            preference.setFloat(preferenceSaveVal, s.toString().toFloat())
+
+            if (count == 0){
+                preference.setFloat(preferenceSaveVal, noCount)
+            }
+            else{
+                preference.setFloat(preferenceSaveVal, s.toString().toFloat())
+            }
+
         }
     })
 }

@@ -27,18 +27,20 @@ class GoalsFragment: Fragment() {
         preference = context?.getSharedPreferences(SHARED_PREFERENCE_FILE, Context.MODE_PRIVATE)
         val yearMonthObject = YearMonth.now()
         val daysInMonth = yearMonthObject.lengthOfMonth()
+        val recommended = preference!!.getFloat(SHARED_PREFERENCE_RECOMMENDED_AMOUNT, DEFAULT_GOAL_DAILY)
 
         view.dayProgessAmount.text = String.format("%.2f",preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
-        view.dayUserGoalAmount.attachEditText(preference!!, SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY)
-        view.dayRecommendedGoalAmount.text = String.format("%.2f", preference!!.getFloat(SHARED_PREFERENCE_RECOMMENDED_AMOUNT, DEFAULT_GOAL_DAILY))
+        view.dayUserGoalAmount.attachEditText(preference!!, SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY, recommended)
+        view.dayRecommendedGoalAmount.text = String.format("%.2f", recommended)
 
         view.weekProgessAmount.text = String.format("%.2f",preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
-        view.weekUserGoalAmount.attachEditText(preference!!, SHARED_PREFERENCE_GOAL_WEEKLY, DEFAULT_GOAL_WEEKLY)
-        view.weekRecommendedGoalAmount.text = String.format("%.2f", preference!!.getFloat(SHARED_PREFERENCE_RECOMMENDED_AMOUNT, DEFAULT_GOAL_DAILY) * 7)
+        view.weekUserGoalAmount.attachEditText(preference!!, SHARED_PREFERENCE_GOAL_WEEKLY, DEFAULT_GOAL_WEEKLY, recommended * 7)
+        view.weekRecommendedGoalAmount.text = String.format("%.2f", recommended * 7)
+
 
         view.monthProgessAmount.text = String.format("%.2f",preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
-        view.monthUserGoalAmount.attachEditText(preference!!, SHARED_PREFERENCE_GOAL_MONTHLY, DEFAULT_GOAL_MONTHLY)
-        view.monthRecommendedGoalAmount.text = String.format("%.2f", preference!!.getFloat(SHARED_PREFERENCE_RECOMMENDED_AMOUNT, DEFAULT_GOAL_DAILY) * daysInMonth)
+        view.monthUserGoalAmount.attachEditText(preference!!, SHARED_PREFERENCE_GOAL_MONTHLY, DEFAULT_GOAL_MONTHLY, recommended * daysInMonth)
+        view.monthRecommendedGoalAmount.text = String.format("%.2f", recommended * daysInMonth)
 
         preference?.floatLiveData(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY)?.observe(this, Observer {
             val percentageDay = (preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY) / preference!!.getFloat(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY) * 100)

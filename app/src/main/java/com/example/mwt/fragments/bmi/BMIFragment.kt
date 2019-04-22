@@ -119,8 +119,8 @@ class BMIFragment : Fragment() {
     }
 
     private fun bmiCalculator(): Float {
-        val height = preference!!.getString(SHARED_PREFERENCE_HEIGHT, DEFAULT_HEIGHT)!!.toFloat()
-        val weight = preference!!.getString(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT)!!.toFloat()
+        val height = preference!!.getFloat(SHARED_PREFERENCE_HEIGHT, DEFAULT_HEIGHT)
+        val weight = preference!!.getFloat(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT)
         return ((weight) / (height * height)) * 703
     }
 
@@ -146,10 +146,10 @@ class BMIFragment : Fragment() {
         preference!!.stringLiveData(SHARED_PREFERENCE_GENDER, DEFAULT_GENDER).observe(this, androidx.lifecycle.Observer {
             calculateRecommendedIntake(preference!!, view)
         })
-        preference!!.stringLiveData(SHARED_PREFERENCE_HEIGHT, DEFAULT_HEIGHT).observe(this, androidx.lifecycle.Observer {
+        preference!!.floatLiveData(SHARED_PREFERENCE_HEIGHT, DEFAULT_HEIGHT).observe(this, androidx.lifecycle.Observer {
             calculateRecommendedIntake(preference!!, view)
         })
-        preference!!.stringLiveData(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT).observe(this, androidx.lifecycle.Observer {
+        preference!!.floatLiveData(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT).observe(this, androidx.lifecycle.Observer {
             calculateRecommendedIntake(preference!!, view)
         })
         preference!!.stringLiveData(SHARED_PREFERENCE_ACTIVITY_LEVEL, DEFAULT_ACTIVITY_LEVEL).observe(this, androidx.lifecycle.Observer {
@@ -165,7 +165,7 @@ class BMIFragment : Fragment() {
         val currentDateString = preference.getString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE)
         val dateUser = LocalDate.parse(dateUserString, DateTimeFormatter.ISO_DATE)
         val currentDateUser = LocalDate.parse(currentDateString, DateTimeFormatter.ISO_DATE)
-        val weight = preference.getString(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT)!!.toFloat()
+        val weight = preference.getFloat(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT)!!.toFloat()
         val activityLevelString = preference.getString(SHARED_PREFERENCE_ACTIVITY_LEVEL, DEFAULT_ACTIVITY_LEVEL)
         val seasonString = preference.getString(SHARED_PREFERENCE_SEASON, DEFAULT_SEASON)
 
