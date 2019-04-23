@@ -91,6 +91,7 @@
     <string name="drop_down_goal_achievement">Drop down goal achievement</string>
     <string name="enter_height">Enter height</string>
     <string name="_3000">3000</string>
+    <string name="info">Information</string>
 
     <string-array name="gender">
         <item>Male</item>

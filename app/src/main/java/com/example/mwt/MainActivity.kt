@@ -9,8 +9,9 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.mwt.fragments.bmi.BMIFragment
 import com.example.mwt.fragments.goals.GoalsFragment
-import com.example.mwt.fragments.bmi.SettingsFragment
+import com.example.mwt.fragments.settings.SettingsFragment
 import com.example.mwt.fragments.drinkingstatistics.DrinkingStatisticsFragment
+import com.example.mwt.fragments.information.InformationFragment
 import com.example.mwt.fragments.timer.DrinkingTimerFragment
 import com.example.mwt.fragments.tracker.TrackerFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -75,6 +76,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_settings -> {
                 SettingsFragment()
+            }
+            R.id.nav_information ->{
+                InformationFragment()
             }
             else -> return
         }
