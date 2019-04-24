@@ -135,7 +135,7 @@
                 app:layout_constraintTop_toTopOf="@+id/textView39" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_select_color_primary_dark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorPrimaryDark"
@@ -145,23 +145,23 @@
                 app:layout_constraintTop_toTopOf="@+id/textView12" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button_select_color_primary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="Select Color"
                 app:layout_constraintBottom_toBottomOf="@+id/textView31"
-                app:layout_constraintEnd_toEndOf="@+id/button"
+                app:layout_constraintEnd_toEndOf="@+id/button_select_color_primary_dark"
                 app:layout_constraintTop_toTopOf="@+id/textView31" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/button_select_color_accent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorAccent"
                 android:text="Select Color"
                 app:layout_constraintBottom_toBottomOf="@+id/textView32"
-                app:layout_constraintEnd_toEndOf="@+id/button2"
+                app:layout_constraintEnd_toEndOf="@+id/button_select_color_primary"
                 app:layout_constraintTop_toTopOf="@+id/textView32" />
 
             <Button

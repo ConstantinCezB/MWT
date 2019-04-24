@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.mwt.R
+import kotlinx.android.synthetic.main.settings_fragment.view.*
 
 class SettingsFragment: Fragment() {
 
@@ -15,6 +16,18 @@ class SettingsFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        view.button_select_color_primary_dark.setOnClickListener {
+
+        }
+
+        view.button_select_color_primary.setOnClickListener{
+
+        }
+
+        view.button_select_color_accent.setOnClickListener {
+
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
