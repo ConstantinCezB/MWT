@@ -1,4 +1,4 @@
-package com.example.mwt.db.bmiRecords
+package com.example.mwt.db.bmiRecordsdb
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
