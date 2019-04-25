@@ -59,6 +59,10 @@ class GoalsFragment: Fragment() {
             view.goal_drinking_progress_bar_month.setProgress(percentageMonth.toInt(), true)
             view.goal_drinking_progress_month_percentage.text = String.format("%.2f%%", percentageMonth)
         })
+
+        view.ConstraintLayoutToDropAchivementGoal.setOnClickListener {
+            view.ConstraintLayoutAchievementToDropGoal.showContent(view.bmi_log_edit_drop_achievement_goal)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
