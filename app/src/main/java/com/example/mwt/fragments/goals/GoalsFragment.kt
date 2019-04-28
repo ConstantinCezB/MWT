@@ -8,15 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
+import com.example.mwt.recyclerview.AchievmentRecyclerViewAdapter
 import com.example.mwt.util.*
+import kotlinx.android.synthetic.main.goals_fragment.*
 import kotlinx.android.synthetic.main.goals_fragment.view.*
+import org.koin.android.viewmodel.ext.android.getViewModel
 import java.time.YearMonth
 
 
 class GoalsFragment: Fragment() {
 
     private var preference: SharedPreferences? = null
+    private lateinit var viewModel: GoalsViewModel
+    private lateinit var achievementRecyclerViewAdapter: AchievmentRecyclerViewAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.goals_fragment, container, false)
@@ -41,6 +48,8 @@ class GoalsFragment: Fragment() {
         view.monthProgessAmount.text = String.format("%.2f",preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
         view.monthUserGoalAmount.attachEditText(preference!!, SHARED_PREFERENCE_GOAL_MONTHLY, DEFAULT_GOAL_MONTHLY, recommended * daysInMonth)
         view.monthRecommendedGoalAmount.text = String.format("%.2f", recommended * daysInMonth)
+
+        view.recyclerViewAchivementGoal.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
         preference?.floatLiveData(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY)?.observe(this, Observer {
             val percentageDay = (preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY) / preference!!.getFloat(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY) * 100)
@@ -67,5 +76,11 @@ class GoalsFragment: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        viewModel = getViewModel()
+        achievementRecyclerViewAdapter = AchievmentRecyclerViewAdapter().also(recyclerViewAchivementGoal::setAdapter)
+        viewModel.getAllPosts().observe(viewLifecycleOwner, Observer {
+            achievementRecyclerViewAdapter.submitList(it)
+            //TODO: showNoEntriesDisplay(it.size)
+        })
     }
 }

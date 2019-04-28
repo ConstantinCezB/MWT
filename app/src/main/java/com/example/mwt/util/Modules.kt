@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.mwt.db.MWTDatabase
 import com.example.mwt.fragments.drinkingstatistics.DrinkingStatisticsViewModel
+import com.example.mwt.fragments.goals.GoalsViewModel
 import com.example.mwt.fragments.timer.DrinkingTimerViewModel
 import com.example.mwt.fragments.tracker.TrackerViewModel
 import kotlinx.coroutines.GlobalScope
@@ -38,6 +39,10 @@ val MWTModule = module {
         get<MWTDatabase>().dailyLogDao()
     }
 
+    single {
+        get<MWTDatabase>().achievementsDao()
+    }
+
     viewModel {
         TrackerViewModel(get())
     }
@@ -48,6 +53,10 @@ val MWTModule = module {
 
     viewModel {
         DrinkingTimerViewModel(get())
+    }
+
+    viewModel {
+        GoalsViewModel(get())
     }
 
 
