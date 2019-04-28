@@ -5,10 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "achievements")
 data class AchievementsEntity(
-        val name: String,
-        var amount: Int,
-        val size: Int,
-        val date: String
+        val itemHeader: String,
+        val itemDateValue: String,
+        val itemType: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
