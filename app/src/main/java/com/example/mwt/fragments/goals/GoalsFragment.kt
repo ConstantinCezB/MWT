@@ -80,7 +80,12 @@ class GoalsFragment: Fragment() {
         achievementRecyclerViewAdapter = AchievmentRecyclerViewAdapter().also(recyclerViewAchivementGoal::setAdapter)
         viewModel.getAllPosts().observe(viewLifecycleOwner, Observer {
             achievementRecyclerViewAdapter.submitList(it)
-            //TODO: showNoEntriesDisplay(it.size)
+            showNoAchievement(it.size)
         })
+    }
+
+    private fun showNoAchievement (adapterSize: Int){
+        if (adapterSize == 0) no_display_achievement.visibility = View.VISIBLE
+        else no_display_achievement.visibility = View.GONE
     }
 }

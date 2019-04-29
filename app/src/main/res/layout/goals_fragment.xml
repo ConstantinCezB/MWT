@@ -404,8 +404,7 @@
                         android:id="@+id/ConstraintLayoutAchievementToDropGoal"
                         android:layout_width="0dp"
                         android:layout_height="500dp"
-                        android:layout_marginBottom="8dp"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -419,6 +418,19 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/no_display_achievement"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="No achievement"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/recyclerViewAchivementGoal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/recyclerViewAchivementGoal" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
