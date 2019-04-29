@@ -4,6 +4,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.mwt.db.MWTDatabase
+import com.example.mwt.fragments.bmi.BMIViewModel
 import com.example.mwt.fragments.drinkingstatistics.DrinkingStatisticsViewModel
 import com.example.mwt.fragments.goals.GoalsViewModel
 import com.example.mwt.fragments.timer.DrinkingTimerViewModel
@@ -43,6 +44,10 @@ val MWTModule = module {
         get<MWTDatabase>().achievementsDao()
     }
 
+    single {
+        get<MWTDatabase>().bmiRecordDao()
+    }
+
     viewModel {
         TrackerViewModel(get())
     }
@@ -57,6 +62,10 @@ val MWTModule = module {
 
     viewModel {
         GoalsViewModel(get())
+    }
+
+    viewModel {
+        BMIViewModel(get())
     }
 
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="false"
@@ -86,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="@string/_3000"
+                android:text="@string/_3000_ml"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -259,12 +260,12 @@
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:gravity="center"
-                            android:hint="@string/enter_height"
-                            android:importantForAutofill="no"
                             android:inputType="numberDecimal"
                             app:layout_constraintBaseline_toBaselineOf="@+id/textView19"
                             app:layout_constraintEnd_toEndOf="@+id/datePickerDialogPrompt"
-                            app:layout_constraintStart_toStartOf="@+id/datePickerDialogPrompt" />
+                            android:hint="@string/enter_height"
+                            app:layout_constraintStart_toStartOf="@+id/datePickerDialogPrompt"
+                            tools:ignore="Autofill" />
 
                         <EditText
                             android:id="@+id/editTextWeight"
@@ -272,12 +273,12 @@
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:gravity="center"
-                            android:hint="@string/enter_height"
-                            android:importantForAutofill="no"
                             android:inputType="numberDecimal"
                             app:layout_constraintBaseline_toBaselineOf="@+id/textView9"
                             app:layout_constraintEnd_toEndOf="@+id/datePickerDialogPrompt"
-                            app:layout_constraintStart_toStartOf="@+id/datePickerDialogPrompt" />
+                            android:hint="@string/enter_height"
+                            app:layout_constraintStart_toStartOf="@+id/datePickerDialogPrompt"
+                            tools:ignore="Autofill" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -322,13 +323,13 @@
                             android:layout_height="0dp"
                             android:layout_marginStart="8dp"
                             android:background="@drawable/ic_arrow_drop_down"
-                            android:contentDescription="@string/bmi_activity_level_drop"
                             app:layout_constraintBottom_toBottomOf="@+id/textView23"
                             app:layout_constraintDimensionRatio="1:1"
                             app:layout_constraintEnd_toStartOf="@+id/textView23"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintHorizontal_chainStyle="packed"
                             app:layout_constraintStart_toStartOf="parent"
+                            android:contentDescription="@string/bmi_activity_level_drop"
                             app:layout_constraintTop_toTopOf="@+id/textView23" />
 
                         <TextView
@@ -442,13 +443,13 @@
                             android:layout_height="0dp"
                             android:layout_marginStart="8dp"
                             android:background="@drawable/ic_arrow_drop_down"
-                            android:contentDescription="@string/bmi_chart_edit_drop"
                             app:layout_constraintBottom_toBottomOf="@+id/BMI_chart_text"
                             app:layout_constraintDimensionRatio="1:1"
                             app:layout_constraintEnd_toStartOf="@+id/BMI_chart_text"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintHorizontal_chainStyle="packed"
                             app:layout_constraintStart_toStartOf="parent"
+                            android:contentDescription="@string/bmi_chart_edit_drop"
                             app:layout_constraintTop_toTopOf="@+id/BMI_chart_text" />
 
                         <TextView
@@ -521,13 +522,13 @@
                             android:layout_height="0dp"
                             android:layout_marginStart="8dp"
                             android:background="@drawable/ic_arrow_drop_down"
-                            android:contentDescription="@string/bmi_log_edit_drop"
                             app:layout_constraintBottom_toBottomOf="@+id/textView29"
                             app:layout_constraintDimensionRatio="1:1"
                             app:layout_constraintEnd_toStartOf="@+id/textView29"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintHorizontal_chainStyle="packed"
                             app:layout_constraintStart_toStartOf="parent"
+                            android:contentDescription="@string/bmi_log_edit_drop"
                             app:layout_constraintTop_toTopOf="@+id/textView29" />
 
                         <TextView
@@ -552,13 +553,14 @@
                         android:id="@+id/constraintLayoutLogToDrop"
                         android:layout_width="0dp"
                         android:layout_height="300dp"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayoutLog">
 
                         <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewBMIHistory"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             app:layout_constraintBottom_toBottomOf="parent"

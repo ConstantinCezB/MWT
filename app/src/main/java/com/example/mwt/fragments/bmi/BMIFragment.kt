@@ -8,9 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
+import com.example.mwt.recyclerview.BMIHistoryRecyclerViewAdapter
 import com.example.mwt.util.*
+import kotlinx.android.synthetic.main.bmi_fragment.*
 import kotlinx.android.synthetic.main.bmi_fragment.view.*
+import org.koin.android.viewmodel.ext.android.getViewModel
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -18,6 +24,8 @@ import java.util.*
 class BMIFragment : Fragment() {
 
     private var preference: SharedPreferences? = null
+    private lateinit var viewModel: BMIViewModel
+    private lateinit var bmiHistoryRecyclerViewAdapter: BMIHistoryRecyclerViewAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.bmi_fragment, container, false)
@@ -65,6 +73,18 @@ class BMIFragment : Fragment() {
 
         view.spinnerSeason.attachSinner(preference!!, getSeasonSpinnerInitialPosition(), R.array.seasons, SHARED_PREFERENCE_SEASON)
 
+        view.recyclerViewBMIHistory?.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = getViewModel()
+        bmiHistoryRecyclerViewAdapter = BMIHistoryRecyclerViewAdapter().also(recyclerViewBMIHistory::setAdapter)
+        viewModel.getAllPosts().observe(viewLifecycleOwner, Observer {
+            bmiHistoryRecyclerViewAdapter.submitList(it)
+            //showNoAchievement(it.size)
+        })
     }
 
     private fun getGenderSpinnerInitialPosition(): Int {
