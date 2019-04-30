@@ -39,7 +39,6 @@ class BMIFragment : Fragment() {
         view.bmi_level.text = String.format("${resources.getString(R.string.your_bmi_level)}  %2.2f", bmi)
         view.bmi_bmiStatus.text = String.format("${resources.getString(R.string.status_fat_test)}  %s", categorySelectionBMI(bmi))
 
-
         observeRecommendedChange(view)
 
         view.constraintLayoutInput.setOnClickListener {
@@ -74,7 +73,6 @@ class BMIFragment : Fragment() {
         view.spinnerSeason.attachSinner(preference!!, getSeasonSpinnerInitialPosition(), R.array.seasons, SHARED_PREFERENCE_SEASON)
 
         view.recyclerViewBMIHistory?.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -83,7 +81,7 @@ class BMIFragment : Fragment() {
         bmiHistoryRecyclerViewAdapter = BMIHistoryRecyclerViewAdapter().also(recyclerViewBMIHistory::setAdapter)
         viewModel.getAllPosts().observe(viewLifecycleOwner, Observer {
             bmiHistoryRecyclerViewAdapter.submitList(it)
-            //showNoAchievement(it.size)
+            showNoBMILog(it.size)
         })
     }
 
@@ -222,4 +220,10 @@ class BMIFragment : Fragment() {
 
         view.recommended_amount.text = String.format("%.2f oz", answer)
     }
+
+    private fun showNoBMILog (adapterSize: Int){
+        if (adapterSize == 0) no_display_bmi_log.visibility = View.VISIBLE
+        else no_display_bmi_log.visibility = View.GONE
+    }
+
 }

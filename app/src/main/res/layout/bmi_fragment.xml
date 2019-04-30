@@ -553,7 +553,7 @@
                         android:id="@+id/constraintLayoutLogToDrop"
                         android:layout_width="0dp"
                         android:layout_height="300dp"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -563,6 +563,22 @@
                             android:id="@+id/recyclerViewBMIHistory"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                        <TextView
+                            android:id="@+id/no_display_bmi_log"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="No BMI log"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:visibility="gone"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
