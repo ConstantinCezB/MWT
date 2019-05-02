@@ -36,8 +36,6 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
             }
             preference.setFloat(SHARED_PREFERENCE_AMOUNT_DAILY, 0f)
             preference.setString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, currentDate)
-        } else {
-            preference.setString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, currentDate)
         }
 
         // This checks if the week has changed.
@@ -63,6 +61,9 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
                 get<MWTDatabase>().achievementsDao().save(AchievementsEntity("Reached Month goal", "Week: ${extractMonthYear(currentDate)}", "Month"))
             preference.setFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, 0f)
         }
+
+        preference.setString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, currentDate)
+
         return Result.success()
     }
 
