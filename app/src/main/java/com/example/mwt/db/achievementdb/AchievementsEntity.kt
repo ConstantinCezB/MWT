@@ -3,6 +3,7 @@ package com.example.mwt.db.achievementdb
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+
 @Entity(tableName = "achievements")
 data class AchievementsEntity(
         val itemHeader: String,

@@ -10,20 +10,19 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class GoalsViewModel(private val achievementsDao: AchievementsDao) : ViewModel(), CoroutineScope {
-
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Default
 
 
-    fun getAllPosts(): LiveData<List<AchievementsEntity>> {
-        return achievementsDao.findAll()
+    fun getAllPosts(type: String): LiveData<List<AchievementsEntity>> {
+        return achievementsDao.findAll(type)
     }
 
     fun savePost(achievementsEntity: AchievementsEntity) {
-        launch{ achievementsDao.save(achievementsEntity) }
+        launch { achievementsDao.save(achievementsEntity) }
     }
 
     fun deletePost(achievementsEntity: AchievementsEntity) {
-        launch{ achievementsDao.delete(achievementsEntity) }
+        launch { achievementsDao.delete(achievementsEntity) }
     }
 }

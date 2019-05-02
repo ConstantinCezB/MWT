@@ -113,8 +113,8 @@
     </string-array>
     
     <string-array name="achievementType">
-        <item>Daily</item>
-        <item>Weekly</item>
-        <item>Monthly</item>
+        <item>Day</item>
+        <item>Week</item>
+        <item>Month</item>
     </string-array>
 </resources>

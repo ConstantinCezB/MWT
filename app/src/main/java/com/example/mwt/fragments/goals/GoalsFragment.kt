@@ -35,7 +35,8 @@ class GoalsFragment : Fragment() {
         val calendar = Calendar.getInstance()
         val daysInMonth = calendar.getActualMaximum(Calendar.DATE)
         val recommended = preference!!.getFloat(SHARED_PREFERENCE_RECOMMENDED_AMOUNT, DEFAULT_GOAL_DAILY)
-        val spinnerInitialPositionAchievements = stringToIntConversionSpinner(preference!!.getString(SHARED_PREFERENCE_SPINNER_ACHIEVEMENTS, DEFAULT_SPINNER_ACHIEVEMENTS)!!)
+        val spinnerInitialPositionAchievements = preference!!.getString(SHARED_PREFERENCE_SPINNER_ACHIEVEMENTS, DEFAULT_SPINNER_ACHIEVEMENTS)
+
 
         view.dayProgessAmount.text = String.format("%.2f", preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
         view.dayUserGoalAmount.attachEditText(preference!!, SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY, recommended)
@@ -74,16 +75,21 @@ class GoalsFragment : Fragment() {
             view.ConstraintLayoutAchievementToDropGoal.showContent(view.bmi_log_edit_drop_achievement_goal)
         }
 
-        view.spinnerTypeSelectAchievement.attachSinner(preference!!, spinnerInitialPositionAchievements, R.array.achievementType, SHARED_PREFERENCE_SPINNER_ACHIEVEMENTS)
+        view.spinnerTypeSelectAchievement.attachSinner(preference!!, stringToIntConversionSpinner(spinnerInitialPositionAchievements!!), R.array.achievementType, SHARED_PREFERENCE_SPINNER_ACHIEVEMENTS)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = getViewModel()
-        achievementRecyclerViewAdapter = AchievmentRecyclerViewAdapter().also(recyclerViewAchivementGoal::setAdapter)
-        viewModel.getAllPosts().observe(viewLifecycleOwner, Observer {
-            achievementRecyclerViewAdapter.submitList(it)
-            showNoAchievement(it.size)
+
+        preference?.stringLiveData(SHARED_PREFERENCE_SPINNER_ACHIEVEMENTS, DEFAULT_SPINNER_ACHIEVEMENTS)?.observe(this, Observer {
+            val spinnerInitialPositionAchievements = preference!!.getString(SHARED_PREFERENCE_SPINNER_ACHIEVEMENTS, DEFAULT_SPINNER_ACHIEVEMENTS)
+            achievementRecyclerViewAdapter = AchievmentRecyclerViewAdapter().also(recyclerViewAchivementGoal::setAdapter)
+
+            viewModel.getAllPosts(spinnerInitialPositionAchievements!!).observe(viewLifecycleOwner, Observer {
+                achievementRecyclerViewAdapter.submitList(it)
+                showNoAchievement(it.size)
+            })
         })
     }
 
@@ -94,9 +100,9 @@ class GoalsFragment : Fragment() {
 
     private fun stringToIntConversionSpinner(string: String): Int {
         return when (string) {
-            "Daily" -> 0
-            "Weekly" -> 1
-            "Monthly" -> 2
+            "Day" -> 0
+            "Week" -> 1
+            "Month" -> 2
             else -> 0
         }
     }

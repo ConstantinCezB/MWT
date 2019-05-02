@@ -19,8 +19,9 @@ interface AchievementsDao {
     @Delete
     fun delete(achievements: AchievementsEntity)
 
-    @Query("SELECT * FROM achievements ORDER BY id DESC")
-    fun findAll(): LiveData<List<AchievementsEntity>>
+    @Query("SELECT * FROM achievements WHERE itemType IN (:type) ORDER BY id DESC")
+    fun findAll(type: String): LiveData<List<AchievementsEntity>>
+
 
     @Query("DELETE FROM achievements")
     fun dropTable()
