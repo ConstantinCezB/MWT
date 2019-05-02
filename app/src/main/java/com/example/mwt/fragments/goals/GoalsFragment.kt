@@ -19,7 +19,7 @@ import org.koin.android.viewmodel.ext.android.getViewModel
 import java.util.*
 
 
-class GoalsFragment: Fragment() {
+class GoalsFragment : Fragment() {
 
     private var preference: SharedPreferences? = null
     private lateinit var viewModel: GoalsViewModel
@@ -35,17 +35,18 @@ class GoalsFragment: Fragment() {
         val calendar = Calendar.getInstance()
         val daysInMonth = calendar.getActualMaximum(Calendar.DATE)
         val recommended = preference!!.getFloat(SHARED_PREFERENCE_RECOMMENDED_AMOUNT, DEFAULT_GOAL_DAILY)
+        val spinnerInitialPositionAchievements = stringToIntConversionSpinner(preference!!.getString(SHARED_PREFERENCE_SPINNER_ACHIEVEMENTS, DEFAULT_SPINNER_ACHIEVEMENTS)!!)
 
-        view.dayProgessAmount.text = String.format("%.2f",preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
+        view.dayProgessAmount.text = String.format("%.2f", preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
         view.dayUserGoalAmount.attachEditText(preference!!, SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY, recommended)
         view.dayRecommendedGoalAmount.text = String.format("%.2f", recommended)
 
-        view.weekProgessAmount.text = String.format("%.2f",preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
+        view.weekProgessAmount.text = String.format("%.2f", preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
         view.weekUserGoalAmount.attachEditText(preference!!, SHARED_PREFERENCE_GOAL_WEEKLY, DEFAULT_GOAL_WEEKLY, recommended * 7)
         view.weekRecommendedGoalAmount.text = String.format("%.2f", recommended * 7)
 
 
-        view.monthProgessAmount.text = String.format("%.2f",preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
+        view.monthProgessAmount.text = String.format("%.2f", preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
         view.monthUserGoalAmount.attachEditText(preference!!, SHARED_PREFERENCE_GOAL_MONTHLY, DEFAULT_GOAL_MONTHLY, recommended * daysInMonth)
         view.monthRecommendedGoalAmount.text = String.format("%.2f", recommended * daysInMonth)
 
@@ -73,7 +74,7 @@ class GoalsFragment: Fragment() {
             view.ConstraintLayoutAchievementToDropGoal.showContent(view.bmi_log_edit_drop_achievement_goal)
         }
 
-        //view.spinnerTypeSelectAchievement.attachSinner(preference!!, 0, R.array.achievementType)
+        view.spinnerTypeSelectAchievement.attachSinner(preference!!, spinnerInitialPositionAchievements, R.array.achievementType, SHARED_PREFERENCE_SPINNER_ACHIEVEMENTS)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -86,8 +87,17 @@ class GoalsFragment: Fragment() {
         })
     }
 
-    private fun showNoAchievement (adapterSize: Int){
+    private fun showNoAchievement(adapterSize: Int) {
         if (adapterSize == 0) no_display_achievement.visibility = View.VISIBLE
         else no_display_achievement.visibility = View.GONE
+    }
+
+    private fun stringToIntConversionSpinner(string: String): Int {
+        return when (string) {
+            "Daily" -> 0
+            "Weekly" -> 1
+            "Monthly" -> 2
+            else -> 0
+        }
     }
 }

@@ -60,3 +60,10 @@ const val DEFAULT_ACTIVITY_LEVEL = "Low"
 const val SHARED_PREFERENCE_SEASON = "season"
 const val DEFAULT_SEASON = "Winter"
 // =================================================================================================
+/*
+ * Variables for the Goal Fragment.
+ */
+// =================================================================================================
+const val SHARED_PREFERENCE_SPINNER_ACHIEVEMENTS = "spinnerAchievements"
+const val DEFAULT_SPINNER_ACHIEVEMENTS = "Daily"
+// =================================================================================================
