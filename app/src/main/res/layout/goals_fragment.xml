@@ -410,7 +410,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <Spinner
-                            android:id="@+id/spinner3"
+                            android:id="@+id/spinnerTypeSelectAchievement"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             app:layout_constraintBottom_toBottomOf="parent"

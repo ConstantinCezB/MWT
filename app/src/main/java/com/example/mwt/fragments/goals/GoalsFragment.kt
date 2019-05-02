@@ -16,7 +16,7 @@ import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.goals_fragment.*
 import kotlinx.android.synthetic.main.goals_fragment.view.*
 import org.koin.android.viewmodel.ext.android.getViewModel
-import java.time.YearMonth
+import java.util.*
 
 
 class GoalsFragment: Fragment() {
@@ -32,8 +32,8 @@ class GoalsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         preference = context?.getSharedPreferences(SHARED_PREFERENCE_FILE, Context.MODE_PRIVATE)
-        val yearMonthObject = YearMonth.now()
-        val daysInMonth = yearMonthObject.lengthOfMonth()
+        val calendar = Calendar.getInstance()
+        val daysInMonth = calendar.getActualMaximum(Calendar.DATE)
         val recommended = preference!!.getFloat(SHARED_PREFERENCE_RECOMMENDED_AMOUNT, DEFAULT_GOAL_DAILY)
 
         view.dayProgessAmount.text = String.format("%.2f",preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
@@ -72,6 +72,8 @@ class GoalsFragment: Fragment() {
         view.ConstraintLayoutToDropAchivementGoal.setOnClickListener {
             view.ConstraintLayoutAchievementToDropGoal.showContent(view.bmi_log_edit_drop_achievement_goal)
         }
+
+        //view.spinnerTypeSelectAchievement.attachSinner(preference!!, 0, R.array.achievementType)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

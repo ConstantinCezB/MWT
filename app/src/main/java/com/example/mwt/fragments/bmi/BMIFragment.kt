@@ -181,16 +181,15 @@ class BMIFragment : Fragment() {
     private fun calculateRecommendedIntake(preference: SharedPreferences, view: View) {
         val dateUserString = preference.getString(SHARED_PREFERENCE_DATE_OF_BIRTH, "1997-12-09")
         val currentDateString = preference.getString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE)
-        val dateUser = LocalDate.parse(dateUserString, DateTimeFormatter.ISO_DATE)
-        val currentDateUser = LocalDate.parse(currentDateString, DateTimeFormatter.ISO_DATE)
-        val weight = preference.getFloat(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT)!!.toFloat()
+
+        val weight = preference.getFloat(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT)
         val activityLevelString = preference.getString(SHARED_PREFERENCE_ACTIVITY_LEVEL, DEFAULT_ACTIVITY_LEVEL)
         val seasonString = preference.getString(SHARED_PREFERENCE_SEASON, DEFAULT_SEASON)
 
         val seasonsArray: Array<String> = resources.getStringArray(R.array.seasons)
         val activityLevelArray: Array<String> = resources.getStringArray(R.array.activity_level)
 
-        val yearDifference = currentDateUser.year - dateUser.year
+        val yearDifference = extractYear(dateUserString!!) - extractYear(currentDateString!!)
         val age: Float = when {
             yearDifference < 30 -> 40.0f
             yearDifference in 30..55 -> 35.0f
@@ -224,6 +223,11 @@ class BMIFragment : Fragment() {
     private fun showNoBMILog (adapterSize: Int){
         if (adapterSize == 0) no_display_bmi_log.visibility = View.VISIBLE
         else no_display_bmi_log.visibility = View.GONE
+    }
+
+    private fun extractYear(date: String): Int{
+        val dateArray = date.split("-")
+        return dateArray[0].toInt()
     }
 
 }
