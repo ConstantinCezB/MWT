@@ -10,6 +10,9 @@ const val UNIQUE_WORKER_NAME_TRACKER = "workerTrackerPeriodic"
 const val TIME_INTERVAL_PREVIOUS_WORKER_DATE = "previousWorkerTimeInterval"
 const val DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE = "NULL"
 
+const val SHARED_PREFERENCE_ALLOW_WEEK_RESET = "allowWeekReset"
+const val DEFAULT_ALLOW_WEEK_RESET = true
+
 // =================================================================================================
 /*
  * Amount of water tracked

@@ -92,3 +92,7 @@ fun SharedPreferences.setString(key: String, value: String){
 fun SharedPreferences.setFloat(key: String, value: Float) {
     this.edit().putFloat(key, value).apply()
 }
+
+fun SharedPreferences.setBoolean(key: String, value: Boolean){
+    this.edit().putBoolean(key, value).apply()
+}

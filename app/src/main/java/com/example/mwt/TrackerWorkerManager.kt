@@ -22,28 +22,27 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
 
         val previousDate: String = preference.getString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE)!!
         val currentDate: String = calendar.getDate()
+        val allowWeekReset = preference.getBoolean(SHARED_PREFERENCE_ALLOW_WEEK_RESET, DEFAULT_ALLOW_WEEK_RESET)
 
         // This checks if the day has changed.
         if (previousDate != DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE && previousDate != currentDate) {
 
             val dayAmount = preference.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
             val dayGoal = preference.getFloat(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY)
-
             get<MWTDatabase>().let {
                 if (dayAmount >= dayGoal) it.achievementsDao().save(AchievementsEntity("Reached Daily goal", "Day: $currentDate", "Day"))
                 it.dateProgressDao().save(DateProgressEntity(previousDate, dayAmount))
                 it.dailyLogDao().dropTable()
             }
-
             preference.setFloat(SHARED_PREFERENCE_AMOUNT_DAILY, 0f)
             preference.setString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, currentDate)
-
         } else {
             preference.setString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, currentDate)
         }
 
         // This checks if the week has changed.
-        if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+
+        if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY && allowWeekReset) {
             val weekAmount = preference.getFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
             val weekGoal = preference.getFloat(SHARED_PREFERENCE_GOAL_WEEKLY, DEFAULT_GOAL_WEEKLY)
 
@@ -51,23 +50,20 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
                 it.achievementsDao().save(AchievementsEntity("Reached Weekly goal", "Week: $currentDate", "Week"))
                 it.bmiRecordDao().save(BMIRecordEntity(200f, currentDate))
             }
-
             preference.setFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY, 0f)
+            preference.setBoolean(SHARED_PREFERENCE_ALLOW_WEEK_RESET, false)
         }
+        else if (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY && !allowWeekReset) preference.setBoolean(SHARED_PREFERENCE_ALLOW_WEEK_RESET, true)
 
         // This checks id the months has changed.
-        if (extractMonthYear(currentDate) == extractMonthYear(previousDate)) {
+        if (previousDate != DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE && extractMonthYear(currentDate) != extractMonthYear(previousDate)) {
             val monthAmount = preference.getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
             val monthGoal = preference.getFloat(SHARED_PREFERENCE_GOAL_MONTHLY, DEFAULT_GOAL_MONTHLY)
-
             if (monthAmount >= monthGoal)
                 get<MWTDatabase>().achievementsDao().save(AchievementsEntity("Reached Month goal", "Week: ${extractMonthYear(currentDate)}", "Month"))
-
             preference.setFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, 0f)
         }
-
         return Result.success()
-
     }
 
     private fun extractMonthYear(date: String): String {
