@@ -1,9 +1,15 @@
 package com.example.mwt
 
+import android.app.Notification
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import com.example.mwt.MWTApplication.Companion.CHANNEL_ACHIEVEMENT_ID
+import com.example.mwt.MWTApplication.Companion.CHANNEL_INTAKE_WATER_ID
+import com.example.mwt.MWTApplication.Companion.CHANNEL_RECORD_BMI_ID
 import com.example.mwt.db.MWTDatabase
 import com.example.mwt.db.achievementdb.AchievementsEntity
 import com.example.mwt.db.bmiRecordsdb.BMIRecordEntity
@@ -15,14 +21,18 @@ import java.util.*
 
 class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(context, params), KoinComponent {
 
+    private val notificationManager:NotificationManagerCompat = NotificationManagerCompat.from(applicationContext)
+
     override fun doWork(): Result {
 
         val calendar = Calendar.getInstance()
         val preference: SharedPreferences = applicationContext.getSharedPreferences(SHARED_PREFERENCE_FILE, Context.MODE_PRIVATE)
-
         val previousDate: String = preference.getString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE)!!
         val currentDate: String = calendar.getDate()
         val allowWeekReset = preference.getBoolean(SHARED_PREFERENCE_ALLOW_WEEK_RESET, DEFAULT_ALLOW_WEEK_RESET)
+
+        sendOnNotificationIntake ()
+
 
         // This checks if the day has changed.
         if (previousDate != DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE && previousDate != currentDate) {
@@ -69,5 +79,38 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
     private fun extractMonthYear(date: String): String {
         val parseDate = date.split("-")
         return "${parseDate[0]}-${parseDate[1]}"
+    }
+
+    private fun sendOnNotificationIntake () {
+        val notification = NotificationCompat.Builder(applicationContext, CHANNEL_INTAKE_WATER_ID)
+                .setSmallIcon(R.drawable.ic_android_black_24dp)
+                .setContentTitle("Track your water intake!")
+                .setContentText("You did not track your water intake in the past 15 minutes!")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build()
+        notificationManager.notify(1, notification)
+    }
+
+    private fun sendOnNotificationAchievement () {
+        val notification = NotificationCompat.Builder(applicationContext, CHANNEL_ACHIEVEMENT_ID)
+                .setSmallIcon(R.drawable.ic_android_black_24dp)
+                .setContentTitle("You got a achievement!")
+                .setContentText("You got a ---- achievement date: ----")
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build()
+        notificationManager.notify(1, notification)
+    }
+
+    private fun sendOnNotificationRecordBMI () {
+        val notification = NotificationCompat.Builder(applicationContext, CHANNEL_RECORD_BMI_ID)
+                .setSmallIcon(R.drawable.ic_android_black_24dp)
+                .setContentTitle("Your BMI got recorded.")
+                .setContentText("Open the app to check your progress!")
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build()
+        notificationManager.notify(1, notification)
     }
 }
