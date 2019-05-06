@@ -70,3 +70,31 @@ const val DEFAULT_SEASON = "Winter"
 const val SHARED_PREFERENCE_SPINNER_ACHIEVEMENTS = "spinnerAchievements"
 const val DEFAULT_SPINNER_ACHIEVEMENTS = "Daily"
 // =================================================================================================
+/*
+ * Variables for the settings.
+ */
+//==================================================================================================
+// this is the variable that allows to store if the notification is activated.
+const val SHARED_PREFERENCE_NOTIFICATION = "notification"
+const val DEFAULT_NOTIFICATION = true
+
+// determines if the user wants drinking reminders
+const val SHARED_PREFERENCE_DRINKING_REMINDER = "drinkingReminder"
+const val DEFAULT_DRINKING_REMINDER = true
+
+// allows the user to pick a time interval for the notification
+const val SHARED_PREFERENCE_TIME_INTERVAL = "timeInterval"
+const val DEFAULT_TIME_INTERVAL = "1h"
+
+// determines of the user wants smart notification
+const val SHARED_PREFERENCE_SMART_NOTIFICATION = "smartNotification"
+const val DEFAULT_SMART_NOTIFICATION = true
+
+// determines if the user wants bmi record notification
+const val SHARED_PREFERENCE_BMI_RECORD_NOTIFICATION = "bmiRecordNotification"
+const val DEFAULT_BMI_RECORD_NOTIFICATION = true
+
+// determines if the user wants achievements notification.
+const val SHARED_PREFERENCE_ACHIEVEMENT_NOTIFICATION = "achievementNotification"
+const val DEFAULT_ACHIEVEMENT_NOTIFICATION = true
+//==================================================================================================

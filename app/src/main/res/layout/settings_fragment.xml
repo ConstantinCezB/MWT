@@ -37,7 +37,7 @@
                     android:layout_height="match_parent">
 
                     <Switch
-                        android:id="@+id/switch1"
+                        android:id="@+id/notificationSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="32dp"
@@ -65,15 +65,15 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Switch
-                        android:id="@+id/switch2"
+                        android:id="@+id/drinkingReminderSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="32dp"
-                        android:text="Allow Drinking reminders"
+                        android:text="Allow Drinking reminders     "
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/switch1" />
+                        app:layout_constraintTop_toBottomOf="@+id/notificationSwitch" />
 
                     <TextView
                         android:id="@+id/textView40"
@@ -82,13 +82,13 @@
                         android:layout_marginEnd="8dp"
                         android:text="Drinking reminder time interval:"
                         android:textSize="18sp"
-                        app:layout_constraintEnd_toStartOf="@+id/spinner3"
+                        app:layout_constraintEnd_toStartOf="@+id/timeIntervalReminderSpinner"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/switch2" />
+                        app:layout_constraintTop_toBottomOf="@+id/drinkingReminderSwitch" />
 
                     <Spinner
-                        android:id="@+id/spinner3"
+                        android:id="@+id/timeIntervalReminderSpinner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="@+id/textView40"
@@ -97,34 +97,34 @@
                         app:layout_constraintTop_toTopOf="@+id/textView40" />
 
                     <Switch
-                        android:id="@+id/switch5"
+                        android:id="@+id/BMIRecordNotidicationSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="32dp"
-                        android:text="Allow BMI record notification"
+                        android:text="Allow BMI record notification     "
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/switch7" />
+                        app:layout_constraintTop_toBottomOf="@+id/smartNotificationSwitch" />
 
                     <Switch
-                        android:id="@+id/switch6"
+                        android:id="@+id/achievementNotificationSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="32dp"
                         android:layout_marginBottom="32dp"
-                        android:text="Allow Achievement notification"
+                        android:text="Allow Achievement notification     "
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/switch5" />
+                        app:layout_constraintTop_toBottomOf="@+id/BMIRecordNotidicationSwitch" />
 
                     <Switch
-                        android:id="@+id/switch7"
+                        android:id="@+id/smartNotificationSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Smart notification"
+                        android:text="Smart notification     "
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

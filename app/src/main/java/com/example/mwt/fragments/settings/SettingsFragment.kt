@@ -17,6 +17,7 @@ class SettingsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         view.button_select_color_primary_dark.setOnClickListener {
 
         }
