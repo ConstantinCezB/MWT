@@ -98,3 +98,6 @@ const val DEFAULT_BMI_RECORD_NOTIFICATION = true
 const val SHARED_PREFERENCE_ACHIEVEMENT_NOTIFICATION = "achievementNotification"
 const val DEFAULT_ACHIEVEMENT_NOTIFICATION = true
 //==================================================================================================
+
+const val SHARED_PREFERENCE_TIME_INTERVAL_BMI_RECORD = "timeIntervalBMIRecord"
+const val DEFAULT_TIME_INTERVAL_BMI_RECORD = "day"
