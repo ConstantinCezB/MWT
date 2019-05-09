@@ -36,9 +36,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
 
         val fragment = when (intent.getStringExtra(ACTIVITY_SELECTION_NOTIFICATION)) {
-            ACTIVITY_SELECTION_NOTIFICATION_INTAKE -> {
-                TrackerFragment()
-            }
             ACTIVITY_SELECTION_NOTIFICATION_ACHIEVEMENT -> {
                 GoalsFragment()
             }

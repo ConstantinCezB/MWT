@@ -97,6 +97,11 @@ const val DEFAULT_BMI_RECORD_NOTIFICATION = true
 // determines if the user wants achievements notification.
 const val SHARED_PREFERENCE_ACHIEVEMENT_NOTIFICATION = "achievementNotification"
 const val DEFAULT_ACHIEVEMENT_NOTIFICATION = true
+
+// These are the notification id
+const val NOTIFICATION_ID_INTAKE = 1
+const val NOTIFICATION_ID_ACHIEVEMENT = 2
+const val NOTIFICATION_ID_BMI_RECORD = 3
 //==================================================================================================
 
 const val SHARED_PREFERENCE_TIME_INTERVAL_BMI_RECORD = "timeIntervalBMIRecord"
@@ -108,3 +113,5 @@ const val ACTIVITY_SELECTION_NOTIFICATION = "activitySelectionNotification"
 const val ACTIVITY_SELECTION_NOTIFICATION_INTAKE = "intake"
 const val ACTIVITY_SELECTION_NOTIFICATION_ACHIEVEMENT = "achievement"
 const val ACTIVITY_SELECTION_NOTIFICATION_BMI = "bmi"
+
+//==================================================================================================

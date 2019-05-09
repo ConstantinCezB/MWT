@@ -52,17 +52,15 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
         // This checks if the day has changed.
         if (previousDate != DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE && previousDate != currentDate) {
             get<MWTDatabase>().let {
-                if (dayAmount >= dayGoal) achievementLogic(it, currentDate, allowNotification, allowAchievementNotification,"Day")
+                if (dayAmount >= dayGoal) achievementLogic(it, currentDate, allowNotification, allowAchievementNotification, "Day")
                 it.dateProgressDao().save(DateProgressEntity(previousDate, dayAmount))
                 it.dailyLogDao().dropTable()
                 if (bmiRecordInterval == "day") bmiRecordLogic(it, currentDate, allowNotification, allowBMIRecordNotification)
             }
             preference.setFloat(SHARED_PREFERENCE_AMOUNT_DAILY, 0f)
         }
-
         //==========================================================================================
         // This checks if the week has changed.
-
         if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY && allowWeekReset) {
             get<MWTDatabase>().let {
                 if (weekAmount >= weekGoal) achievementLogic(it, currentDate, allowNotification, allowAchievementNotification, "Week")
@@ -72,14 +70,13 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
             preference.setBoolean(SHARED_PREFERENCE_ALLOW_WEEK_RESET, false)
         } else if (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY && !allowWeekReset) preference
                 .setBoolean(SHARED_PREFERENCE_ALLOW_WEEK_RESET, true)
-
         //==========================================================================================
         // This checks id the months has changed.
         if (previousDate != DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE && extractMonthYear(currentDate)
                 != extractMonthYear(previousDate)) {
 
             get<MWTDatabase>().let {
-                if (monthAmount >= monthGoal) achievementLogic(it, currentDate, allowNotification, allowAchievementNotification,"Month")
+                if (monthAmount >= monthGoal) achievementLogic(it, currentDate, allowNotification, allowAchievementNotification, "Month")
                 if (bmiRecordInterval == "month") bmiRecordLogic(it, currentDate, allowNotification, allowBMIRecordNotification)
             }
             preference.setFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, 0f)
@@ -97,7 +94,7 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
 
     private fun sendOnNotificationIntake(allowNotification: Boolean,
                                          allowReminderNotification: Boolean) {
-        if(allowNotification && allowReminderNotification){
+        if (allowNotification && allowReminderNotification) {
 
             val activityIntent = Intent(applicationContext, MainActivity::class.java)
             activityIntent.putExtra(ACTIVITY_SELECTION_NOTIFICATION, ACTIVITY_SELECTION_NOTIFICATION_INTAKE)
@@ -107,12 +104,12 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
             val notification = NotificationCompat.Builder(applicationContext, CHANNEL_INTAKE_WATER_ID)
                     .setSmallIcon(R.drawable.ic_android_black_24dp)
                     .setContentTitle("Track your water intake!")
-                    .setContentText("Click here to open the  tracker.")
+                    .setContentText("Click here to open the tracker.")
                     .setPriority(NotificationCompat.PRIORITY_HIGH)
-                    .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                     .setContentIntent(pendingIntent)
+                    .setAutoCancel(true)
                     .build()
-            notificationManager.notify(1, notification)
+            notificationManager.notify(NOTIFICATION_ID_INTAKE, notification)
         }
     }
 
@@ -128,12 +125,12 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
             val notification = NotificationCompat.Builder(applicationContext, CHANNEL_ACHIEVEMENT_ID)
                     .setSmallIcon(R.drawable.ic_android_black_24dp)
                     .setContentTitle("You got a achievement!")
-                    .setContentText("You got a new $type achievement.")
+                    .setContentText("Click here to see your new achievements.")
                     .setPriority(NotificationCompat.PRIORITY_LOW)
-                    .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                     .setContentIntent(pendingIntent)
+                    .setAutoCancel(true)
                     .build()
-            notificationManager.notify(2, notification)
+            notificationManager.notify(NOTIFICATION_ID_ACHIEVEMENT, notification)
         }
     }
 
@@ -149,12 +146,12 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
             val notification = NotificationCompat.Builder(applicationContext, CHANNEL_RECORD_BMI_ID)
                     .setSmallIcon(R.drawable.ic_android_black_24dp)
                     .setContentTitle("Your BMI got recorded.")
-                    .setContentText("Open the app to check your progress!")
+                    .setContentText("Click here to check your BMI records.")
                     .setPriority(NotificationCompat.PRIORITY_LOW)
-                    .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                     .setContentIntent(pendingIntent)
+                    .setAutoCancel(true)
                     .build()
-            notificationManager.notify(3, notification)
+            notificationManager.notify(NOTIFICATION_ID_BMI_RECORD, notification)
         }
     }
 
