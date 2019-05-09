@@ -12,7 +12,7 @@ import com.example.mwt.util.UNIQUE_WORKER_NAME_TRACKER
 import org.koin.android.ext.android.startKoin
 import java.util.concurrent.TimeUnit
 
-class MWTApplication() : Application() {
+class MWTApplication : Application() {
     companion object {
         const val CHANNEL_INTAKE_WATER_ID = "channelIntake"
         const val CHANNEL_ACHIEVEMENT_ID = "channelAchievement"

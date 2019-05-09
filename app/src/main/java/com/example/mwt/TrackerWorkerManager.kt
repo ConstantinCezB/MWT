@@ -1,6 +1,8 @@
 package com.example.mwt
 
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -96,12 +98,19 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
     private fun sendOnNotificationIntake(allowNotification: Boolean,
                                          allowReminderNotification: Boolean) {
         if(allowNotification && allowReminderNotification){
+
+            val activityIntent = Intent(applicationContext, MainActivity::class.java)
+            activityIntent.putExtra(ACTIVITY_SELECTION_NOTIFICATION, ACTIVITY_SELECTION_NOTIFICATION_INTAKE)
+            val pendingIntent = PendingIntent.getActivity(applicationContext, 0,
+                    activityIntent, PendingIntent.FLAG_CANCEL_CURRENT)
+
             val notification = NotificationCompat.Builder(applicationContext, CHANNEL_INTAKE_WATER_ID)
                     .setSmallIcon(R.drawable.ic_android_black_24dp)
                     .setContentTitle("Track your water intake!")
                     .setContentText("Click here to open the  tracker.")
                     .setPriority(NotificationCompat.PRIORITY_HIGH)
                     .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                    .setContentIntent(pendingIntent)
                     .build()
             notificationManager.notify(1, notification)
         }
@@ -110,12 +119,19 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
     private fun sendOnNotificationAchievement(allowNotification: Boolean,
                                               allowAchievementNotification: Boolean, type: String) {
         if (allowNotification && allowAchievementNotification) {
+
+            val activityIntent = Intent(applicationContext, MainActivity::class.java)
+            activityIntent.putExtra(ACTIVITY_SELECTION_NOTIFICATION, ACTIVITY_SELECTION_NOTIFICATION_ACHIEVEMENT)
+            val pendingIntent = PendingIntent.getActivity(applicationContext, 0,
+                    activityIntent, PendingIntent.FLAG_CANCEL_CURRENT)
+
             val notification = NotificationCompat.Builder(applicationContext, CHANNEL_ACHIEVEMENT_ID)
                     .setSmallIcon(R.drawable.ic_android_black_24dp)
                     .setContentTitle("You got a achievement!")
                     .setContentText("You got a new $type achievement.")
                     .setPriority(NotificationCompat.PRIORITY_LOW)
                     .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                    .setContentIntent(pendingIntent)
                     .build()
             notificationManager.notify(2, notification)
         }
@@ -124,12 +140,19 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
     private fun sendOnNotificationRecordBMI(allowNotification: Boolean,
                                             allowBMIRecordNotification: Boolean) {
         if (allowNotification && allowBMIRecordNotification) {
+
+            val activityIntent = Intent(applicationContext, MainActivity::class.java)
+            activityIntent.putExtra(ACTIVITY_SELECTION_NOTIFICATION, ACTIVITY_SELECTION_NOTIFICATION_BMI)
+            val pendingIntent = PendingIntent.getActivity(applicationContext, 0,
+                    activityIntent, PendingIntent.FLAG_CANCEL_CURRENT)
+
             val notification = NotificationCompat.Builder(applicationContext, CHANNEL_RECORD_BMI_ID)
                     .setSmallIcon(R.drawable.ic_android_black_24dp)
                     .setContentTitle("Your BMI got recorded.")
                     .setContentText("Open the app to check your progress!")
                     .setPriority(NotificationCompat.PRIORITY_LOW)
                     .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                    .setContentIntent(pendingIntent)
                     .build()
             notificationManager.notify(3, notification)
         }

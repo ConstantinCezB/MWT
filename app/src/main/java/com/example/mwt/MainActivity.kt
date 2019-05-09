@@ -16,6 +16,10 @@ import com.example.mwt.fragments.timer.DrinkingTimerFragment
 import com.example.mwt.fragments.tracker.TrackerFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import com.example.mwt.util.ACTIVITY_SELECTION_NOTIFICATION
+import com.example.mwt.util.ACTIVITY_SELECTION_NOTIFICATION_ACHIEVEMENT
+import com.example.mwt.util.ACTIVITY_SELECTION_NOTIFICATION_BMI
+import com.example.mwt.util.ACTIVITY_SELECTION_NOTIFICATION_INTAKE
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -31,9 +35,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
+        val fragment = when (intent.getStringExtra(ACTIVITY_SELECTION_NOTIFICATION)) {
+            ACTIVITY_SELECTION_NOTIFICATION_INTAKE -> {
+                TrackerFragment()
+            }
+            ACTIVITY_SELECTION_NOTIFICATION_ACHIEVEMENT -> {
+                GoalsFragment()
+            }
+            ACTIVITY_SELECTION_NOTIFICATION_BMI -> {
+                BMIFragment()
+            }
+            else -> TrackerFragment()
+        }
         supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.fragment_place_holder, TrackerFragment())
+                .replace(R.id.fragment_place_holder, fragment)
                 .commit()
     }
 
