@@ -6,12 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Switch
 import androidx.fragment.app.Fragment
 import com.example.mwt.R
 import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.settings_fragment.view.*
 
-class SettingsFragment: Fragment() {
+class SettingsFragment : Fragment() {
 
     private var preference: SharedPreferences? = null
 
@@ -23,19 +24,22 @@ class SettingsFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         preference = context?.getSharedPreferences(SHARED_PREFERENCE_FILE, Context.MODE_PRIVATE)
 
-
         view.notificationSwitch.let {
             it.isChecked = preference!!.getBoolean(SHARED_PREFERENCE_NOTIFICATION, DEFAULT_NOTIFICATION)
             it.setOnCheckedChangeListener { _, isChecked ->
                 preference!!.setBoolean(SHARED_PREFERENCE_NOTIFICATION, isChecked)
+                disableMainNotification(view, isChecked)
             }
+            disableMainNotification(view, it.isChecked)
         }
 
         view.drinkingReminderSwitch.let {
             it.isChecked = preference!!.getBoolean(SHARED_PREFERENCE_DRINKING_REMINDER, DEFAULT_DRINKING_REMINDER)
             it.setOnCheckedChangeListener { _, isChecked ->
                 preference!!.setBoolean(SHARED_PREFERENCE_DRINKING_REMINDER, isChecked)
+                disableIntakeNotification(view, isChecked)
             }
+            disableIntakeNotification(view, it.isChecked)
         }
         view.smartNotificationSwitch.let {
             it.isChecked = preference!!.getBoolean(SHARED_PREFERENCE_SMART_NOTIFICATION, DEFAULT_SMART_NOTIFICATION)
@@ -51,7 +55,7 @@ class SettingsFragment: Fragment() {
             }
         }
 
-        view.achievementNotificationSwitch.let{
+        view.achievementNotificationSwitch.let {
             it.isChecked = preference!!.getBoolean(SHARED_PREFERENCE_ACHIEVEMENT_NOTIFICATION, DEFAULT_ACHIEVEMENT_NOTIFICATION)
             it.setOnCheckedChangeListener { _, isChecked ->
                 preference!!.setBoolean(SHARED_PREFERENCE_ACHIEVEMENT_NOTIFICATION, isChecked)
@@ -62,7 +66,7 @@ class SettingsFragment: Fragment() {
 
         }
 
-        view.button_select_color_primary.setOnClickListener{
+        view.button_select_color_primary.setOnClickListener {
 
         }
 
@@ -75,4 +79,21 @@ class SettingsFragment: Fragment() {
         super.onActivityCreated(savedInstanceState)
     }
 
+    private fun disableMainNotification(view: View, isChecked: Boolean) {
+        val switch: List<Switch> = listOf(view.drinkingReminderSwitch, view.BMIRecordNotidicationSwitch, view.achievementNotificationSwitch)
+        switch.forEach {
+            if (!isChecked) it.isChecked = isChecked
+            it.isClickable = isChecked
+            it.isEnabled = isChecked
+        }
+    }
+
+    private fun disableIntakeNotification(view: View, isChecked: Boolean) {
+        view.smartNotificationSwitch.let {
+            if (!isChecked) it.isChecked = isChecked
+            it.isClickable = isChecked
+            it.isEnabled = isChecked
+        }
+        view.timeIntervalReminderSpinner.isEnabled = isChecked
+    }
 }
