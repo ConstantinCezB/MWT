@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Switch
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.example.mwt.R
 import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.settings_fragment.view.*
@@ -25,6 +26,8 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         preference = context?.getSharedPreferences(SHARED_PREFERENCE_FILE, Context.MODE_PRIVATE)
+        var hours = 0
+        var minutes = 15
 
         view.notificationSwitch.let {
             it.isChecked = preference!!.getBoolean(SHARED_PREFERENCE_NOTIFICATION, DEFAULT_NOTIFICATION)
@@ -43,8 +46,16 @@ class SettingsFragment : Fragment() {
             }
             disableIntakeNotification(view, it.isChecked)
         }
-        view.timeIntervalReminderSpinner.setOnClickListener {
-            showDialogEdit(view)
+        view.timeIntervalReminderSpinner.let { spinner ->
+            preference!!.intLiveData(SHARED_PREFERENCE_TIME_INTERVAL, DEFAULT_TIME_INTERVAL).observe(this, Observer {
+                hours = it / 60
+                minutes = it % 60
+                view.timeIntervalReminderSpinner.text = String.format("%dH %dM", hours, minutes)
+            })
+
+            spinner.setOnClickListener {
+                showDialogEdit(view, hours, minutes)
+            }
         }
         view.smartNotificationSwitch.let {
             it.isChecked = preference!!.getBoolean(SHARED_PREFERENCE_SMART_NOTIFICATION, DEFAULT_SMART_NOTIFICATION)
@@ -102,7 +113,7 @@ class SettingsFragment : Fragment() {
         view.timeIntervalReminderSpinner.isEnabled = isChecked
     }
 
-    private fun showDialogEdit(view: View) {
+    private fun showDialogEdit(view: View, hours: Int, minutes: Int) {
 
         val mBuilder: AlertDialog.Builder = AlertDialog.Builder(view.context)
         val mView: View = LayoutInflater.from(view.context).inflate(R.layout.time_interval_picker_layout, null, false)
@@ -111,17 +122,17 @@ class SettingsFragment : Fragment() {
 
         val displayedValuesMinutesArray = arrayOfNulls<String>(4)
         for (i in displayedValuesMinutesArray.indices)
-             displayedValuesMinutesArray[i] = "${15 * i}"
+            displayedValuesMinutesArray[i] = "${15 * i}"
 
         mView.numberPickerHours.let {
             it.minValue = 0
             it.maxValue = 24
-            it.setOnValueChangedListener { picker, oldVal, newVal ->
-                if (newVal == 24){
+            it.value = hours
+            it.setOnValueChangedListener { _, _, newVal ->
+                if (newVal == 24) {
                     mView.numberPickerMinutes.value = 0
                     mView.numberPickerMinutes.isEnabled = false
-                }
-                else{
+                } else {
                     if (newVal == 0 && mView.numberPickerMinutes.value == 0) mView.numberPickerMinutes.value = 1
                     mView.numberPickerMinutes.isEnabled = true
                 }
@@ -132,12 +143,21 @@ class SettingsFragment : Fragment() {
             it.minValue = 0
             it.maxValue = displayedValuesMinutesArray.size - 1
             it.displayedValues = displayedValuesMinutesArray
-            it.setOnValueChangedListener { picker, oldVal, newVal ->
-                if(newVal == 0 && mView.numberPickerHours.value == 0) mView.numberPickerHours.value = 1
+            it.value = minutes/15
+            it.setOnValueChangedListener { _, _, newVal ->
+                if (newVal == 0 && mView.numberPickerHours.value == 0) mView.numberPickerHours.value = 1
             }
+        }
+
+        mView.intervalPickerSave.setOnClickListener {
+            preference!!.setInt(SHARED_PREFERENCE_TIME_INTERVAL, 60 * mView.numberPickerHours.value + 15 * mView.numberPickerMinutes.value)
+            dialog.dismiss()
+        }
+
+        mView.intervalPiclerCancel.setOnClickListener {
+            dialog.dismiss()
         }
 
         dialog.show()
     }
-
 }
