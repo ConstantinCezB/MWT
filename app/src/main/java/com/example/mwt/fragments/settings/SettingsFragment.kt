@@ -1,5 +1,6 @@
 package com.example.mwt.fragments.settings
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -40,6 +41,9 @@ class SettingsFragment : Fragment() {
                 disableIntakeNotification(view, isChecked)
             }
             disableIntakeNotification(view, it.isChecked)
+        }
+        view.timeIntervalReminderSpinner.setOnClickListener {
+            showDialogEdit(view)
         }
         view.smartNotificationSwitch.let {
             it.isChecked = preference!!.getBoolean(SHARED_PREFERENCE_SMART_NOTIFICATION, DEFAULT_SMART_NOTIFICATION)
@@ -96,4 +100,17 @@ class SettingsFragment : Fragment() {
         }
         view.timeIntervalReminderSpinner.isEnabled = isChecked
     }
+
+    private fun showDialogEdit(view: View) {
+
+        val mBuilder: AlertDialog.Builder = AlertDialog.Builder(view.context)
+        val mView: View = LayoutInflater.from(view.context).inflate(R.layout.time_interval_picker_layout, null, false)
+        mBuilder.setView(mView)
+        val dialog: AlertDialog = mBuilder.create()
+
+
+
+        dialog.show()
+    }
+
 }
