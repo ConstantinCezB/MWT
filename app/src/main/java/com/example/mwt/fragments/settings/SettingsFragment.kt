@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.example.mwt.R
 import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.settings_fragment.view.*
+import kotlinx.android.synthetic.main.time_interval_picker_layout.view.*
 
 class SettingsFragment : Fragment() {
 
@@ -108,7 +109,33 @@ class SettingsFragment : Fragment() {
         mBuilder.setView(mView)
         val dialog: AlertDialog = mBuilder.create()
 
+        val displayedValuesMinutesArray = arrayOfNulls<String>(4)
+        for (i in displayedValuesMinutesArray.indices)
+             displayedValuesMinutesArray[i] = "${15 * i}"
 
+        mView.numberPickerHours.let {
+            it.minValue = 0
+            it.maxValue = 24
+            it.setOnValueChangedListener { picker, oldVal, newVal ->
+                if (newVal == 24){
+                    mView.numberPickerMinutes.value = 0
+                    mView.numberPickerMinutes.isEnabled = false
+                }
+                else{
+                    if (newVal == 0 && mView.numberPickerMinutes.value == 0) mView.numberPickerMinutes.value = 1
+                    mView.numberPickerMinutes.isEnabled = true
+                }
+            }
+        }
+
+        mView.numberPickerMinutes.let {
+            it.minValue = 0
+            it.maxValue = displayedValuesMinutesArray.size - 1
+            it.displayedValues = displayedValuesMinutesArray
+            it.setOnValueChangedListener { picker, oldVal, newVal ->
+                if(newVal == 0 && mView.numberPickerHours.value == 0) mView.numberPickerHours.value = 1
+            }
+        }
 
         dialog.show()
     }
