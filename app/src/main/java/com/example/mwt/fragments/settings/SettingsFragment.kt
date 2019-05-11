@@ -1,5 +1,6 @@
 package com.example.mwt.fragments.settings
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.SharedPreferences
@@ -86,10 +87,6 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
     private fun disableMainNotification(view: View, isChecked: Boolean) {
         val switch: List<Switch> = listOf(view.drinkingReminderSwitch, view.BMIRecordNotidicationSwitch, view.achievementNotificationSwitch)
         switch.forEach {
@@ -103,6 +100,7 @@ class SettingsFragment : Fragment() {
         view.timeIntervalReminderText.isEnabled = isChecked
     }
 
+    @SuppressLint("InflateParams")
     private fun showDialogEdit(view: View, hours: Int, minutes: Int) {
 
         val mBuilder: AlertDialog.Builder = AlertDialog.Builder(view.context)

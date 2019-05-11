@@ -51,7 +51,7 @@ class DrinkingStatisticsFragment : Fragment() {
 
         for (data in dataObjects) {
            // turn your data into Entry objects
-           entries.add(Entry(data.id.toFloat(), data.progress.toFloat()))
+           entries.add(Entry(data.id.toFloat(), data.progress))
         }
 
         return entries

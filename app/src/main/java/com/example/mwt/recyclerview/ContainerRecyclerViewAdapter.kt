@@ -78,9 +78,9 @@ class ContainerRecyclerViewAdapter(private val viewModel: TrackerViewModel, priv
         }
     }
 
-    private fun createSnackBar(mView: View, stringId: Int, duration: Int) {
+    private fun createSnackBar(mView: View, stringId: Int) {
         Snackbar.make(mView, stringId,
-                duration)
+                Snackbar.LENGTH_SHORT)
                 .show()
     }
 
@@ -194,14 +194,14 @@ class ContainerRecyclerViewAdapter(private val viewModel: TrackerViewModel, priv
 
             mView.add_btn.setOnClickListener {
                 if (mView.editContainerName.text.isNotBlank() && mView.editContainerSize.text.isNotBlank()) {
-                    createSnackBar(mView, R.string.snackbar_success, Snackbar.LENGTH_SHORT)
+                    createSnackBar(mView, R.string.snackbar_success)
                     Handler().postDelayed({
                         dialog.dismiss()
                         viewModel.savePost(ContainersEntity(mView.editContainerName.text.toString(),
                                 mView.editContainerSize.text.toString().toInt()))
                     }, 1500)
                 } else {
-                    createSnackBar(mView, R.string.snackbar_fail, Snackbar.LENGTH_SHORT)
+                    createSnackBar(mView, R.string.snackbar_fail)
                 }
             }
 

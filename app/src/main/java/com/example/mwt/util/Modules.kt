@@ -67,6 +67,4 @@ val MWTModule = module {
     viewModel {
         BMIViewModel(get())
     }
-
-
 }

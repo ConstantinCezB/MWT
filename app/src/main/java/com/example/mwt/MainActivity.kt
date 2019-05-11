@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import com.example.mwt.util.ACTIVITY_SELECTION_NOTIFICATION
 import com.example.mwt.util.ACTIVITY_SELECTION_NOTIFICATION_ACHIEVEMENT
 import com.example.mwt.util.ACTIVITY_SELECTION_NOTIFICATION_BMI
-import com.example.mwt.util.ACTIVITY_SELECTION_NOTIFICATION_INTAKE
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 

@@ -17,8 +17,6 @@ import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.bmi_fragment.*
 import kotlinx.android.synthetic.main.bmi_fragment.view.*
 import org.koin.android.viewmodel.ext.android.getViewModel
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class BMIFragment : Fragment() {
@@ -157,23 +155,23 @@ class BMIFragment : Fragment() {
     }
 
     private fun observeRecommendedChange(view: View) {
-        preference!!.stringLiveData(SHARED_PREFERENCE_DATE_OF_BIRTH, DEFAULT_DATE_OF_BIRTH).observe(this, androidx.lifecycle.Observer {
+        preference!!.stringLiveData(SHARED_PREFERENCE_DATE_OF_BIRTH, DEFAULT_DATE_OF_BIRTH).observe(this, Observer {
             calculateRecommendedIntake(preference!!, view)
             view.setTextDateOfBirth()
         })
-        preference!!.stringLiveData(SHARED_PREFERENCE_GENDER, DEFAULT_GENDER).observe(this, androidx.lifecycle.Observer {
+        preference!!.stringLiveData(SHARED_PREFERENCE_GENDER, DEFAULT_GENDER).observe(this, Observer {
             calculateRecommendedIntake(preference!!, view)
         })
-        preference!!.floatLiveData(SHARED_PREFERENCE_HEIGHT, DEFAULT_HEIGHT).observe(this, androidx.lifecycle.Observer {
+        preference!!.floatLiveData(SHARED_PREFERENCE_HEIGHT, DEFAULT_HEIGHT).observe(this, Observer {
             calculateRecommendedIntake(preference!!, view)
         })
-        preference!!.floatLiveData(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT).observe(this, androidx.lifecycle.Observer {
+        preference!!.floatLiveData(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT).observe(this, Observer {
             calculateRecommendedIntake(preference!!, view)
         })
-        preference!!.stringLiveData(SHARED_PREFERENCE_ACTIVITY_LEVEL, DEFAULT_ACTIVITY_LEVEL).observe(this, androidx.lifecycle.Observer {
+        preference!!.stringLiveData(SHARED_PREFERENCE_ACTIVITY_LEVEL, DEFAULT_ACTIVITY_LEVEL).observe(this, Observer {
             calculateRecommendedIntake(preference!!, view)
         })
-        preference!!.stringLiveData(SHARED_PREFERENCE_SEASON, DEFAULT_SEASON).observe(this, androidx.lifecycle.Observer {
+        preference!!.stringLiveData(SHARED_PREFERENCE_SEASON, DEFAULT_SEASON).observe(this, Observer {
             calculateRecommendedIntake(preference!!, view)
         })
     }

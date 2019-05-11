@@ -16,7 +16,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.recyclerview.ContainerRecyclerViewAdapter
-import com.example.mwt.util.intLiveData
 import com.example.mwt.util.stringLiveData
 import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.tracker_fragment.*
@@ -42,7 +41,7 @@ class TrackerFragment : Fragment() {
         view.containerRecyclerView.layoutManager = GridLayoutManager(context, 3, RecyclerView.VERTICAL, false)
         view.goal_daily.text = String.format("%.2f", preference!!.getFloat(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY))
 
-        preference!!.floatLiveData(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)?.observe(this, Observer {
+        preference!!.floatLiveData(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY).observe(this, Observer {
             // setting up the daily wheel
             val percentage = (it.toFloat() / preference!!.getFloat(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY) * 100)
             view.drinking_progress_bar.setProgress(percentage.toInt(), true)
