@@ -60,7 +60,7 @@ class SettingsFragment : Fragment() {
             }
         }
 
-        view.BMIRecordNotidicationSwitch.let {
+        view.BMIRecordNotificationSwitch.let {
             it.isChecked = preference!!.getBoolean(SHARED_PREFERENCE_BMI_RECORD_NOTIFICATION, DEFAULT_BMI_RECORD_NOTIFICATION)
             it.setOnCheckedChangeListener { _, isChecked ->
                 preference!!.setBoolean(SHARED_PREFERENCE_BMI_RECORD_NOTIFICATION, isChecked)
@@ -88,7 +88,7 @@ class SettingsFragment : Fragment() {
     }
 
     private fun disableMainNotification(view: View, isChecked: Boolean) {
-        val switch: List<Switch> = listOf(view.drinkingReminderSwitch, view.BMIRecordNotidicationSwitch, view.achievementNotificationSwitch)
+        val switch: List<Switch> = listOf(view.drinkingReminderSwitch, view.BMIRecordNotificationSwitch, view.achievementNotificationSwitch)
         switch.forEach {
             if (!isChecked) it.isChecked = isChecked
             it.isClickable = isChecked
@@ -142,7 +142,7 @@ class SettingsFragment : Fragment() {
             dialog.dismiss()
         }
 
-        mView.intervalPiclerCancel.setOnClickListener {
+        mView.intervalPickerCancel.setOnClickListener {
             dialog.dismiss()
         }
 

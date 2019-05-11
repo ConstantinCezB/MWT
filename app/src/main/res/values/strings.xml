@@ -17,7 +17,7 @@
     <string name="image_description_water_container">This is the image that should represent a water container</string>
     <string name="water_bottle">Water Bottle</string>
     <string name="button_description">allows user to add a water container</string>
-    <string name="add_water_container">Add water container.</string>
+    <string name="add_water_container">Add water container</string>
     <string name="new_container_name">Container name:</string>
     <string name="enter_name">enter name</string>
     <string name="new_container_size">Container size:</string>
@@ -92,6 +92,38 @@
     <string name="enter_height">Enter height</string>
     <string name="_3000">3000</string>
     <string name="info">Information</string>
+    <string name="no_bmi_log">No BMI log</string>
+    <string name="_2000">2000</string>
+    <string name="recommended_n_amount">Recommended   amount:</string>
+    <string name="_40000">40000</string>
+    <string name="no_achievement">No achievement</string>
+    <string name="this_is_the_user_defined_daily_goal">This is the user defined daily goal</string>
+    <string name="user_defined_goal_for_the_week">User defined goal for the week.</string>
+    <string name="this_is_the_user_defined_month_goal">This is the user defined month goal</string>
+    <string name="reached_monthly_goal_test">Reached Monthly goal</string>
+    <string name="month_of_december_2017_test">Month of: December 2017</string>
+    <string name="icon_of_the_achievement">icon of the achievement</string>
+    <string name="bmi_semicolon">BMI:</string>
+    <string name="bmi_test">31.2</string>
+    <string name="notification_on_off">Notification (on/off)</string>
+    <string name="notification">Notification</string>
+    <string name="allow_drinking_reminders">Allow Drinking reminders</string>
+    <string name="allow_bmi_record_notification">Allow BMI record notification</string>
+    <string name="allow_achievement_notification">Allow Achievement notification</string>
+    <string name="drinking_reminder_min_time_interval">Drinking reminder min time interval:</string>
+    <string name="time_interval_test">1H 30M</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="reset_colors">Reset Colors</string>
+    <string name="color_primary_dark">Color Primary Dark</string>
+    <string name="color_primary">Color Primary</string>
+    <string name="accent_color">Accent Color</string>
+    <string name="select_color">Select Color</string>
+    <string name="color_theme">Color / Theme</string>
+    <string name="interval_picker">Interval Picker</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+    <string name="semicolon">:</string>
+    <string name="save">Save</string>
 
     <string-array name="gender">
         <item>Male</item>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -25,7 +24,7 @@
                 android:id="@+id/goal_item_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reached Monthly goal"
+                android:text="@string/reached_monthly_goal_test"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/goal_item_info"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +36,7 @@
                 android:id="@+id/goal_item_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Month of: December 2017"
+                android:text="@string/month_of_december_2017_test"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                 app:layout_constraintEnd_toEndOf="@+id/goal_item_header"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -54,7 +53,8 @@
                 android:src="@drawable/ic_menu_send"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/icon_of_the_achievement" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

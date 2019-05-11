@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent">
@@ -104,7 +103,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView28"
                         android:hint="@string/this_is_the_user_defined_daily_goal"
-                        tools:ignore="Autofill"  />
+                        android:importantForAutofill="no" />
 
                     <TextView
                         android:id="@+id/textView4"
@@ -181,7 +180,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/bmi_level"
                         android:hint="@string/user_defined_goal_for_the_week"
-                        tools:ignore="Autofill" />
+                        android:importantForAutofill="no" />
 
                     <ProgressBar
                         android:id="@+id/goal_drinking_progress_bar_week"
@@ -307,7 +306,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/recommended_amount"
                         android:hint="@string/this_is_the_user_defined_month_goal"
-                        tools:ignore="Autofill" />
+                        android:importantForAutofill="no" />
 
                     <ProgressBar
                         android:id="@+id/goal_drinking_progress_bar_month"

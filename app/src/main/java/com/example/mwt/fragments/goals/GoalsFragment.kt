@@ -38,7 +38,7 @@ class GoalsFragment : Fragment() {
         val spinnerInitialPositionAchievements = preference!!.getString(SHARED_PREFERENCE_SPINNER_ACHIEVEMENTS, DEFAULT_SPINNER_ACHIEVEMENTS)
 
 
-        view.dayProgessAmount.text = String.format("%.2f", preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
+        view.dayProgressAmount.text = String.format("%.2f", preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
         view.dayUserGoalAmount.attachEditText(preference!!, SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY, recommended)
         view.dayRecommendedGoalAmount.text = String.format("%.2f", recommended)
 

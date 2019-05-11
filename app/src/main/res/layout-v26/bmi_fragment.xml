@@ -579,7 +579,7 @@
                             android:id="@+id/no_display_bmi_log"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="No BMI log"
+                            android:text="@string/no_bmi_log"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:visibility="gone"
