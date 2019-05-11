@@ -124,6 +124,7 @@
     <string name="minutes">Minutes</string>
     <string name="semicolon">:</string>
     <string name="save">Save</string>
+    <string name="arrow_to_display_the_edit_option">Arrow to display the edit option</string>
 
     <string-array name="gender">
         <item>Male</item>
