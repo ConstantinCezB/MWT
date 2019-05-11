@@ -75,18 +75,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/notificationSwitch" />
 
-                    <TextView
-                        android:id="@+id/textView40"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:text="Drinking reminder time interval:"
-                        android:textSize="18sp"
-                        app:layout_constraintEnd_toStartOf="@+id/timeIntervalReminderSpinner"
-                        app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/drinkingReminderSwitch" />
-
                     <Switch
                         android:id="@+id/BMIRecordNotidicationSwitch"
                         android:layout_width="wrap_content"
@@ -96,7 +84,7 @@
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/smartNotificationSwitch" />
+                        app:layout_constraintTop_toBottomOf="@+id/timeIntervalReminderConstraintLayout" />
 
                     <Switch
                         android:id="@+id/achievementNotificationSwitch"
@@ -111,25 +99,35 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/BMIRecordNotidicationSwitch" />
 
-                    <Switch
-                        android:id="@+id/smartNotificationSwitch"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/timeIntervalReminderConstraintLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Smart notification     "
-                        android:textSize="18sp"
+                        android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView40" />
+                        app:layout_constraintTop_toBottomOf="@+id/drinkingReminderSwitch">
 
-                    <TextView
-                        android:id="@+id/timeIntervalReminderSpinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1H 30MIN"
-                        android:textSize="18sp"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView40"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView40" />
+                        <TextView
+                            android:id="@+id/textView40"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Drinking reminder min time interval:"
+                            android:textSize="18sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/timeIntervalReminderText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1H 30MIN"
+                            android:textSize="18sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView40" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>

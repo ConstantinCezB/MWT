@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.mwt.R
 import com.example.mwt.util.*
+import kotlinx.android.synthetic.main.settings_fragment.*
 import kotlinx.android.synthetic.main.settings_fragment.view.*
 import kotlinx.android.synthetic.main.time_interval_picker_layout.view.*
 
@@ -46,21 +47,15 @@ class SettingsFragment : Fragment() {
             }
             disableIntakeNotification(view, it.isChecked)
         }
-        view.timeIntervalReminderSpinner.let { spinner ->
+        timeIntervalReminderConstraintLayout.let { constraint ->
             preference!!.intLiveData(SHARED_PREFERENCE_TIME_INTERVAL, DEFAULT_TIME_INTERVAL).observe(this, Observer {
                 hours = it / 60
                 minutes = it % 60
-                view.timeIntervalReminderSpinner.text = String.format("%dH %dM", hours, minutes)
+                view.timeIntervalReminderText.text = String.format("%dH %dM", hours, minutes)
             })
 
-            spinner.setOnClickListener {
+            constraint.setOnClickListener {
                 showDialogEdit(view, hours, minutes)
-            }
-        }
-        view.smartNotificationSwitch.let {
-            it.isChecked = preference!!.getBoolean(SHARED_PREFERENCE_SMART_NOTIFICATION, DEFAULT_SMART_NOTIFICATION)
-            it.setOnCheckedChangeListener { _, isChecked ->
-                preference!!.setBoolean(SHARED_PREFERENCE_SMART_NOTIFICATION, isChecked)
             }
         }
 
@@ -105,12 +100,7 @@ class SettingsFragment : Fragment() {
     }
 
     private fun disableIntakeNotification(view: View, isChecked: Boolean) {
-        view.smartNotificationSwitch.let {
-            if (!isChecked) it.isChecked = isChecked
-            it.isClickable = isChecked
-            it.isEnabled = isChecked
-        }
-        view.timeIntervalReminderSpinner.isEnabled = isChecked
+        view.timeIntervalReminderText.isEnabled = isChecked
     }
 
     private fun showDialogEdit(view: View, hours: Int, minutes: Int) {

@@ -84,11 +84,8 @@ const val DEFAULT_DRINKING_REMINDER = true
 
 // allows the user to pick a time interval for the notification
 const val SHARED_PREFERENCE_TIME_INTERVAL = "timeInterval"
+const val SHARED_PREFERENCE_TIME_INTERVAL_TRACKER = "timeIntervalTracker"
 const val DEFAULT_TIME_INTERVAL = 15
-
-// determines of the user wants smart notification
-const val SHARED_PREFERENCE_SMART_NOTIFICATION = "smartNotification"
-const val DEFAULT_SMART_NOTIFICATION = true
 
 // determines if the user wants bmi record notification
 const val SHARED_PREFERENCE_BMI_RECORD_NOTIFICATION = "bmiRecordNotification"
@@ -115,3 +112,5 @@ const val ACTIVITY_SELECTION_NOTIFICATION_ACHIEVEMENT = "achievement"
 const val ACTIVITY_SELECTION_NOTIFICATION_BMI = "bmi"
 
 //==================================================================================================
+
+

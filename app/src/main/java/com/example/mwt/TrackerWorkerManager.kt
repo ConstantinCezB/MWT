@@ -43,9 +43,15 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
         val weekGoal = preference.getFloat(SHARED_PREFERENCE_GOAL_WEEKLY, DEFAULT_GOAL_WEEKLY)
         val monthAmount = preference.getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
         val monthGoal = preference.getFloat(SHARED_PREFERENCE_GOAL_MONTHLY, DEFAULT_GOAL_MONTHLY)
+        val timeInterval = preference.getInt(SHARED_PREFERENCE_TIME_INTERVAL, DEFAULT_TIME_INTERVAL)
+        val timeIntervalTracker = preference.getInt(SHARED_PREFERENCE_TIME_INTERVAL_TRACKER, DEFAULT_TIME_INTERVAL)
 
-
-        sendOnNotificationIntake(allowReminderNotification)
+        if (timeInterval == timeIntervalTracker){
+            sendOnNotificationIntake(allowReminderNotification)
+            preference.setInt(SHARED_PREFERENCE_TIME_INTERVAL_TRACKER, 15)
+        }else{
+            preference.setInt(SHARED_PREFERENCE_TIME_INTERVAL_TRACKER, timeIntervalTracker + 15)
+        }
 
         //==========================================================================================
         // This checks if the day has changed.
