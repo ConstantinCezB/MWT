@@ -48,7 +48,7 @@ class SettingsFragment : Fragment() {
             }
             disableIntakeNotification(view, it.isChecked)
         }
-        timeIntervalReminderConstraintLayout.let { constraint ->
+        view.timeIntervalReminderConstraintLayout.let { constraint ->
             preference!!.intLiveData(SHARED_PREFERENCE_TIME_INTERVAL, DEFAULT_TIME_INTERVAL).observe(this, Observer {
                 hours = it / 60
                 minutes = it % 60
@@ -97,6 +97,7 @@ class SettingsFragment : Fragment() {
     }
 
     private fun disableIntakeNotification(view: View, isChecked: Boolean) {
+        view.timeIntervalReminderConstraintLayout.isEnabled = isChecked
         view.timeIntervalReminderText.isEnabled = isChecked
     }
 
