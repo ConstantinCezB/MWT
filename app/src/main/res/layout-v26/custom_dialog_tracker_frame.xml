@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@android:color/white"
     android:orientation="vertical">
 
@@ -12,7 +12,7 @@
         android:id="@+id/textView6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorAccent"
         android:gravity="center"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
@@ -35,7 +35,7 @@
         android:textAlignment="viewStart"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/editContainerName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -43,15 +43,16 @@
         android:id="@+id/editContainerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:ems="10"
+        android:gravity="center"
         android:hint="@string/enter_name"
         android:inputType="textPersonName"
-        android:textAlignment="viewStart"
+        android:textAlignment="gravity"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="@+id/textView7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
         tools:ignore="Autofill" />
 
 
@@ -64,43 +65,48 @@
         android:textAlignment="viewStart"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editContainerName" />
 
     <EditText
         android:id="@+id/editContainerSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:ems="10"
+        android:gravity="center"
         android:hint="@string/enter_size"
         android:inputType="number"
-        android:textAlignment="viewStart"
+        android:textAlignment="gravity"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
-        app:layout_constraintStart_toStartOf="@+id/editContainerName"
-        app:layout_constraintTop_toTopOf="@+id/textView8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
         tools:ignore="Autofill" />
 
     <Button
         android:id="@+id/cancel_btn"
-        android:layout_width="0dp"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/cancel"
-        android:textSize="18sp"
+        android:layout_marginEnd="8dp"
+        android:text="@android:string/cancel"
+        app:layout_constraintBaseline_toBaselineOf="@+id/add_btn"
         app:layout_constraintEnd_toStartOf="@id/add_btn"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintHorizontal_chainStyle="packed" />
 
     <Button
         android:id="@+id/add_btn"
-        android:layout_width="0dp"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add"
-        android:textSize="18sp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@android:string/ok"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/cancel_btn"
-        app:layout_constraintTop_toTopOf="@id/cancel_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/editContainerSize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
