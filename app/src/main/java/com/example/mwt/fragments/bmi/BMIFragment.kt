@@ -85,14 +85,18 @@ class BMIFragment : Fragment() {
             showNoBMILog(it.size)
 
 
-
             val barEntries = ArrayList<BarEntry>()
             val barDate = ArrayList<String>()
             val data = it.reversed()
-            for (i in data.indices) {
-                barEntries.add(BarEntry(i.toFloat(), data[i].bmi))
-                barDate.add(data[i].date)
+            if (data.isNotEmpty()) {
+                for (i in data.indices) {
+                    barEntries.add(BarEntry(i.toFloat(), data[i].bmi))
+                    barDate.add(data[i].date)
+                }
+            } else {
+                barEntries.add(BarEntry(0f, 0f))
             }
+
             val barDataSet = BarDataSet(barEntries, "BMI")
             val barData = BarData(barDataSet)
 
@@ -101,7 +105,7 @@ class BMIFragment : Fragment() {
                 barChart.setTouchEnabled(true)
                 barChart.isDragEnabled = true
                 barChart.setScaleEnabled(true)
-                barChart.xAxis.valueFormatter = MyXAxisFormatter(barDate)
+                barChart.invalidate()
             }
         })
     }
@@ -241,12 +245,12 @@ class BMIFragment : Fragment() {
         view.recommended_amount.text = String.format("%.2f oz", answer)
     }
 
-    private fun showNoBMILog (adapterSize: Int){
+    private fun showNoBMILog(adapterSize: Int) {
         if (adapterSize == 0) no_display_bmi_log.visibility = View.VISIBLE
         else no_display_bmi_log.visibility = View.GONE
     }
 
-    private fun extractYear(date: String): Int{
+    private fun extractYear(date: String): Int {
         val dateArray = date.split("-")
         return dateArray[0].toInt()
     }

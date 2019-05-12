@@ -1,6 +1,7 @@
 package com.example.mwt.fragments.drinkingstatistics
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,13 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
-import com.example.mwt.db.dateprogressdb.DateProgressEntity
 import com.example.mwt.recyclerview.StatisticsRecyclerViewAdapter
 import com.example.mwt.util.MyXAxisFormatter
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.data.Entry
 import kotlinx.android.synthetic.main.drinking_statistics_fragment.*
 import kotlinx.android.synthetic.main.drinking_statistics_fragment.view.*
 import org.koin.android.viewmodel.ext.android.getViewModel
@@ -47,10 +46,15 @@ class DrinkingStatisticsFragment : Fragment() {
             val barEntries = ArrayList<BarEntry>()
             val barDate = ArrayList<String>()
             val data = it.reversed()
-            for (i in data.indices) {
-                barEntries.add(BarEntry(i.toFloat(), data[i].progress))
-                barDate.add(data[i].date)
+            if(data.isNotEmpty()){
+                for (i in data.indices) {
+                    barEntries.add(BarEntry(i.toFloat(), data[i].progress))
+                    barDate.add(data[i].date)
+                }
+            }else{
+                barEntries.add(BarEntry(0f, 0f))
             }
+
             val barDataSet = BarDataSet(barEntries, "Amount drank")
             val barData = BarData(barDataSet)
 
@@ -59,23 +63,13 @@ class DrinkingStatisticsFragment : Fragment() {
                 barChart.setTouchEnabled(true)
                 barChart.isDragEnabled = true
                 barChart.setScaleEnabled(true)
-                barChart.xAxis.valueFormatter = MyXAxisFormatter(barDate)
+                barChart.invalidate()
             }
 
 
         })
     }
 
-    private fun entryCreator(dataObjects: List<DateProgressEntity>): java.util.ArrayList<Entry> {
-        val entries: java.util.ArrayList<Entry> = ArrayList()
-
-        for (data in dataObjects) {
-            // turn your data into Entry objects
-            entries.add(Entry(data.id.toFloat(), data.progress))
-        }
-
-        return entries
-    }
 
     private fun showNoEntriesDisplay(adapterSize: Int) {
         if (adapterSize == 0) display_no_entries.visibility = View.VISIBLE
