@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
 import com.example.mwt.recyclerview.BMIHistoryRecyclerViewAdapter
 import com.example.mwt.util.*
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
 import kotlinx.android.synthetic.main.bmi_fragment.*
 import kotlinx.android.synthetic.main.bmi_fragment.view.*
 import org.koin.android.viewmodel.ext.android.getViewModel
@@ -80,6 +83,26 @@ class BMIFragment : Fragment() {
         viewModel.getAllPosts().observe(viewLifecycleOwner, Observer {
             bmiHistoryRecyclerViewAdapter.submitList(it)
             showNoBMILog(it.size)
+
+
+
+            val barEntries = ArrayList<BarEntry>()
+            val barDate = ArrayList<String>()
+            val data = it.reversed()
+            for (i in data.indices) {
+                barEntries.add(BarEntry(i.toFloat(), data[i].bmi))
+                barDate.add(data[i].date)
+            }
+            val barDataSet = BarDataSet(barEntries, "BMI")
+            val barData = BarData(barDataSet)
+
+            view!!.barChartBMILog.let { barChart ->
+                barChart.data = barData
+                barChart.setTouchEnabled(true)
+                barChart.isDragEnabled = true
+                barChart.setScaleEnabled(true)
+                barChart.xAxis.valueFormatter = MyXAxisFormatter(barDate)
+            }
         })
     }
 

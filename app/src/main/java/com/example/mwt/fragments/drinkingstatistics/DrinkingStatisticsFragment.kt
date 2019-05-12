@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
 import com.example.mwt.db.dateprogressdb.DateProgressEntity
 import com.example.mwt.recyclerview.StatisticsRecyclerViewAdapter
+import com.example.mwt.util.MyXAxisFormatter
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.drinking_statistics_fragment.*
 import kotlinx.android.synthetic.main.drinking_statistics_fragment.view.*
 import org.koin.android.viewmodel.ext.android.getViewModel
@@ -39,25 +41,43 @@ class DrinkingStatisticsFragment : Fragment() {
         statisticsRecyclerViewAdapter = StatisticsRecyclerViewAdapter().also(recyclerStatisticsView::setAdapter)
 
         viewModel.getAllPosts().observe(viewLifecycleOwner, Observer {
-            val dataSet = LineData(LineDataSet(entryCreator(it), "Daily"))
-            view?.chart_daily?.data = dataSet
             statisticsRecyclerViewAdapter.submitList(it)
             showNoEntriesDisplay(it.size)
+
+            val barEntries = ArrayList<BarEntry>()
+            val barDate = ArrayList<String>()
+            val data = it.reversed()
+            for (i in data.indices) {
+                barEntries.add(BarEntry(i.toFloat(), data[i].progress))
+                barDate.add(data[i].date)
+            }
+            val barDataSet = BarDataSet(barEntries, "Amount drank")
+            val barData = BarData(barDataSet)
+
+            view!!.barGraphChartProgress.let { barChart ->
+                barChart.data = barData
+                barChart.setTouchEnabled(true)
+                barChart.isDragEnabled = true
+                barChart.setScaleEnabled(true)
+                barChart.xAxis.valueFormatter = MyXAxisFormatter(barDate)
+            }
+
+
         })
     }
 
-    private fun entryCreator(dataObjects : List<DateProgressEntity>): java.util.ArrayList<Entry>{
+    private fun entryCreator(dataObjects: List<DateProgressEntity>): java.util.ArrayList<Entry> {
         val entries: java.util.ArrayList<Entry> = ArrayList()
 
         for (data in dataObjects) {
-           // turn your data into Entry objects
-           entries.add(Entry(data.id.toFloat(), data.progress))
+            // turn your data into Entry objects
+            entries.add(Entry(data.id.toFloat(), data.progress))
         }
 
         return entries
     }
 
-    private fun showNoEntriesDisplay (adapterSize: Int){
+    private fun showNoEntriesDisplay(adapterSize: Int) {
         if (adapterSize == 0) display_no_entries.visibility = View.VISIBLE
         else display_no_entries.visibility = View.GONE
     }
