@@ -194,6 +194,8 @@ class ContainerRecyclerViewAdapter(private val viewModel: TrackerViewModel, priv
 
             mView.add_btn.setOnClickListener {
                 if (mView.editContainerName.text.isNotBlank() && mView.editContainerSize.text.isNotBlank()) {
+                    it.isEnabled = false
+                    mView.cancel_btn.isEnabled = false
                     createSnackBar(mView, R.string.snackbar_success)
                     Handler().postDelayed({
                         dialog.dismiss()
