@@ -1,182 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ProgressBar
-        android:id="@+id/drinking_progress_bar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="250dp"
-        android:layout_height="0dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="8dp"
-        android:indeterminate="false"
-        android:progress="80"
-        android:progressDrawable="@drawable/circle"
-        android:secondaryProgress="100"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="serif-monospace"
-        android:text="@string/division"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="80sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/drinking_progress_bar"
-        app:layout_constraintEnd_toEndOf="@+id/drinking_progress_bar"
-        app:layout_constraintStart_toStartOf="@+id/drinking_progress_bar"
-        app:layout_constraintTop_toTopOf="@+id/drinking_progress_bar"
-        app:layout_constraintVertical_bias="0.47000003" />
-
-    <TextView
-        android:id="@+id/goal_daily"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="6dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/denominator_test"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="@+id/drinking_progress_bar"
-        app:layout_constraintStart_toStartOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/numerator_daily"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/numerator_test"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="@+id/drinking_progress_bar"
-        app:layout_constraintTop_toTopOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/percentage_daily"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/percentage_test"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/drinking_progress_bar"
-        app:layout_constraintStart_toStartOf="@+id/drinking_progress_bar"
-        app:layout_constraintTop_toBottomOf="@+id/drinking_progress_bar" />
-
-    <ProgressBar
-        android:id="@+id/drinking_progress_week_bar"
-        style="?android:progressBarStyleHorizontal"
-        android:layout_width="100dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:indeterminate="false"
-        android:progress="80"
-        android:progressDrawable="@drawable/circle"
-        android:secondaryProgress="100"
-        app:layout_constraintBottom_toBottomOf="@+id/percentage_daily"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/percentage_daily" />
-
-    <ProgressBar
-        android:id="@+id/drinking_progress_month_bar"
-        style="?android:progressBarStyleHorizontal"
-        android:layout_width="100dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:indeterminate="false"
-        android:progress="80"
-        android:progressDrawable="@drawable/circle"
-        android:secondaryProgress="100"
-        app:layout_constraintBottom_toBottomOf="@+id/percentage_daily"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/percentage_daily" />
-
-    <TextView
-        android:id="@+id/drinking_progress_week_percentage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/percentage_test"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/drinking_progress_week_bar"
-        app:layout_constraintEnd_toEndOf="@+id/drinking_progress_week_bar"
-        app:layout_constraintStart_toStartOf="@+id/drinking_progress_week_bar"
-        app:layout_constraintTop_toTopOf="@+id/drinking_progress_week_bar" />
-
-    <TextView
-        android:id="@+id/drinking_progress_month_percentage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/percentage_test"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/drinking_progress_month_bar"
-        app:layout_constraintEnd_toEndOf="@+id/drinking_progress_month_bar"
-        app:layout_constraintStart_toStartOf="@+id/drinking_progress_month_bar"
-        app:layout_constraintTop_toTopOf="@+id/drinking_progress_month_bar" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/week_tracker"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/drinking_progress_week_bar"
-        app:layout_constraintStart_toStartOf="@+id/drinking_progress_week_bar"
-        app:layout_constraintTop_toBottomOf="@+id/drinking_progress_week_percentage" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/month_tracker"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/drinking_progress_month_bar"
-        app:layout_constraintStart_toStartOf="@+id/drinking_progress_month_bar"
-        app:layout_constraintTop_toBottomOf="@+id/drinking_progress_month_percentage" />
-
-    <TextView
-        android:id="@+id/current_day_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/today_date_test"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/drinking_progress_bar"
-        app:layout_constraintStart_toStartOf="@+id/drinking_progress_bar"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:id="@+id/drinking_progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="250dp"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="8dp"
+            android:indeterminate="false"
+            android:progress="80"
+            android:progressDrawable="@drawable/circle"
+            android:secondaryProgress="100"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif-monospace"
+            android:text="@string/division"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="80sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/drinking_progress_bar"
+            app:layout_constraintEnd_toEndOf="@+id/drinking_progress_bar"
+            app:layout_constraintStart_toStartOf="@+id/drinking_progress_bar"
+            app:layout_constraintTop_toTopOf="@+id/drinking_progress_bar"
+            app:layout_constraintVertical_bias="0.47000003" />
+
+        <TextView
+            android:id="@+id/goal_daily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/denominator_test"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="@+id/drinking_progress_bar"
+            app:layout_constraintStart_toStartOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/numerator_daily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/numerator_test"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/drinking_progress_bar"
+            app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/percentage_daily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/percentage_test"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/drinking_progress_bar"
+            app:layout_constraintStart_toStartOf="@+id/drinking_progress_bar"
+            app:layout_constraintTop_toBottomOf="@+id/drinking_progress_bar" />
+
+        <ProgressBar
+            android:id="@+id/drinking_progress_week_bar"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:indeterminate="false"
+            android:progress="80"
+            android:progressDrawable="@drawable/circle"
+            android:secondaryProgress="100"
+            app:layout_constraintBottom_toBottomOf="@+id/percentage_daily"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/percentage_daily" />
+
+        <ProgressBar
+            android:id="@+id/drinking_progress_month_bar"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:indeterminate="false"
+            android:progress="80"
+            android:progressDrawable="@drawable/circle"
+            android:secondaryProgress="100"
+            app:layout_constraintBottom_toBottomOf="@+id/percentage_daily"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/percentage_daily" />
+
+        <TextView
+            android:id="@+id/drinking_progress_week_percentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/percentage_test"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/drinking_progress_week_bar"
+            app:layout_constraintEnd_toEndOf="@+id/drinking_progress_week_bar"
+            app:layout_constraintStart_toStartOf="@+id/drinking_progress_week_bar"
+            app:layout_constraintTop_toTopOf="@+id/drinking_progress_week_bar" />
+
+        <TextView
+            android:id="@+id/drinking_progress_month_percentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/percentage_test"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/drinking_progress_month_bar"
+            app:layout_constraintEnd_toEndOf="@+id/drinking_progress_month_bar"
+            app:layout_constraintStart_toStartOf="@+id/drinking_progress_month_bar"
+            app:layout_constraintTop_toTopOf="@+id/drinking_progress_month_bar" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/week_tracker"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/drinking_progress_week_bar"
+            app:layout_constraintStart_toStartOf="@+id/drinking_progress_week_bar"
+            app:layout_constraintTop_toBottomOf="@+id/drinking_progress_week_percentage" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/month_tracker"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/drinking_progress_month_bar"
+            app:layout_constraintStart_toStartOf="@+id/drinking_progress_month_bar"
+            app:layout_constraintTop_toBottomOf="@+id/drinking_progress_month_percentage" />
+
+        <TextView
+            android:id="@+id/current_day_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/today_date_test"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/drinking_progress_bar"
+            app:layout_constraintStart_toStartOf="@+id/drinking_progress_bar"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:behavior_peekHeight="220dp"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/pull_up_tab"
@@ -184,9 +190,9 @@
             android:layout_height="wrap_content"
             android:animateLayoutChanges="false"
             app:cardCornerRadius="6dp"
-            app:layout_constraintBottom_toTopOf="@+id/drawer"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -209,16 +215,17 @@
 
         </androidx.cardview.widget.CardView>
 
+
         <androidx.cardview.widget.CardView
             android:id="@+id/drawer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="-8dp"
             app:cardBackgroundColor="@color/colorPrimary"
             app:cardCornerRadius="6dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pull_up_tab">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
@@ -243,28 +250,9 @@
                     android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    app:layout_constraintBottom_toTopOf="@+id/containersRecycler"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/seekBarPercentContainer"
-                    app:layout_constraintVertical_bias="1.0">
-
-                    <TextView
-                        android:id="@+id/favorite_category_title"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/favorite"
-                        android:textAlignment="center"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toTopOf="@+id/recyclerFavoriteContainerView"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintTop_toBottomOf="@+id/seekBarPercentContainer">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerFavoriteContainerView"
@@ -285,10 +273,11 @@
                     android:id="@+id/containersRecycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginTop="16dp"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
                     <TextView
                         android:id="@+id/textView16"
@@ -296,9 +285,9 @@
                         android:layout_height="wrap_content"
                         android:text="@string/water_containers"
                         android:textAlignment="center"
-                        android:textSize="18sp"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/containerRecyclerView"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -306,14 +295,14 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/containerRecyclerView"
-                        android:layout_width="0dp"
-                        android:layout_height="250dp"
-                        android:layout_gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="1.0" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -323,4 +312,4 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

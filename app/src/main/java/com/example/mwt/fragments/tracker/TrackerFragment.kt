@@ -1,24 +1,22 @@
 package com.example.mwt.fragments.tracker
 
+import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mwt.R
-import kotlinx.android.synthetic.main.tracker_fragment.view.*
-import android.content.Context.MODE_PRIVATE
-import android.widget.SeekBar
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mwt.R
 import com.example.mwt.recyclerview.ContainerRecyclerViewAdapter
-import com.example.mwt.util.stringLiveData
 import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.tracker_fragment.*
+import kotlinx.android.synthetic.main.tracker_fragment.view.*
 import org.koin.android.viewmodel.ext.android.getViewModel
 
 class TrackerFragment : Fragment() {
@@ -27,7 +25,6 @@ class TrackerFragment : Fragment() {
     private lateinit var containerFavoriteRecyclerViewAdapter: ContainerRecyclerViewAdapter
     private lateinit var containerRecyclerViewAdapter: ContainerRecyclerViewAdapter
     private var preference: SharedPreferences? = null
-    private var visibilityEdit: Boolean = false
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -38,7 +35,8 @@ class TrackerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         preference = context?.getSharedPreferences(SHARED_PREFERENCE_FILE, MODE_PRIVATE)
         view.recyclerFavoriteContainerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        view.containerRecyclerView.layoutManager = GridLayoutManager(context, 3, RecyclerView.VERTICAL, false)
+        view.containerRecyclerView.layoutManager = GridLayoutManager(context, 2, RecyclerView.HORIZONTAL, false)
+
         view.goal_daily.text = String.format("%.2f", preference!!.getFloat(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY))
 
         preference!!.floatLiveData(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY).observe(this, Observer {
@@ -61,19 +59,6 @@ class TrackerFragment : Fragment() {
                 Observer {
                     view.current_day_text.text = it
                 })
-
-        view.pull_up_tab.setOnClickListener {
-            if (visibilityEdit) {
-                pull_up.background = ContextCompat.getDrawable(context!!, R.drawable.ic_invert_colors_black_24dp)
-                view.containersRecycler.visibility = View.GONE
-                view.favorite_category_title.visibility = View.GONE
-            } else {
-                pull_up.background = ContextCompat.getDrawable(context!!, R.drawable.ic_invert_colors_off_black_24dp)
-                view.containersRecycler.visibility = View.VISIBLE
-                view.favorite_category_title.visibility = View.VISIBLE
-            }
-            visibilityEdit = !visibilityEdit
-        }
 
         view.seekBarPercentContainer.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
