@@ -28,21 +28,6 @@
             android:layout_height="match_parent">
 
 
-            <TextView
-                android:id="@+id/item_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/water_bottle"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/item_size"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.52"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/item_image" />
-
             <ImageView
                 android:id="@+id/item_image"
                 android:layout_width="wrap_content"
@@ -58,6 +43,22 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.8"
                 app:srcCompat="@android:drawable/btn_star" />
+
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                android:text="@string/water_bottle"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/item_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_image" />
 
             <TextView
                 android:id="@+id/item_size"

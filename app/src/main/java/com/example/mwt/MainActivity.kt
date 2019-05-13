@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
@@ -36,12 +37,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val fragment = when (intent.getStringExtra(ACTIVITY_SELECTION_NOTIFICATION)) {
             ACTIVITY_SELECTION_NOTIFICATION_ACHIEVEMENT -> {
+                toolbar.title = getString(R.string.goals)
                 GoalsFragment()
             }
             ACTIVITY_SELECTION_NOTIFICATION_BMI -> {
+                toolbar.title = getString(R.string.bmi)
                 BMIFragment()
             }
-            else -> TrackerFragment()
+            else -> {
+                toolbar.title = getString(R.string.water_tracker)
+                TrackerFragment()
+            }
         }
         supportFragmentManager
                 .beginTransaction()
@@ -62,34 +68,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
     private fun displayFragment(id: Int) {
         val fragment = when (id) {
             R.id.nav_tracker -> {
+                toolbar.title = getString(R.string.water_tracker)
                 TrackerFragment()
             }
-            R.id.nav_timer -> {
-                DrinkingTimerFragment()
-            }
             R.id.nav_statistics -> {
+                toolbar.title = getString(R.string.drinking_statistics)
                 DrinkingStatisticsFragment()
             }
+            R.id.nav_timer -> {
+                toolbar.title = getString(R.string.drinking_timer)
+                DrinkingTimerFragment()
+            }
             R.id.nav_goals -> {
+                toolbar.title = getString(R.string.goals)
                 GoalsFragment()
             }
             R.id.nav_bmi -> {
+                toolbar.title = getString(R.string.bmi)
                 BMIFragment()
             }
             R.id.nav_settings -> {
+                toolbar.title = getString(R.string.settings)
                 SettingsFragment()
             }
             R.id.nav_information ->{
+                toolbar.title = getString(R.string.info)
                 InformationFragment()
             }
             else -> return
