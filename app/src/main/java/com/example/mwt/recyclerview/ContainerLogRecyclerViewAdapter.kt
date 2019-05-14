@@ -84,16 +84,16 @@ class ContainerLogRecyclerViewAdapter(private val viewModel: DrinkingTimerViewMo
             mView.daily_log_delete_btn.setOnClickListener {
                 viewModel.deletePost(dailyLogEntity)
 
-                preference.setFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY,
-                        preference.getFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
+                preference.setInt(SHARED_PREFERENCE_AMOUNT_WEEKLY,
+                        preference.getInt(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
                                 - dailyLogEntity.amount)
 
-                preference.setFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY,
-                        preference.getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
+                preference.setInt(SHARED_PREFERENCE_AMOUNT_MONTHLY,
+                        preference.getInt(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
                                 - dailyLogEntity.amount)
 
-                preference.setFloat(SHARED_PREFERENCE_AMOUNT_DAILY,
-                        preference.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
+                preference.setInt(SHARED_PREFERENCE_AMOUNT_DAILY,
+                        preference.getInt(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
                                 - dailyLogEntity.amount)
                 dialog.dismiss()
             }
@@ -109,16 +109,16 @@ class ContainerLogRecyclerViewAdapter(private val viewModel: DrinkingTimerViewMo
 
                 viewModel.updatePost(dailyLogEntityToReplace)
 
-                preference.setFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY,
-                        preference.getFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
+                preference.setInt(SHARED_PREFERENCE_AMOUNT_WEEKLY,
+                        preference.getInt(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
                                 - dailyLogEntity.amount + dailyLogEntityToReplace.amount)
 
-                preference.setFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY,
-                        preference.getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
+                preference.setInt(SHARED_PREFERENCE_AMOUNT_MONTHLY,
+                        preference.getInt(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
                                 - dailyLogEntity.amount + dailyLogEntityToReplace.amount)
 
-                preference.setFloat(SHARED_PREFERENCE_AMOUNT_DAILY,
-                        preference.getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
+                preference.setInt(SHARED_PREFERENCE_AMOUNT_DAILY,
+                        preference.getInt(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY)
                                 - dailyLogEntity.amount + dailyLogEntityToReplace.amount)
 
                 dialog.dismiss()

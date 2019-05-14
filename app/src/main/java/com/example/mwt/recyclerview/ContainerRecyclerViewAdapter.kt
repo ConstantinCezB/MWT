@@ -104,17 +104,17 @@ class ContainerRecyclerViewAdapter(private val viewModel: TrackerViewModel, priv
         private fun addAmount(container: ContainersEntity) {
             val amountToAdd = ((viewModel.progress.toFloat() / 100.toFloat()) * container.size.toFloat()).toInt()
 
-            preference.setFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY,
+            preference.setInt(SHARED_PREFERENCE_AMOUNT_WEEKLY,
                     amountToAdd + preference
-                            .getFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
+                            .getInt(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
 
-            preference.setFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY,
+            preference.setInt(SHARED_PREFERENCE_AMOUNT_MONTHLY,
                     amountToAdd + preference
-                            .getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
+                            .getInt(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
 
-            preference.setFloat(SHARED_PREFERENCE_AMOUNT_DAILY,
+            preference.setInt(SHARED_PREFERENCE_AMOUNT_DAILY,
                     amountToAdd + preference
-                            .getFloat(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
+                            .getInt(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY))
 
 
 

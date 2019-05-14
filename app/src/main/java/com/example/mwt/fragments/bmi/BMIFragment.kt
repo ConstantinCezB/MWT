@@ -90,7 +90,7 @@ class BMIFragment : Fragment() {
             val data = it.reversed()
             if (data.isNotEmpty()) {
                 for (i in data.indices) {
-                    barEntries.add(BarEntry(i.toFloat(), data[i].bmi))
+                    barEntries.add(BarEntry(i.toFloat(), data[i].bmi.toFloat()))
                     barDate.add(data[i].date)
                 }
             } else {
@@ -162,9 +162,9 @@ class BMIFragment : Fragment() {
     }
 
     private fun bmiCalculator(): Float {
-        val height = preference!!.getFloat(SHARED_PREFERENCE_HEIGHT, DEFAULT_HEIGHT)
-        val weight = preference!!.getFloat(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT)
-        return ((weight) / (height * height)) * 703
+        val height = preference!!.getInt(SHARED_PREFERENCE_HEIGHT, DEFAULT_HEIGHT)
+        val weight = preference!!.getInt(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT)
+        return ((weight).toFloat() / (height * height)) * 703
     }
 
     private fun categorySelectionBMI(BMI: Float): String {
@@ -189,10 +189,10 @@ class BMIFragment : Fragment() {
         preference!!.stringLiveData(SHARED_PREFERENCE_GENDER, DEFAULT_GENDER).observe(this, Observer {
             calculateRecommendedIntake(preference!!, view)
         })
-        preference!!.floatLiveData(SHARED_PREFERENCE_HEIGHT, DEFAULT_HEIGHT).observe(this, Observer {
+        preference!!.intLiveData(SHARED_PREFERENCE_HEIGHT, DEFAULT_HEIGHT).observe(this, Observer {
             calculateRecommendedIntake(preference!!, view)
         })
-        preference!!.floatLiveData(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT).observe(this, Observer {
+        preference!!.intLiveData(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT).observe(this, Observer {
             calculateRecommendedIntake(preference!!, view)
         })
         preference!!.stringLiveData(SHARED_PREFERENCE_ACTIVITY_LEVEL, DEFAULT_ACTIVITY_LEVEL).observe(this, Observer {
@@ -207,7 +207,7 @@ class BMIFragment : Fragment() {
         val dateUserString = preference.getString(SHARED_PREFERENCE_DATE_OF_BIRTH, "1997-12-09")
         val currentDateString = preference.getString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE)
 
-        val weight = preference.getFloat(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT)
+        val weight = preference.getInt(SHARED_PREFERENCE_WEIGHT, DEFAULT_WEIGHT)
         val activityLevelString = preference.getString(SHARED_PREFERENCE_ACTIVITY_LEVEL, DEFAULT_ACTIVITY_LEVEL)
         val seasonString = preference.getString(SHARED_PREFERENCE_SEASON, DEFAULT_SEASON)
 
@@ -239,8 +239,8 @@ class BMIFragment : Fragment() {
 
         val answer = (((weight / 2.2) * age) / 28.3) + season + activityLevel
 
-        preference.setFloat(SHARED_PREFERENCE_RECOMMENDED_AMOUNT, answer.toFloat())
-        preference.setFloat(SHARED_PREFERENCE_GOAL_DAILY, answer.toFloat())
+        preference.setInt(SHARED_PREFERENCE_RECOMMENDED_AMOUNT, answer.toInt())
+        preference.setInt(SHARED_PREFERENCE_GOAL_DAILY, answer.toInt())
 
         view.recommended_amount.text = String.format("%.2f oz", answer)
     }

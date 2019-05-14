@@ -37,20 +37,20 @@ class TrackerFragment : Fragment() {
         view.recyclerFavoriteContainerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         view.containerRecyclerView.layoutManager = GridLayoutManager(context, 2, RecyclerView.HORIZONTAL, false)
 
-        view.goal_daily.text = String.format("%.2f", preference!!.getFloat(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY))
+        view.goal_daily.text = preference!!.getInt(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY).toString()
 
-        preference!!.floatLiveData(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY).observe(this, Observer {
+        preference!!.intLiveData(SHARED_PREFERENCE_AMOUNT_DAILY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY).observe(this, Observer {
             // setting up the daily wheel
-            val percentage = (it.toFloat() / preference!!.getFloat(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY) * 100)
+            val percentage = (it.toDouble() / preference!!.getInt(SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY) * 100)
             view.drinking_progress_bar.setProgress(percentage.toInt(), true)
-            view.numerator_daily.text = String.format("%.2f", it)
+            view.numerator_daily.text = it.toString()
             view.percentage_daily.text = String.format("%.2f%%", percentage)
 
-            val percentageWeek = (preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY) / preference!!.getFloat(SHARED_PREFERENCE_GOAL_WEEKLY, DEFAULT_GOAL_WEEKLY) * 100)
+            val percentageWeek = (preference!!.getInt(SHARED_PREFERENCE_AMOUNT_WEEKLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY).toDouble() / preference!!.getInt(SHARED_PREFERENCE_GOAL_WEEKLY, DEFAULT_GOAL_WEEKLY) * 100)
             view.drinking_progress_week_bar.setProgress(percentageWeek.toInt(), true)
             view.drinking_progress_week_percentage.text = String.format("%.2f%%", percentageWeek)
 
-            val percentageMonth = (preference!!.getFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY) / preference!!.getFloat(SHARED_PREFERENCE_GOAL_MONTHLY, DEFAULT_GOAL_MONTHLY) * 100)
+            val percentageMonth = (preference!!.getInt(SHARED_PREFERENCE_AMOUNT_MONTHLY, DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY).toDouble() / preference!!.getInt(SHARED_PREFERENCE_GOAL_MONTHLY, DEFAULT_GOAL_MONTHLY) * 100)
             view.drinking_progress_month_bar.setProgress(percentageMonth.toInt(), true)
             view.drinking_progress_month_percentage.text = String.format("%.2f%%", percentageMonth)
         })

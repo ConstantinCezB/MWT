@@ -22,15 +22,15 @@ const val DEFAULT_ALLOW_WEEK_RESET = true
 const val SHARED_PREFERENCE_AMOUNT_DAILY = "numeratorDaily"
 const val SHARED_PREFERENCE_AMOUNT_WEEKLY = "numeratorWeekly"
 const val SHARED_PREFERENCE_AMOUNT_MONTHLY = "numeratorMonthly"
-const val DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY = 0f
+const val DEFAULT_AMOUNT_DAILY_WEEKLY_MONTHLY = 0
 
 // This is the default for the amount of water that a user should drink.
 const val SHARED_PREFERENCE_GOAL_DAILY = "denominatorDaily"
-const val DEFAULT_GOAL_DAILY = 2000f
+const val DEFAULT_GOAL_DAILY = 2000
 const val SHARED_PREFERENCE_GOAL_WEEKLY = "denominatorWeekly"
-const val DEFAULT_GOAL_WEEKLY = 14000f
+const val DEFAULT_GOAL_WEEKLY = 14000
 const val SHARED_PREFERENCE_GOAL_MONTHLY = "denominatorMonthly"
-const val DEFAULT_GOAL_MONTHLY = 60000f
+const val DEFAULT_GOAL_MONTHLY = 60000
 
 //Variable that contains the recommended amount of water to drink
 const val SHARED_PREFERENCE_RECOMMENDED_AMOUNT = "recommendedAmount"
@@ -49,11 +49,11 @@ const val DEFAULT_GENDER = "Male"
 
 // variables for the height
 const val SHARED_PREFERENCE_HEIGHT = "height"
-const val DEFAULT_HEIGHT = 200f
+const val DEFAULT_HEIGHT = 200
 
 // variables for the weight
 const val SHARED_PREFERENCE_WEIGHT = "weight"
-const val DEFAULT_WEIGHT = 200f
+const val DEFAULT_WEIGHT = 200
 
 // variables for the activity level
 const val SHARED_PREFERENCE_ACTIVITY_LEVEL = "activityLevel"
