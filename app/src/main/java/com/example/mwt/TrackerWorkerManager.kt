@@ -62,7 +62,7 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
                 it.dailyLogDao().dropTable()
                 if (bmiRecordInterval == "day") bmiRecordLogic(it, currentDate, allowBMIRecordNotification)
             }
-            preference.setFloat(SHARED_PREFERENCE_AMOUNT_DAILY, 0f)
+            preference.setInt(SHARED_PREFERENCE_AMOUNT_DAILY, 0)
         }
         //==========================================================================================
         // This checks if the week has changed.
@@ -71,7 +71,7 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
                 if (weekAmount >= weekGoal) achievementLogic(it, currentDate, allowAchievementNotification, "Week")
                 if (bmiRecordInterval == "week") bmiRecordLogic(it, currentDate, allowBMIRecordNotification)
             }
-            preference.setFloat(SHARED_PREFERENCE_AMOUNT_WEEKLY, 0f)
+            preference.setInt(SHARED_PREFERENCE_AMOUNT_WEEKLY, 0)
             preference.setBoolean(SHARED_PREFERENCE_ALLOW_WEEK_RESET, false)
         } else if (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY && !allowWeekReset) preference
                 .setBoolean(SHARED_PREFERENCE_ALLOW_WEEK_RESET, true)
@@ -84,7 +84,7 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
                 if (monthAmount >= monthGoal) achievementLogic(it, currentDate, allowAchievementNotification, "Month")
                 if (bmiRecordInterval == "month") bmiRecordLogic(it, currentDate, allowBMIRecordNotification)
             }
-            preference.setFloat(SHARED_PREFERENCE_AMOUNT_MONTHLY, 0f)
+            preference.setInt(SHARED_PREFERENCE_AMOUNT_MONTHLY, 0)
         }
         //==========================================================================================
 
