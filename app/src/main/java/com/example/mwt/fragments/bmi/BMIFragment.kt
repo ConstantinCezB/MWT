@@ -211,6 +211,13 @@ class BMIFragment : Fragment() {
         val activityLevelString = preference.getString(SHARED_PREFERENCE_ACTIVITY_LEVEL, DEFAULT_ACTIVITY_LEVEL)
         val seasonString = preference.getString(SHARED_PREFERENCE_SEASON, DEFAULT_SEASON)
 
+        val calendar = Calendar.getInstance()
+        val daysInMonth = calendar.getActualMaximum(Calendar.DATE)
+
+        val allowUserDayGoal = preference.getBoolean(SHARED_PREFERENCE_ALLOW_USER_DAY_GOAL, DEFAULT_USER_GOAL)
+        val allowUserWeekGoal = preference.getBoolean(SHARED_PREFERENCE_ALLOW_USER_WEEK_GOAL, DEFAULT_USER_GOAL)
+        val allowUserMonthGoal = preference.getBoolean(SHARED_PREFERENCE_ALLOW_USER_MONTH_GOAL, DEFAULT_USER_GOAL)
+
         val seasonsArray: Array<String> = resources.getStringArray(R.array.seasons)
         val activityLevelArray: Array<String> = resources.getStringArray(R.array.activity_level)
 
@@ -240,7 +247,9 @@ class BMIFragment : Fragment() {
         val answer = (((weight / 2.2) * age) / 28.3) + season + activityLevel
 
         preference.setInt(SHARED_PREFERENCE_RECOMMENDED_AMOUNT, answer.toInt())
-        preference.setInt(SHARED_PREFERENCE_GOAL_DAILY, answer.toInt())
+        if(!allowUserDayGoal) preference.setInt(SHARED_PREFERENCE_GOAL_DAILY, answer.toInt())
+        if (!allowUserWeekGoal) preference.setInt(SHARED_PREFERENCE_GOAL_WEEKLY, answer.toInt() * 7)
+        if (!allowUserMonthGoal) preference.setInt(SHARED_PREFERENCE_GOAL_MONTHLY, answer.toInt() * daysInMonth)
 
         view.recommended_amount.text = String.format("%.2f oz", answer)
     }

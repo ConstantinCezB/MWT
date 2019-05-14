@@ -55,7 +55,7 @@ class GoalsFragment : Fragment() {
             view.goal_day_user.text = it.toString()
         })
         view.goal_edit_day_btn.setOnClickListener {
-            showDialogEdit(view, "day", SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY, recommended, 4)
+            showDialogEdit(view, "day", SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY, SHARED_PREFERENCE_ALLOW_USER_DAY_GOAL ,recommended, 4)
         }
 
         view.weekProgessAmount.text = amountWeek.toString()
@@ -66,7 +66,7 @@ class GoalsFragment : Fragment() {
             view.goal_week_user.text = it.toString()
         })
         view.goal_edit_week_btn.setOnClickListener {
-            showDialogEdit(view, "week", SHARED_PREFERENCE_GOAL_WEEKLY, DEFAULT_GOAL_WEEKLY, recommended * 7, 5)
+            showDialogEdit(view, "week", SHARED_PREFERENCE_GOAL_WEEKLY, DEFAULT_GOAL_WEEKLY, SHARED_PREFERENCE_ALLOW_USER_WEEK_GOAL,recommended * 7, 5)
         }
 
         view.monthProgessAmount.text = amountMonth.toString()
@@ -77,7 +77,7 @@ class GoalsFragment : Fragment() {
             view.goal_month_user.text = it.toString()
         })
         view.goal_edit_month_btn.setOnClickListener {
-            showDialogEdit(view, "month", SHARED_PREFERENCE_GOAL_MONTHLY, DEFAULT_GOAL_MONTHLY, recommended * daysInMonth, 6)
+            showDialogEdit(view, "month", SHARED_PREFERENCE_GOAL_MONTHLY, DEFAULT_GOAL_MONTHLY, SHARED_PREFERENCE_ALLOW_USER_MONTH_GOAL,recommended * daysInMonth, 6)
         }
 
 
@@ -120,7 +120,10 @@ class GoalsFragment : Fragment() {
     }
 
     @SuppressLint("InflateParams")
-    private fun showDialogEdit(view: View, title: String, preferenceValue: String, preferenceDefaultValue: Int, recommendedAmountGoal: Int, maxLength: Int) {
+    private fun showDialogEdit(view: View, title: String,
+                               preferenceValue: String, preferenceDefaultValue: Int,
+                               preferenceValueAllowUserGoal: String,
+                               recommendedAmountGoal: Int, maxLength: Int) {
 
         val mBuilder: AlertDialog.Builder = AlertDialog.Builder(view.context)
         val mView: View = LayoutInflater.from(view.context).inflate(R.layout.dialog_edit_goal, null, false)
@@ -134,8 +137,11 @@ class GoalsFragment : Fragment() {
         mView.recomended_amount_text.text = recommendedAmountGoal.toString()
 
         mView.switch_allow_user_defined.let {
-            it.isChecked = recommendedAmountGoal != amountGoal
-            if (!it.isChecked) mView.editText_goal_user.isEnabled = false
+            it.isChecked = preference!!.getBoolean(preferenceValueAllowUserGoal, DEFAULT_USER_GOAL)
+            if (!it.isChecked){
+                mView.editText_goal_user.isEnabled = false
+            }
+
 
             it.setOnCheckedChangeListener { _, isChecked ->
                 if (!isChecked) {
@@ -143,6 +149,7 @@ class GoalsFragment : Fragment() {
                     mView.editText_goal_user.text.append(recommendedAmountGoal.toString())
                 }
                 mView.editText_goal_user.isEnabled = isChecked
+                preference!!.setBoolean(preferenceValueAllowUserGoal, isChecked)
             }
         }
 

@@ -113,4 +113,9 @@ const val ACTIVITY_SELECTION_NOTIFICATION_BMI = "bmi"
 
 //==================================================================================================
 
+const val SHARED_PREFERENCE_ALLOW_USER_DAY_GOAL = "allowUserDayGoal"
+const val SHARED_PREFERENCE_ALLOW_USER_WEEK_GOAL = "allowUserWeekGoal"
+const val SHARED_PREFERENCE_ALLOW_USER_MONTH_GOAL = "allowUserMonthGoal"
+const val DEFAULT_USER_GOAL = false
+
 
