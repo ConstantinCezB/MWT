@@ -90,10 +90,10 @@ class SettingsFragment : Fragment() {
     private fun disableMainNotification(view: View, isChecked: Boolean) {
         val switch: List<Switch> = listOf(view.drinkingReminderSwitch, view.BMIRecordNotificationSwitch, view.achievementNotificationSwitch)
         switch.forEach {
-            if (!isChecked) it.isChecked = isChecked
-            it.isClickable = isChecked
             it.isEnabled = isChecked
         }
+        view.timeIntervalReminderConstraintLayout.isEnabled = isChecked
+        view.timeIntervalReminderText.isEnabled = isChecked
     }
 
     private fun disableIntakeNotification(view: View, isChecked: Boolean) {

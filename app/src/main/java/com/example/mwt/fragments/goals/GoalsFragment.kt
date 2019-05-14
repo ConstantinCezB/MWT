@@ -158,6 +158,10 @@ class GoalsFragment : Fragment() {
             dialog.dismiss()
         }
 
+        mView.edit_goal_cancel_btn.setOnClickListener {
+            dialog.dismiss()
+        }
+
 
 
         dialog.show()

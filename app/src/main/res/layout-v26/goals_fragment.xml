@@ -51,7 +51,7 @@
                         android:id="@+id/goal_edit_day_btn"
                         style="@style/Widget.AppCompat.Button.Borderless.Colored"
                         android:layout_width="60dp"
-                        android:layout_height="35dp"
+                        android:layout_height="wrap_content"
                         android:text="Edit"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -147,7 +147,7 @@
                         android:id="@+id/goal_edit_week_btn"
                         style="@style/Widget.AppCompat.Button.Borderless.Colored"
                         android:layout_width="60dp"
-                        android:layout_height="35dp"
+                        android:layout_height="wrap_content"
                         android:text="Edit"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -258,7 +258,7 @@
                         android:id="@+id/goal_edit_month_btn"
                         style="@style/Widget.AppCompat.Button.Borderless.Colored"
                         android:layout_width="60dp"
-                        android:layout_height="35dp"
+                        android:layout_height="wrap_content"
                         android:text="Edit"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

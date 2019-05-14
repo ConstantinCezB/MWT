@@ -33,6 +33,7 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
 
         val previousDate: String = preference.getString(TIME_INTERVAL_PREVIOUS_WORKER_DATE, DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE)!!
         val allowWeekReset = preference.getBoolean(SHARED_PREFERENCE_ALLOW_WEEK_RESET, DEFAULT_ALLOW_WEEK_RESET)
+        val allowNotification = preference.getBoolean(SHARED_PREFERENCE_NOTIFICATION, DEFAULT_NOTIFICATION)
         val allowReminderNotification = preference.getBoolean(SHARED_PREFERENCE_DRINKING_REMINDER, DEFAULT_DRINKING_REMINDER)
         val allowAchievementNotification = preference.getBoolean(SHARED_PREFERENCE_ACHIEVEMENT_NOTIFICATION, DEFAULT_ACHIEVEMENT_NOTIFICATION)
         val allowBMIRecordNotification = preference.getBoolean(SHARED_PREFERENCE_BMI_RECORD_NOTIFICATION, DEFAULT_BMI_RECORD_NOTIFICATION)
@@ -47,7 +48,7 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
         val timeIntervalTracker = preference.getInt(SHARED_PREFERENCE_TIME_INTERVAL_TRACKER, DEFAULT_TIME_INTERVAL)
 
         if (timeInterval == timeIntervalTracker){
-            sendOnNotificationIntake(allowReminderNotification)
+            sendOnNotificationIntake(allowNotification, allowReminderNotification)
             preference.setInt(SHARED_PREFERENCE_TIME_INTERVAL_TRACKER, 15)
         }else{
             preference.setInt(SHARED_PREFERENCE_TIME_INTERVAL_TRACKER, timeIntervalTracker + 15)
@@ -57,10 +58,10 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
         // This checks if the day has changed.
         if (previousDate != DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE && previousDate != currentDate) {
             get<MWTDatabase>().let {
-                if (dayAmount >= dayGoal) achievementLogic(it, currentDate, allowAchievementNotification, "Day")
+                if (dayAmount >= dayGoal) achievementLogic(it, currentDate, allowNotification, allowAchievementNotification, "Day")
                 it.dateProgressDao().save(DateProgressEntity(previousDate, dayAmount))
                 it.dailyLogDao().dropTable()
-                if (bmiRecordInterval == "day") bmiRecordLogic(it, currentDate, allowBMIRecordNotification)
+                if (bmiRecordInterval == "day") bmiRecordLogic(it, currentDate, allowNotification, allowBMIRecordNotification)
             }
             preference.setInt(SHARED_PREFERENCE_AMOUNT_DAILY, 0)
         }
@@ -68,8 +69,8 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
         // This checks if the week has changed.
         if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY && allowWeekReset) {
             get<MWTDatabase>().let {
-                if (weekAmount >= weekGoal) achievementLogic(it, currentDate, allowAchievementNotification, "Week")
-                if (bmiRecordInterval == "week") bmiRecordLogic(it, currentDate, allowBMIRecordNotification)
+                if (weekAmount >= weekGoal) achievementLogic(it, currentDate, allowNotification, allowAchievementNotification, "Week")
+                if (bmiRecordInterval == "week") bmiRecordLogic(it, currentDate, allowNotification, allowBMIRecordNotification)
             }
             preference.setInt(SHARED_PREFERENCE_AMOUNT_WEEKLY, 0)
             preference.setBoolean(SHARED_PREFERENCE_ALLOW_WEEK_RESET, false)
@@ -81,8 +82,8 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
                 != extractMonthYear(previousDate)) {
 
             get<MWTDatabase>().let {
-                if (monthAmount >= monthGoal) achievementLogic(it, currentDate, allowAchievementNotification, "Month")
-                if (bmiRecordInterval == "month") bmiRecordLogic(it, currentDate, allowBMIRecordNotification)
+                if (monthAmount >= monthGoal) achievementLogic(it, currentDate, allowNotification, allowAchievementNotification, "Month")
+                if (bmiRecordInterval == "month") bmiRecordLogic(it, currentDate, allowNotification, allowBMIRecordNotification)
             }
             preference.setInt(SHARED_PREFERENCE_AMOUNT_MONTHLY, 0)
         }
@@ -97,8 +98,8 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
         return "${parseDate[0]}-${parseDate[1]}"
     }
 
-    private fun sendOnNotificationIntake(allowReminderNotification: Boolean) {
-        if (allowReminderNotification) {
+    private fun sendOnNotificationIntake(allowNotification: Boolean, allowReminderNotification: Boolean) {
+        if (allowNotification && allowReminderNotification) {
 
             val activityIntent = Intent(applicationContext, MainActivity::class.java)
             activityIntent.putExtra(ACTIVITY_SELECTION_NOTIFICATION, ACTIVITY_SELECTION_NOTIFICATION_INTAKE)
@@ -117,8 +118,8 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
         }
     }
 
-    private fun sendOnNotificationAchievement(allowAchievementNotification: Boolean) {
-        if (allowAchievementNotification) {
+    private fun sendOnNotificationAchievement(allowNotification: Boolean, allowAchievementNotification: Boolean) {
+        if (allowNotification && allowAchievementNotification) {
 
             val activityIntent = Intent(applicationContext, MainActivity::class.java)
             activityIntent.putExtra(ACTIVITY_SELECTION_NOTIFICATION, ACTIVITY_SELECTION_NOTIFICATION_ACHIEVEMENT)
@@ -137,8 +138,8 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
         }
     }
 
-    private fun sendOnNotificationRecordBMI(allowBMIRecordNotification: Boolean) {
-        if (allowBMIRecordNotification) {
+    private fun sendOnNotificationRecordBMI(allowNotification: Boolean, allowBMIRecordNotification: Boolean) {
+        if (allowNotification && allowBMIRecordNotification) {
 
             val activityIntent = Intent(applicationContext, MainActivity::class.java)
             activityIntent.putExtra(ACTIVITY_SELECTION_NOTIFICATION, ACTIVITY_SELECTION_NOTIFICATION_BMI)
@@ -158,15 +159,15 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
     }
 
     private fun bmiRecordLogic(mwtDatabase: MWTDatabase, currentDate: String,
-                               allowBMIRecordNotification: Boolean) {
+                               allowNotification: Boolean, allowBMIRecordNotification: Boolean) {
         mwtDatabase.bmiRecordDao().save(BMIRecordEntity(200f, currentDate))
-        sendOnNotificationRecordBMI(allowBMIRecordNotification)
+        sendOnNotificationRecordBMI(allowNotification, allowBMIRecordNotification)
     }
 
     private fun achievementLogic(mwtDatabase: MWTDatabase, currentDate: String,
-                                 allowAchievementNotification: Boolean, type: String) {
+                                 allowNotification: Boolean, allowAchievementNotification: Boolean, type: String) {
         mwtDatabase.achievementsDao().save(AchievementsEntity("Reached $type goal",
                 "$type: $currentDate", type))
-        sendOnNotificationAchievement(allowAchievementNotification)
+        sendOnNotificationAchievement(allowNotification, allowAchievementNotification)
     }
 }
