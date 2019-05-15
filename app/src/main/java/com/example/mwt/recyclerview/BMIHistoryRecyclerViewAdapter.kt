@@ -10,7 +10,7 @@ import com.example.mwt.db.bmiRecordsdb.BMIRecordEntity
 import com.example.mwt.util.inflate
 import kotlinx.android.synthetic.main.layout_list_bmi_history_item.view.*
 
-class BMIHistoryRecyclerViewAdapter:
+class BMIHistoryRecyclerViewAdapter :
         ListAdapter<BMIRecordEntity, RecyclerView.ViewHolder>(diffCallback) {
 
     companion object {
@@ -28,13 +28,14 @@ class BMIHistoryRecyclerViewAdapter:
     }
 
     override fun getItemViewType(position: Int): Int {
-        return  R.layout.layout_list_bmi_history_item
+        return R.layout.layout_list_bmi_history_item
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = parent.inflate(viewType)
-        return BMIRecordViewHolder (view)
+        return BMIRecordViewHolder(view)
     }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is BMIRecordViewHolder -> {

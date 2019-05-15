@@ -144,10 +144,13 @@
         <item>Summer</item>
         <item>Autumn</item>
     </string-array>
-    
+
     <string-array name="achievementType">
         <item>Day</item>
         <item>Week</item>
         <item>Month</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat
 import com.example.mwt.R
 import java.util.*
 
-fun Calendar.getDate() : String {
+fun Calendar.getDate(): String {
 
     val month = this.get(Calendar.MONTH) + 1
     val day = this.get(Calendar.DAY_OF_MONTH)
@@ -24,13 +24,13 @@ fun Calendar.getDate() : String {
     var dayText = day.toString()
 
     if (month < 10) monthText = "0$monthText"
-    if(day < 10) dayText = "0$dayText"
+    if (day < 10) dayText = "0$dayText"
 
     // Format y-M-d or yyyy-MM-d
     return "$yearText-$monthText-$dayText"
 }
 
-fun Calendar.getTimeAndDate() : String {
+fun Calendar.getTimeAndDate(): String {
 
     val hour = this.get(Calendar.HOUR)
     val minute = this.get(Calendar.MINUTE)
@@ -57,7 +57,7 @@ fun ViewGroup.inflate(
 }
 
 fun ConstraintLayout.showContent(dropIcon: ImageView) {
-    if(this.visibility == View.VISIBLE) {
+    if (this.visibility == View.VISIBLE) {
         this.visibility = View.GONE
         dropIcon.background = ContextCompat.getDrawable(context, R.drawable.ic_arrow_drop_down)
     } else {
@@ -67,7 +67,7 @@ fun ConstraintLayout.showContent(dropIcon: ImageView) {
 }
 
 fun ConstraintLayout.showContent(dropIcon: Button) {
-    if(this.visibility == View.VISIBLE) {
+    if (this.visibility == View.VISIBLE) {
         this.visibility = View.GONE
         dropIcon.background = ContextCompat.getDrawable(context, R.drawable.ic_arrow_drop_down)
     } else {
@@ -76,7 +76,7 @@ fun ConstraintLayout.showContent(dropIcon: Button) {
     }
 }
 
-fun Spinner.attachSinner(preference: SharedPreferences, initialPos: Int, spinnerArray: Int, preferenceSaveVal: String, color:Int = Color.BLACK) {
+fun Spinner.attachSinner(preference: SharedPreferences, initialPos: Int, spinnerArray: Int, preferenceSaveVal: String, color: Int = Color.BLACK) {
     val adapter = ArrayAdapter.createFromResource(context!!, spinnerArray, android.R.layout.simple_spinner_item)
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
     this.adapter = adapter
@@ -85,7 +85,7 @@ fun Spinner.attachSinner(preference: SharedPreferences, initialPos: Int, spinner
         override fun onNothingSelected(parent: AdapterView<*>?) {}
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             (parent!!.getChildAt(0) as TextView).setTextColor(color)
-            preference.setString(preferenceSaveVal, parent?.getItemAtPosition(position).toString())
+            preference.setString(preferenceSaveVal, parent.getItemAtPosition(position).toString())
         }
     }
 }
@@ -112,15 +112,15 @@ fun EditText.attachEditText(preference: SharedPreferences, preferenceSaveVal: St
     this.addTextChangedListener(object : TextWatcher {
         override fun afterTextChanged(s: Editable) {}
         override fun beforeTextChanged(s: CharSequence, start: Int,
-                                       count: Int, after: Int) {}
+                                       count: Int, after: Int) {
+        }
 
         override fun onTextChanged(s: CharSequence, start: Int,
                                    before: Int, count: Int) {
 
-            if (count == 0){
+            if (count == 0) {
                 preference.setInt(preferenceSaveVal, noCount)
-            }
-            else{
+            } else {
                 preference.setInt(preferenceSaveVal, s.toString().toInt())
             }
 

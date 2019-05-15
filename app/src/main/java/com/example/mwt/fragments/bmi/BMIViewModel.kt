@@ -20,10 +20,10 @@ class BMIViewModel(private val bmiRecordDao: BMIRecordDao) : ViewModel(), Corout
     }
 
     fun savePost(bmiRecordEntity: BMIRecordEntity) {
-        launch{ bmiRecordDao.save(bmiRecordEntity) }
+        launch { bmiRecordDao.save(bmiRecordEntity) }
     }
 
     fun deletePost(bmiRecordEntity: BMIRecordEntity) {
-        launch{ bmiRecordDao.delete(bmiRecordEntity) }
+        launch { bmiRecordDao.delete(bmiRecordEntity) }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.mwt.fragments.timer
+package com.example.mwt.fragments.trackerLog.log
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 
-class DrinkingTimerViewModel(private val dailyLogDao: DailyLogDao) : ViewModel(), CoroutineScope {
+class DrinkingLogViewModel(private val dailyLogDao: DailyLogDao) : ViewModel(), CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Default
@@ -21,14 +21,14 @@ class DrinkingTimerViewModel(private val dailyLogDao: DailyLogDao) : ViewModel()
     }
 
     fun savePost(containerAdd: DailyLogEntity) {
-        launch{ dailyLogDao.save(containerAdd) }
+        launch { dailyLogDao.save(containerAdd) }
     }
 
     fun deletePost(containerAdd: DailyLogEntity) {
-        launch{ dailyLogDao.delete(containerAdd) }
+        launch { dailyLogDao.delete(containerAdd) }
     }
 
-    fun updatePost(containerAdd: DailyLogEntity){
+    fun updatePost(containerAdd: DailyLogEntity) {
         launch { dailyLogDao.update(containerAdd) }
     }
 }

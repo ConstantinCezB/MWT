@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.mwt.R
 import com.example.mwt.util.*
-import kotlinx.android.synthetic.main.settings_fragment.*
 import kotlinx.android.synthetic.main.settings_fragment.view.*
 import kotlinx.android.synthetic.main.time_interval_picker_layout.view.*
 
@@ -132,7 +131,7 @@ class SettingsFragment : Fragment() {
             it.minValue = 0
             it.maxValue = displayedValuesMinutesArray.size - 1
             it.displayedValues = displayedValuesMinutesArray
-            it.value = minutes/15
+            it.value = minutes / 15
             it.setOnValueChangedListener { _, _, newVal ->
                 if (newVal == 0 && mView.numberPickerHours.value == 0) mView.numberPickerHours.value = 1
             }

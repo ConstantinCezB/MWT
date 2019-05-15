@@ -52,12 +52,12 @@ class DrinkingStatisticsFragment : Fragment() {
             val barEntries = ArrayList<BarEntry>()
             val barDate = ArrayList<String>()
             val data = it.reversed()
-            if(data.isNotEmpty()){
+            if (data.isNotEmpty()) {
                 for (i in data.indices) {
                     barEntries.add(BarEntry(i.toFloat(), data[i].progress.toFloat()))
                     barDate.add(data[i].date)
                 }
-            }else{
+            } else {
                 barEntries.add(BarEntry(0f, 0f))
             }
 

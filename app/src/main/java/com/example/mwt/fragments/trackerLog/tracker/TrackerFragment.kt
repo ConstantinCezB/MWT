@@ -1,4 +1,4 @@
-package com.example.mwt.fragments.tracker
+package com.example.mwt.fragments.trackerLog.tracker
 
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences

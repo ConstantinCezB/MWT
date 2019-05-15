@@ -56,7 +56,7 @@ class GoalsFragment : Fragment() {
             view.goal_day_user.text = it.toString()
         })
         view.goal_edit_day_btn.setOnClickListener {
-            showDialogEdit(view, "day", SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY, SHARED_PREFERENCE_ALLOW_USER_DAY_GOAL ,recommended, 4)
+            showDialogEdit(view, "day", SHARED_PREFERENCE_GOAL_DAILY, DEFAULT_GOAL_DAILY, SHARED_PREFERENCE_ALLOW_USER_DAY_GOAL, recommended, 4)
         }
 
         view.weekProgessAmount.text = amountWeek.toString()
@@ -67,7 +67,7 @@ class GoalsFragment : Fragment() {
             view.goal_week_user.text = it.toString()
         })
         view.goal_edit_week_btn.setOnClickListener {
-            showDialogEdit(view, "week", SHARED_PREFERENCE_GOAL_WEEKLY, DEFAULT_GOAL_WEEKLY, SHARED_PREFERENCE_ALLOW_USER_WEEK_GOAL,recommended * 7, 5)
+            showDialogEdit(view, "week", SHARED_PREFERENCE_GOAL_WEEKLY, DEFAULT_GOAL_WEEKLY, SHARED_PREFERENCE_ALLOW_USER_WEEK_GOAL, recommended * 7, 5)
         }
 
         view.monthProgessAmount.text = amountMonth.toString()
@@ -78,7 +78,7 @@ class GoalsFragment : Fragment() {
             view.goal_month_user.text = it.toString()
         })
         view.goal_edit_month_btn.setOnClickListener {
-            showDialogEdit(view, "month", SHARED_PREFERENCE_GOAL_MONTHLY, DEFAULT_GOAL_MONTHLY, SHARED_PREFERENCE_ALLOW_USER_MONTH_GOAL,recommended * daysInMonth, 6)
+            showDialogEdit(view, "month", SHARED_PREFERENCE_GOAL_MONTHLY, DEFAULT_GOAL_MONTHLY, SHARED_PREFERENCE_ALLOW_USER_MONTH_GOAL, recommended * daysInMonth, 6)
         }
 
 
@@ -139,7 +139,7 @@ class GoalsFragment : Fragment() {
 
         mView.switch_allow_user_defined.let {
             it.isChecked = preference!!.getBoolean(preferenceValueAllowUserGoal, DEFAULT_USER_GOAL)
-            if (!it.isChecked){
+            if (!it.isChecked) {
                 mView.editText_goal_user.isEnabled = false
             }
 

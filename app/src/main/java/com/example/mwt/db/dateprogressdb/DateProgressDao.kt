@@ -1,12 +1,7 @@
 package com.example.mwt.db.dateprogressdb
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.OnConflictStrategy
 import androidx.lifecycle.LiveData
-import androidx.room.Delete
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface DateProgressDao {

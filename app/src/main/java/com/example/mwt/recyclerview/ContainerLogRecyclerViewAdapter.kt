@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
 import com.example.mwt.db.dailylogdb.DailyLogEntity
-import com.example.mwt.fragments.timer.DrinkingTimerViewModel
+import com.example.mwt.fragments.trackerLog.log.DrinkingLogViewModel
 import com.example.mwt.util.*
 import kotlinx.android.synthetic.main.layout_list_water_container_drinked.view.*
 import kotlinx.android.synthetic.main.log_edit_frame.view.*
 
 
-class ContainerLogRecyclerViewAdapter(private val viewModel: DrinkingTimerViewModel, private val preference: SharedPreferences) :
+class ContainerLogRecyclerViewAdapter(private val viewModel: DrinkingLogViewModel, private val preference: SharedPreferences) :
         ListAdapter<DailyLogEntity, RecyclerView.ViewHolder>(diffCallback) {
 
     companion object {

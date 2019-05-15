@@ -20,10 +20,10 @@ class DrinkingStatisticsViewModel(private val dateProgressDao: DateProgressDao) 
     }
 
     fun savePost(dateProgress: DateProgressEntity) {
-        launch{ dateProgressDao.save(dateProgress) }
+        launch { dateProgressDao.save(dateProgress) }
     }
 
     fun deletePost(dateProgress: DateProgressEntity) {
-        launch{ dateProgressDao.delete(dateProgress) }
+        launch { dateProgressDao.delete(dateProgress) }
     }
 }

@@ -1,24 +1,23 @@
 package com.example.mwt
 
 import android.os.Bundle
-import com.google.android.material.navigation.NavigationView
-import androidx.core.view.GravityCompat
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import com.example.mwt.fragments.bmi.BMIFragment
-import com.example.mwt.fragments.goals.GoalsFragment
-import com.example.mwt.fragments.settings.SettingsFragment
 import com.example.mwt.fragments.drinkingstatistics.DrinkingStatisticsFragment
+import com.example.mwt.fragments.goals.GoalsFragment
 import com.example.mwt.fragments.information.InformationFragment
-import com.example.mwt.fragments.timer.DrinkingTimerFragment
-import com.example.mwt.fragments.tracker.TrackerFragment
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
+import com.example.mwt.fragments.settings.SettingsFragment
+import com.example.mwt.fragments.trackerLog.TrackerMainPage
 import com.example.mwt.util.ACTIVITY_SELECTION_NOTIFICATION
 import com.example.mwt.util.ACTIVITY_SELECTION_NOTIFICATION_ACHIEVEMENT
 import com.example.mwt.util.ACTIVITY_SELECTION_NOTIFICATION_BMI
+import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -46,7 +45,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             else -> {
                 toolbar.title = getString(R.string.water_tracker)
-                TrackerFragment()
+                TrackerMainPage()
             }
         }
         supportFragmentManager
@@ -72,15 +71,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val fragment = when (id) {
             R.id.nav_tracker -> {
                 toolbar.title = getString(R.string.water_tracker)
-                TrackerFragment()
+                TrackerMainPage()
             }
             R.id.nav_statistics -> {
                 toolbar.title = getString(R.string.drinking_statistics)
                 DrinkingStatisticsFragment()
-            }
-            R.id.nav_timer -> {
-                toolbar.title = getString(R.string.drinking_timer)
-                DrinkingTimerFragment()
             }
             R.id.nav_goals -> {
                 toolbar.title = getString(R.string.goals)
@@ -94,7 +89,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 toolbar.title = getString(R.string.settings)
                 SettingsFragment()
             }
-            R.id.nav_information ->{
+            R.id.nav_information -> {
                 toolbar.title = getString(R.string.info)
                 InformationFragment()
             }

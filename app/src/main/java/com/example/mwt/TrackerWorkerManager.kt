@@ -47,10 +47,10 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
         val timeInterval = preference.getInt(SHARED_PREFERENCE_TIME_INTERVAL, DEFAULT_TIME_INTERVAL)
         val timeIntervalTracker = preference.getInt(SHARED_PREFERENCE_TIME_INTERVAL_TRACKER, DEFAULT_TIME_INTERVAL)
 
-        if (timeInterval == timeIntervalTracker){
+        if (timeInterval == timeIntervalTracker) {
             sendOnNotificationIntake(allowNotification, allowReminderNotification)
             preference.setInt(SHARED_PREFERENCE_TIME_INTERVAL_TRACKER, 15)
-        }else{
+        } else {
             preference.setInt(SHARED_PREFERENCE_TIME_INTERVAL_TRACKER, timeIntervalTracker + 15)
         }
 

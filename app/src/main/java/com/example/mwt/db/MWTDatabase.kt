@@ -6,10 +6,10 @@ import com.example.mwt.db.achievementdb.AchievementsDao
 import com.example.mwt.db.achievementdb.AchievementsEntity
 import com.example.mwt.db.bmiRecordsdb.BMIRecordDao
 import com.example.mwt.db.bmiRecordsdb.BMIRecordEntity
-import com.example.mwt.db.dailylogdb.DailyLogDao
-import com.example.mwt.db.dailylogdb.DailyLogEntity
 import com.example.mwt.db.containerdb.ContainerDao
 import com.example.mwt.db.containerdb.ContainersEntity
+import com.example.mwt.db.dailylogdb.DailyLogDao
+import com.example.mwt.db.dailylogdb.DailyLogEntity
 import com.example.mwt.db.dateprogressdb.DateProgressDao
 import com.example.mwt.db.dateprogressdb.DateProgressEntity
 

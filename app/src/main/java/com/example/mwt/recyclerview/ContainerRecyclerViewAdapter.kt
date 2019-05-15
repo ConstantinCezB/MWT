@@ -13,7 +13,7 @@ import com.example.mwt.R
 import com.example.mwt.db.MWTDatabase
 import com.example.mwt.db.containerdb.ContainersEntity
 import com.example.mwt.db.dailylogdb.DailyLogEntity
-import com.example.mwt.fragments.tracker.TrackerViewModel
+import com.example.mwt.fragments.trackerLog.tracker.TrackerViewModel
 import com.example.mwt.util.*
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.custom_dialog_option_tracker_frame.view.*

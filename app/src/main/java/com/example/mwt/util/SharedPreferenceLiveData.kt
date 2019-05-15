@@ -81,11 +81,11 @@ fun SharedPreferences.stringSetLiveData(key: String, defValue: Set<String>): Sha
     return SharedPreferenceStringSetLiveData(this, key, defValue)
 }
 
-fun SharedPreferences.setInt(key: String, value: Int){
-   this.edit().putInt(key, value).apply()
+fun SharedPreferences.setInt(key: String, value: Int) {
+    this.edit().putInt(key, value).apply()
 }
 
-fun SharedPreferences.setString(key: String, value: String){
+fun SharedPreferences.setString(key: String, value: String) {
     this.edit().putString(key, value).apply()
 }
 
@@ -93,6 +93,6 @@ fun SharedPreferences.setFloat(key: String, value: Float) {
     this.edit().putFloat(key, value).apply()
 }
 
-fun SharedPreferences.setBoolean(key: String, value: Boolean){
+fun SharedPreferences.setBoolean(key: String, value: Boolean) {
     this.edit().putBoolean(key, value).apply()
 }

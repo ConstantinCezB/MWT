@@ -1,4 +1,4 @@
-package com.example.mwt.fragments.tracker
+package com.example.mwt.fragments.trackerLog.tracker
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -31,14 +31,14 @@ class TrackerViewModel(private val containerDao: ContainerDao) : ViewModel(), Co
     }
 
     fun savePost(container: ContainersEntity) {
-        launch{ containerDao.save(container) }
+        launch { containerDao.save(container) }
     }
 
     fun deletePost(container: ContainersEntity) {
-        launch{ containerDao.delete(container) }
+        launch { containerDao.delete(container) }
     }
 
-    fun updatePost(container: ContainersEntity){
-        launch{ containerDao.update(container) }
+    fun updatePost(container: ContainersEntity) {
+        launch { containerDao.update(container) }
     }
 }

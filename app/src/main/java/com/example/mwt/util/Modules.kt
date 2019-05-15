@@ -7,8 +7,8 @@ import com.example.mwt.db.MWTDatabase
 import com.example.mwt.fragments.bmi.BMIViewModel
 import com.example.mwt.fragments.drinkingstatistics.DrinkingStatisticsViewModel
 import com.example.mwt.fragments.goals.GoalsViewModel
-import com.example.mwt.fragments.timer.DrinkingTimerViewModel
-import com.example.mwt.fragments.tracker.TrackerViewModel
+import com.example.mwt.fragments.trackerLog.log.DrinkingLogViewModel
+import com.example.mwt.fragments.trackerLog.tracker.TrackerViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.koin.android.ext.koin.androidContext
@@ -32,11 +32,11 @@ val MWTModule = module {
         get<MWTDatabase>().containerDao()
     }
 
-    single{
+    single {
         get<MWTDatabase>().dateProgressDao()
     }
 
-    single{
+    single {
         get<MWTDatabase>().dailyLogDao()
     }
 
@@ -57,7 +57,7 @@ val MWTModule = module {
     }
 
     viewModel {
-        DrinkingTimerViewModel(get())
+        DrinkingLogViewModel(get())
     }
 
     viewModel {

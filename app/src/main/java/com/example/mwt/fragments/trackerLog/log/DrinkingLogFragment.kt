@@ -1,4 +1,4 @@
-package com.example.mwt.fragments.timer
+package com.example.mwt.fragments.trackerLog.log
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -17,9 +17,9 @@ import kotlinx.android.synthetic.main.drinking_timer_fragment.*
 import kotlinx.android.synthetic.main.drinking_timer_fragment.view.*
 import org.koin.android.viewmodel.ext.android.getViewModel
 
-class DrinkingTimerFragment : Fragment() {
+class DrinkingLogFragment : Fragment() {
 
-    private lateinit var viewModel: DrinkingTimerViewModel
+    private lateinit var viewModel: DrinkingLogViewModel
     private lateinit var containerDrankRecyclerViewAdapter: ContainerLogRecyclerViewAdapter
     private var preference: SharedPreferences? = null
 
@@ -45,7 +45,7 @@ class DrinkingTimerFragment : Fragment() {
         })
     }
 
-    private fun showEmptyLogDisplay (adapterSize: Int){
+    private fun showEmptyLogDisplay(adapterSize: Int) {
         if (adapterSize == 0) display_no_log.visibility = View.VISIBLE
         else display_no_log.visibility = View.GONE
     }

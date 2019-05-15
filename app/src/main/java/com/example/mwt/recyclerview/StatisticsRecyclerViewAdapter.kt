@@ -10,7 +10,7 @@ import com.example.mwt.db.dateprogressdb.DateProgressEntity
 import com.example.mwt.util.inflate
 import kotlinx.android.synthetic.main.layout_list_statistics_item.view.*
 
-class StatisticsRecyclerViewAdapter:
+class StatisticsRecyclerViewAdapter :
         ListAdapter<DateProgressEntity, RecyclerView.ViewHolder>(diffCallback) {
 
     companion object {
@@ -28,13 +28,14 @@ class StatisticsRecyclerViewAdapter:
     }
 
     override fun getItemViewType(position: Int): Int {
-        return  R.layout.layout_list_statistics_item
+        return R.layout.layout_list_statistics_item
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = parent.inflate(viewType)
-        return StatisticsViewHolder (view)
+        return StatisticsViewHolder(view)
     }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is StatisticsViewHolder -> {

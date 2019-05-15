@@ -247,7 +247,7 @@ class BMIFragment : Fragment() {
         val answer = (((weight / 2.2) * age) / 28.3) + season + activityLevel
 
         preference.setInt(SHARED_PREFERENCE_RECOMMENDED_AMOUNT, answer.toInt())
-        if(!allowUserDayGoal) preference.setInt(SHARED_PREFERENCE_GOAL_DAILY, answer.toInt())
+        if (!allowUserDayGoal) preference.setInt(SHARED_PREFERENCE_GOAL_DAILY, answer.toInt())
         if (!allowUserWeekGoal) preference.setInt(SHARED_PREFERENCE_GOAL_WEEKLY, answer.toInt() * 7)
         if (!allowUserMonthGoal) preference.setInt(SHARED_PREFERENCE_GOAL_MONTHLY, answer.toInt() * daysInMonth)
 

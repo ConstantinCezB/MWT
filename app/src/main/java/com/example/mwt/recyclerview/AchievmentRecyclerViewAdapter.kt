@@ -10,7 +10,7 @@ import com.example.mwt.db.achievementdb.AchievementsEntity
 import com.example.mwt.util.inflate
 import kotlinx.android.synthetic.main.layout_list_achievment_item.view.*
 
-class AchievmentRecyclerViewAdapter:
+class AchievmentRecyclerViewAdapter :
         ListAdapter<AchievementsEntity, RecyclerView.ViewHolder>(diffCallback) {
 
     companion object {
@@ -28,13 +28,14 @@ class AchievmentRecyclerViewAdapter:
     }
 
     override fun getItemViewType(position: Int): Int {
-        return  R.layout.layout_list_achievment_item
+        return R.layout.layout_list_achievment_item
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = parent.inflate(viewType)
-        return AchievementViewHolder (view)
+        return AchievementViewHolder(view)
     }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is AchievementViewHolder -> {
