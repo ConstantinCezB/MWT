@@ -1,7 +1,8 @@
 package com.example.mwt.fragments.drinkingstatistics
 
+import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mwt.R
 import com.example.mwt.recyclerview.StatisticsRecyclerViewAdapter
-import com.example.mwt.util.MyXAxisFormatter
+import com.example.mwt.util.*
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
@@ -30,7 +31,12 @@ class DrinkingStatisticsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val preference = context!!.getSharedPreferences(SHARED_PREFERENCE_FILE, Context.MODE_PRIVATE)!!
+        val spinnerInitialPositionStatistics = preference.getString(SHARED_PREFERENCE_SPINNER_STATISTICS, DEFAULT_SPINNER_ACHIEVEMENTS)
+
         view.recyclerStatisticsView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        view.spinnerTypeStatisticsDisplay.attachSinner(preference, stringToIntConversionSpinner(spinnerInitialPositionStatistics!!), R.array.achievementType, SHARED_PREFERENCE_SPINNER_ACHIEVEMENTS, Color.WHITE)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -68,12 +74,23 @@ class DrinkingStatisticsFragment : Fragment() {
 
 
         })
+
+
     }
 
 
     private fun showNoEntriesDisplay(adapterSize: Int) {
         if (adapterSize == 0) display_no_entries.visibility = View.VISIBLE
         else display_no_entries.visibility = View.GONE
+    }
+
+    private fun stringToIntConversionSpinner(string: String): Int {
+        return when (string) {
+            "Day" -> 0
+            "Week" -> 1
+            "Month" -> 2
+            else -> 0
+        }
     }
 
 

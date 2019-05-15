@@ -68,7 +68,7 @@ const val DEFAULT_SEASON = "Winter"
  */
 // =================================================================================================
 const val SHARED_PREFERENCE_SPINNER_ACHIEVEMENTS = "spinnerAchievements"
-const val DEFAULT_SPINNER_ACHIEVEMENTS = "Daily"
+const val DEFAULT_SPINNER_ACHIEVEMENTS = "Day"
 // =================================================================================================
 /*
  * Variables for the settings.
@@ -117,5 +117,7 @@ const val SHARED_PREFERENCE_ALLOW_USER_DAY_GOAL = "allowUserDayGoal"
 const val SHARED_PREFERENCE_ALLOW_USER_WEEK_GOAL = "allowUserWeekGoal"
 const val SHARED_PREFERENCE_ALLOW_USER_MONTH_GOAL = "allowUserMonthGoal"
 const val DEFAULT_USER_GOAL = false
+
+const val SHARED_PREFERENCE_SPINNER_STATISTICS = "spinnerStatistics"
 
 
