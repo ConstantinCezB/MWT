@@ -1,6 +1,7 @@
 package com.example.mwt.util
 
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -75,7 +76,7 @@ fun ConstraintLayout.showContent(dropIcon: Button) {
     }
 }
 
-fun Spinner.attachSinner(preference: SharedPreferences, initialPos: Int, spinnerArray: Int, preferenceSaveVal: String) {
+fun Spinner.attachSinner(preference: SharedPreferences, initialPos: Int, spinnerArray: Int, preferenceSaveVal: String, color:Int = Color.BLACK) {
     val adapter = ArrayAdapter.createFromResource(context!!, spinnerArray, android.R.layout.simple_spinner_item)
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
     this.adapter = adapter
@@ -83,6 +84,7 @@ fun Spinner.attachSinner(preference: SharedPreferences, initialPos: Int, spinner
     this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(parent: AdapterView<*>?) {}
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            (parent!!.getChildAt(0) as TextView).setTextColor(color)
             preference.setString(preferenceSaveVal, parent?.getItemAtPosition(position).toString())
         }
     }

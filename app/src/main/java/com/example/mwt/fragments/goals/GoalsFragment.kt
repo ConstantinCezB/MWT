@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.text.InputFilter
 import android.view.LayoutInflater
@@ -87,7 +88,7 @@ class GoalsFragment : Fragment() {
             view.ConstraintLayoutAchievementToDropGoal.showContent(view.bmi_log_edit_drop_achievement_goal)
         }
 
-        view.spinnerTypeSelectAchievement.attachSinner(preference!!, stringToIntConversionSpinner(spinnerInitialPositionAchievements!!), R.array.achievementType, SHARED_PREFERENCE_SPINNER_ACHIEVEMENTS)
+        view.spinnerTypeSelectAchievement.attachSinner(preference!!, stringToIntConversionSpinner(spinnerInitialPositionAchievements!!), R.array.achievementType, SHARED_PREFERENCE_SPINNER_ACHIEVEMENTS, Color.WHITE)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -149,7 +150,6 @@ class GoalsFragment : Fragment() {
                     mView.editText_goal_user.text.append(recommendedAmountGoal.toString())
                 }
                 mView.editText_goal_user.isEnabled = isChecked
-                preference!!.setBoolean(preferenceValueAllowUserGoal, isChecked)
             }
         }
 
@@ -162,6 +162,7 @@ class GoalsFragment : Fragment() {
 
         mView.edit_goal_accept_btn.setOnClickListener {
             preference!!.setInt(preferenceValue, mView.editText_goal_user.text.toString().toInt())
+            preference!!.setBoolean(preferenceValueAllowUserGoal, mView.switch_allow_user_defined.isChecked)
             dialog.dismiss()
         }
 
