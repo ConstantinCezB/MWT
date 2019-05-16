@@ -18,6 +18,10 @@ interface DateProgressDao {
     @Delete
     fun delete(dateProgress: DateProgressEntity)
 
-    @Query("SELECT * FROM dateProgress ORDER BY id DESC")
-    fun findAll(): LiveData<List<DateProgressEntity>>
+    @Query("SELECT * FROM dateProgress WHERE itemType IN (:type) ORDER BY id DESC")
+    fun findAll(type: String): LiveData<List<DateProgressEntity>>
+
+    @Query("DELETE FROM dateProgress WHERE itemType IN (:type)")
+    fun deleteAll(type: String)
+
 }

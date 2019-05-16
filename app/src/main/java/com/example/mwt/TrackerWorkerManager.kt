@@ -59,7 +59,7 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
         if (previousDate != DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE && previousDate != currentDate) {
             get<MWTDatabase>().let {
                 if (dayAmount >= dayGoal) achievementLogic(it, currentDate, allowNotification, allowAchievementNotification, "Day")
-                it.dateProgressDao().save(DateProgressEntity(previousDate, dayAmount))
+                it.dateProgressDao().save(DateProgressEntity(previousDate, dayAmount, "Day"))
                 it.dailyLogDao().dropTable()
                 if (bmiRecordInterval == "day") bmiRecordLogic(it, currentDate, allowNotification, allowBMIRecordNotification)
             }
@@ -84,6 +84,9 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
             get<MWTDatabase>().let {
                 if (monthAmount >= monthGoal) achievementLogic(it, currentDate, allowNotification, allowAchievementNotification, "Month")
                 if (bmiRecordInterval == "month") bmiRecordLogic(it, currentDate, allowNotification, allowBMIRecordNotification)
+                it.dateProgressDao().deleteAll("Day")
+                it.dateProgressDao().save(DateProgressEntity("works", 22 ,"Month"))
+
             }
             preference.setInt(SHARED_PREFERENCE_AMOUNT_MONTHLY, 0)
         }

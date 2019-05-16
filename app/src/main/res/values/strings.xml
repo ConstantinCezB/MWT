@@ -59,7 +59,7 @@
     <string name="bmi">BMI</string>
     <string name="add_amount">Add amount: </string>
     <string name="refresh">Refresh</string>
-    <string name="rem_fav">Remove\nFavorite</string>
+    <string name="rem_fav">Remove favorite</string>
     <string name="no_log_to_display">No log to display</string>
     <string name="no_entries_to_display">No entries to display</string>
     <string name="image_that_shows_if_the_tab_shown_or_not">Image that shows if the tab shown or not</string>
@@ -149,6 +149,12 @@
         <item>Day</item>
         <item>Week</item>
         <item>Month</item>
+    </string-array>
+
+    <string-array name="statisticsType">
+        <item>Day</item>
+        <item>Month</item>
+        <item>Year</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->

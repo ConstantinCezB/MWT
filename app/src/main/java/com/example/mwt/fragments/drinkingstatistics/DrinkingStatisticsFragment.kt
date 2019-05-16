@@ -1,8 +1,10 @@
 package com.example.mwt.fragments.drinkingstatistics
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
+import android.preference.Preference
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +26,7 @@ class DrinkingStatisticsFragment : Fragment() {
 
     private lateinit var viewModel: DrinkingStatisticsViewModel
     private lateinit var statisticsRecyclerViewAdapter: StatisticsRecyclerViewAdapter
+    private lateinit var preference: SharedPreferences
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.drinking_statistics_fragment, container, false)
@@ -31,51 +34,54 @@ class DrinkingStatisticsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val preference = context!!.getSharedPreferences(SHARED_PREFERENCE_FILE, Context.MODE_PRIVATE)!!
+        preference = context!!.getSharedPreferences(SHARED_PREFERENCE_FILE, Context.MODE_PRIVATE)
         val spinnerInitialPositionStatistics = preference.getString(SHARED_PREFERENCE_SPINNER_STATISTICS, DEFAULT_SPINNER_ACHIEVEMENTS)
 
         view.recyclerStatisticsView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        view.spinnerTypeStatisticsDisplay.attachSinner(preference, stringToIntConversionSpinner(spinnerInitialPositionStatistics!!), R.array.achievementType, SHARED_PREFERENCE_SPINNER_ACHIEVEMENTS, Color.WHITE)
+        view.spinnerTypeStatisticsDisplay.attachSinner(preference, stringToIntConversionSpinner(spinnerInitialPositionStatistics!!), R.array.statisticsType, SHARED_PREFERENCE_SPINNER_STATISTICS, Color.WHITE)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = getViewModel()
 
-        statisticsRecyclerViewAdapter = StatisticsRecyclerViewAdapter().also(recyclerStatisticsView::setAdapter)
 
-        viewModel.getAllPosts().observe(viewLifecycleOwner, Observer {
-            statisticsRecyclerViewAdapter.submitList(it)
-            showNoEntriesDisplay(it.size)
+        preference = context!!.getSharedPreferences(SHARED_PREFERENCE_FILE, Context.MODE_PRIVATE)
 
-            val barEntries = ArrayList<BarEntry>()
-            val barDate = ArrayList<String>()
-            val data = it.reversed()
-            if (data.isNotEmpty()) {
-                for (i in data.indices) {
-                    barEntries.add(BarEntry(i.toFloat(), data[i].progress.toFloat()))
-                    barDate.add(data[i].date)
+        preference.stringLiveData(SHARED_PREFERENCE_SPINNER_STATISTICS, DEFAULT_SPINNER_ACHIEVEMENTS).observe(this, Observer { spinnerValue ->
+
+            statisticsRecyclerViewAdapter = StatisticsRecyclerViewAdapter().also(recyclerStatisticsView::setAdapter)
+
+            viewModel.getAllPosts(spinnerValue).observe(viewLifecycleOwner, Observer {
+                statisticsRecyclerViewAdapter.submitList(it)
+                showNoEntriesDisplay(it.size)
+
+                val barEntries = ArrayList<BarEntry>()
+                val barDate = ArrayList<String>()
+                val data = it.reversed()
+                if (data.isNotEmpty()) {
+                    for (i in data.indices) {
+                        barEntries.add(BarEntry(i.toFloat(), data[i].progress.toFloat()))
+                        barDate.add(data[i].date)
+                    }
+                } else {
+                    barEntries.add(BarEntry(0f, 0f))
                 }
-            } else {
-                barEntries.add(BarEntry(0f, 0f))
-            }
 
-            val barDataSet = BarDataSet(barEntries, "Amount drank")
-            val barData = BarData(barDataSet)
+                val barDataSet = BarDataSet(barEntries, "Amount drank")
+                val barData = BarData(barDataSet)
 
-            view!!.barGraphChartProgress.let { barChart ->
-                barChart.data = barData
-                barChart.setTouchEnabled(true)
-                barChart.isDragEnabled = true
-                barChart.setScaleEnabled(true)
-                barChart.invalidate()
-            }
+                view!!.barGraphChartProgress.let { barChart ->
+                    barChart.data = barData
+                    barChart.setTouchEnabled(true)
+                    barChart.isDragEnabled = true
+                    barChart.setScaleEnabled(true)
+                    barChart.invalidate()
+                }
 
 
+            })
         })
-
-
     }
 
 
