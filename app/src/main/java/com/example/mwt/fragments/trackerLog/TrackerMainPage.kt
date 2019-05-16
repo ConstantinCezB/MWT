@@ -21,7 +21,6 @@ class TrackerMainPage : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.pagerTracker.adapter = PagerAdapter((context as FragmentActivity).supportFragmentManager)
-        view.tabLayoutTracker.setupWithViewPager(view.pagerTracker)
 
     }
 
