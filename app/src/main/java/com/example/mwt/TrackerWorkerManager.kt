@@ -84,11 +84,37 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
             get<MWTDatabase>().let {
                 if (monthAmount >= monthGoal) achievementLogic(it, currentDate, allowNotification, allowAchievementNotification, "Month")
                 if (bmiRecordInterval == "month") bmiRecordLogic(it, currentDate, allowNotification, allowBMIRecordNotification)
+
+                var average = 0
+                it.dateProgressDao().findAll("Day").value.orEmpty().let { listDateEntity ->
+                    listDateEntity.forEach { dateProgressEntity ->
+                        average += dateProgressEntity.progress
+                    }
+                    average /= listDateEntity.size
+                }
+
+                it.dateProgressDao().save(DateProgressEntity(extractMonthYear(previousDate), average, "Month"))
                 it.dateProgressDao().deleteAll("Day")
-                it.dateProgressDao().save(DateProgressEntity("works", 22 ,"Month"))
 
             }
             preference.setInt(SHARED_PREFERENCE_AMOUNT_MONTHLY, 0)
+        }
+        //==========================================================================================
+        // This checks when the year has changed
+        if (previousDate != DEFAULT_INTERVAL_PREVIOUS_WORKER_DATE && extractYear(currentDate)
+                != extractYear(previousDate)) {
+
+            get<MWTDatabase>().let {
+                var average = 0
+                it.dateProgressDao().findAll("Month").value.orEmpty().let { listDateEntity ->
+                    listDateEntity.forEach { dateProgressEntity ->
+                        average += dateProgressEntity.progress
+                    }
+                    average /= listDateEntity.size
+                }
+                it.dateProgressDao().save(DateProgressEntity(extractYear(previousDate), average, "Year"))
+                it.dateProgressDao().deleteAll("Month")
+            }
         }
         //==========================================================================================
 
@@ -99,6 +125,11 @@ class TrackerWorkerManager(context: Context, params: WorkerParameters) : Worker(
     private fun extractMonthYear(date: String): String {
         val parseDate = date.split("-")
         return "${parseDate[0]}-${parseDate[1]}"
+    }
+
+    private fun extractYear(date: String): String {
+        val parseDate = date.split("-")
+        return parseDate[0]
     }
 
     private fun sendOnNotificationIntake(allowNotification: Boolean, allowReminderNotification: Boolean) {

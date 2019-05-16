@@ -8,6 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ProgressBar
             android:id="@+id/drinking_progress_bar"
             style="?android:attr/progressBarStyleHorizontal"
@@ -16,7 +17,7 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="8dp"
             android:indeterminate="false"
-            android:progress="80"
+            android:progress="0"
             android:progressDrawable="@drawable/circle"
             android:secondaryProgress="100"
             app:layout_constraintDimensionRatio="1:1"
@@ -89,7 +90,7 @@
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:indeterminate="false"
-            android:progress="80"
+            android:progress="0"
             android:progressDrawable="@drawable/circle"
             android:secondaryProgress="100"
             app:layout_constraintBottom_toBottomOf="@+id/percentage_daily"
@@ -104,7 +105,7 @@
             android:layout_height="0dp"
             android:layout_marginEnd="8dp"
             android:indeterminate="false"
-            android:progress="80"
+            android:progress="0"
             android:progressDrawable="@drawable/circle"
             android:secondaryProgress="100"
             app:layout_constraintBottom_toBottomOf="@+id/percentage_daily"
